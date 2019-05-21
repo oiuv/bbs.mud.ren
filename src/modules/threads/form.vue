@@ -114,7 +114,7 @@ export default {
       this.ready = true
     }
     this.$nextTick(() => {
-      this.$refs['title_input'].focus()
+      // this.$refs['title_input'].focus()
     })
   },
   methods: {
