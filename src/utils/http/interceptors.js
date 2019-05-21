@@ -51,7 +51,7 @@ export default http => {
         case 501:
         case 503:
         default:
-          Message.error('服务器出了点小问题，程序员小哥哥要被扣工资了~！')
+          Message.error('服务器出了点小问题，请在ＱＱ群[9783836]联系管理员雪风~！')
       }
       return Promise.reject(error.response)
     }
