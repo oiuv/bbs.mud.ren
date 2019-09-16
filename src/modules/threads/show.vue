@@ -12,7 +12,17 @@
             <header>
               <h2 class="mb-3 pb-2 border-bottom">{{ thread.title }}</h2>
             </header>
-            <markdown-body v-model="thread.content.body"></markdown-body>
+            <template v-if="thread.excellent_at">
+              <template v-if="currentUser.has_activated">
+                <markdown-body v-model="thread.content.body"></markdown-body>
+              </template>
+              <template v-else>
+                <div class="alert alert-danger text-18 text-center" role="alert">您需要注册登录并激活账户才能查看精华内容</div>
+              </template>
+            </template>
+            <template v-else>
+              <markdown-body v-model="thread.content.body"></markdown-body>
+            </template>
           </div>
           <div class="thread-stats-bar bg-white border-top py-1">
             <div class="container">

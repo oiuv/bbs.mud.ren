@@ -19,7 +19,7 @@
             <!--<a class="nav-link" href="#">问答</a>-->
             <!--</li>-->
             <router-link :to="{ name: 'nodes.show' }" exact tag="li" class="nav-item">
-              <a href="javascript:void(0);" class="nav-link">节点</a>
+              <a href="javascript:void(0);" class="nav-link">话题</a>
             </router-link>
             <li class="nav-item">
               <a class="nav-link" href="https://wiki.mud.ren" target="_blank">WIKI</a>
