@@ -291,7 +291,7 @@ export default {
 @media screen and (min-width: 1200px) and (max-width: 1350px) {
   .page-threads-show {
     margin-left: 65px;
-    article ul{
+    article section ul{
       list-style-type: disc !important;
     }
   }
