@@ -12,8 +12,9 @@
             <img :src="item.user.avatar" alt class="avatar-30">
           </a>
           <div class="text-gray-50">
-            <span v-if="item.excellent_at" class="badge badge-success">精华</span>
-            <span v-if="item.pinned_at" class="badge badge-danger">置顶</span>
+            <span class="badge badge-light">{{ item.node.title }}</span>
+            <span v-if="item.excellent_at" class="badge badge-pill badge-success">精</span>
+            <span v-if="item.pinned_at" class="badge badge-pill badge-danger">顶</span>
             {{ item.title }}
           </div>
         </div>
