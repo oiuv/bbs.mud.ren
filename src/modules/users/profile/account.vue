@@ -38,7 +38,7 @@
         <button type="submit" class="btn btn-primary rounded">确定</button>
       </form>
     </div>
-    <div class="box" id="edit-phone" v-if="false">
+    <div class="box" id="edit-phone">
       <div class="box-heading border-bottom">
         <h5>修改手机号码</h5>
       </div>
@@ -52,7 +52,7 @@
           <div class="input-group">
             <input type="text" class="form-control" v-model="phone">
             <div class="input-group-append">
-              <button class="btn btn-primary rounded-right">获取验证码</button>
+              <button type="submit" class="btn btn-primary rounded-right" disabled>获取验证码</button>
             </div>
           </div>
           <small class="form-text text-muted">修改手机号码需要进行短信验证。</small>

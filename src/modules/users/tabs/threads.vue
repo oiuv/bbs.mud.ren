@@ -16,7 +16,7 @@ export default {
   methods: {
     loadThreads (page = 1) {
       this.$http
-        .get(`threads?user_id=${this.$parent.user.id}&page=${page}`)
+        .get(`threads?include=node&user_id=${this.$parent.user.id}&page=${page}`)
         .then(threads => {
           this.threads = threads
         })
