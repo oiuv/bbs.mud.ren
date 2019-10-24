@@ -39,7 +39,8 @@ export default {
 
       this.logout()
       this.$router.push({ name: 'auth.login' })
-      this.$message.success('成功修改密码，请重新登录！')
+      // this.$message.success('成功修改密码，请重新登录！')
+      this.$message.error('密码修改失败,请联系管理员雪风(QQ:7300637)处理')
     }
   }
 }
