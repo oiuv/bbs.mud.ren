@@ -10,7 +10,8 @@
           <follow-btn :item="item" class="ml-auto" simple></follow-btn>
         </template>
         <template slot="description">
-          <div class="text-gray-70 text-12">{{ item.created_at_timeago }}</div>
+          <!-- <div class="text-gray-70 text-12">注册于{{ item.created_at_timeago }}</div> -->
+          <div class="text-gray-70 text-12">经验值：{{ item.energy }}</div>
         </template>
       </user-media>
     </ul>
