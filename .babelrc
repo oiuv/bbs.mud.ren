@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    ["prismjs", {
+        "languages": ["javascript", "lua", "markup", "markdown", "php", "c", "cpp"]
+    }]
+  ]
+}
