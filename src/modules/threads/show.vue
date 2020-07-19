@@ -296,4 +296,15 @@ export default {
     }
   }
 }
+
+.markdown-body pre {
+    background: #272822 !important;
+    code {
+        font-size: 100%;
+        word-break: break-word;
+        white-space: pre-wrap;
+        color: #f8f8f2;
+        text-shadow: none;
+    }
+}
 </style>
