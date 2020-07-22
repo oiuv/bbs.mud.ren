@@ -291,20 +291,22 @@ export default {
 @media screen and (min-width: 1200px) and (max-width: 1350px) {
   .page-threads-show {
     margin-left: 65px;
-    article section ul{
-      list-style-type: disc !important;
-    }
   }
 }
 
-.markdown-body pre {
+.markdown-body {
+  ul {
+    list-style: disc !important;
+  }
+  pre {
     background: #272822 !important;
     code {
-        font-size: 100%;
-        word-break: break-word;
-        white-space: pre-wrap;
-        color: #f8f8f2;
-        text-shadow: none;
+      font-size: 100%;
+      word-break: break-word;
+      white-space: pre-wrap;
+      color: #f8f8f2;
+      text-shadow: none;
     }
+  }
 }
 </style>

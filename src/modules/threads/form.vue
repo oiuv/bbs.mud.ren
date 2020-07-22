@@ -21,7 +21,7 @@
                   <input type="text" ref="title_input" class="form-control form-control-lg" v-model="form.title" placeholder="请在这里输入标题（请精准表达）">
                 </div>
               </div>
-              <editor v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="请使用 Markdown 格式详细并精准的表达，不得少于30个字符~"></editor>
+              <editor v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="不得少于30个字符~请使用 Markdown 格式排版，初次发贴请仔细阅读：https://bbs.mud.ren/threads/1"></editor>
               <div class="card-footer border-top p-2 d-flex justify-content-between">
                 <div class="left-actions d-flex align-items-center">
                   <span class="text-muted">发布到</span>
@@ -30,6 +30,7 @@
                       <el-option v-for="item in nodes" :key="item.id" :value="item.id" :label="item.title"></el-option>
                     </el-select>
                   </div>
+                  <span class="ml-2"><a href="/threads/51" target="_blank" class="text-info">编辑排版指南</a></span>
                 </div>
                 <div class="right-actions">
                   <button type="button" class="btn btn-primary" :disabled="!formReady" @click="showCaptcha(false)">立即发布</button>
