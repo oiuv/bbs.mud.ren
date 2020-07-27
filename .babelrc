@@ -1,7 +1,7 @@
 {
   "plugins": [
     ["prismjs", {
-        "languages": ["javascript", "lua", "markup", "markdown", "php", "c", "cpp"],
+        "languages": ["markup", "markdown", "javascript", "php", "c", "cpp", "lua", "ini", "git", "shell"],
         "theme": "okaidia",
         "css": true
     }]
