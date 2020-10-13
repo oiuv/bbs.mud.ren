@@ -26,6 +26,7 @@
       <div class="main-content" :class="{'container my-3': withContainer}">
         <router-view />
       </div>
+      <footer-bar />
     </div>
     <div class="position-absolute w-100 h-100 bg-white opacity-70" v-if="isToggled" @click="toggle"></div>
     <div class="back-to-top" ref="backToTopLayer">
@@ -38,6 +39,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Navbar from '$components/navbar'
+import FooterBar from '$components/footer'
 import Sidebar from '$components/sidebar'
 import ArrowUpIcon from '$icons/ArrowUp'
 
@@ -45,6 +47,7 @@ export default {
   name: 'app',
   components: {
     Navbar,
+    FooterBar,
     Sidebar,
     ArrowUpIcon
   },

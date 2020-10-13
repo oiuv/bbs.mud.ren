@@ -6,7 +6,7 @@
         <!--<button class="btn btn-ghost btn-icon"><arrow-right></arrow-right></button>-->
       </div>
     </div>
-    <ul class="plan-list px-2 pb-2">
+    <ul class="plan-list px-2 pb-1">
       <user-media type="vertical w25" v-for="item in users" :key="item.id" :user="item"></user-media>
     </ul>
   </div>

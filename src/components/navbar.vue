@@ -32,12 +32,12 @@
           <ul class="navbar-nav ml-md-auto flex-row d-md-flex align-items-center justify-content-around">
             <template v-if="isLogged">
               <li class="nav-item">
-                <router-link :to="{ name: 'threads.create' }" exact class="text-20 btn btn-icon btn-transparent btn-light">
+                <router-link :to="{ name: 'threads.create' }" title="发贴" exact class="text-20 btn btn-icon btn-info">
                   <plus-icon></plus-icon>
                 </router-link>
               </li>
               <li class="nav-item nav-item-icon">
-                <router-link :to="{ name: 'notifications.show' }" class="text-20 btn btn-icon btn-transparent btn-light">
+                <router-link :to="{ name: 'notifications.show' }" title="通知" class="text-20 btn btn-icon btn-transparent btn-warning">
                   <bell-icon />
                 </router-link>
               </li>
