@@ -35,12 +35,17 @@ export default {
         email: this.$route.query.email,
         password: this.password,
         password_confirmation: this.password_confirmation
+      }).then(data => {
+        if (data.status == 404) {
+          this.$message.error(data.message)
+        }
+        else
+        {
+          this.$message.success(data.message)
+        }
       })
-
       this.logout()
       this.$router.push({ name: 'auth.login' })
-      // this.$message.success('成功修改密码，请重新登录！')
-      this.$message.error('密码修改失败,请联系管理员雪风(QQ:7300637)处理')
     }
   }
 }
