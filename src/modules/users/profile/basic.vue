@@ -28,7 +28,7 @@
       </div>
       <div class="form-group">
         <label>邮箱地址</label>
-        <input type="email" class="form-control" placeholder="example@yike.io" v-model="user.email" disabled>
+        <input type="email" class="form-control" placeholder="example@mud.ren" v-model="user.email" disabled>
         <small class="form-text text-muted">您可以管理您的<router-link :to="{ name: 'user.account', hash: '#edit-email' }" class="text-blue">邮箱地址设置</router-link>。</small>
       </div>
       <div class="form-group">

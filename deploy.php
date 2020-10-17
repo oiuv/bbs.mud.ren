@@ -7,14 +7,14 @@ require 'recipe/common.php';
 set('application', 'yikeio client');
 
 // Project repository
-set('repository', 'git@github.com:overtrue/yike.io.git');
+set('repository', 'git@github.com:oiuv/bbs.mud.ren.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
 set('ssh_type', 'native');
 set('ssh_multiplexing', true);
 set('default_timeout', 1600);
-set('deploy_path', '/www/yike.io');
+set('deploy_path', '~/Code/wwwroot/bbs.mud.ren');
 set('writable_use_sudo', true);
 set('clear_use_sudo', true);
 set('cleanup_use_sudo', true);
@@ -27,7 +27,7 @@ set('shared_files', [
     '.env.production',
 ]);
 
-host('yike.io')
+host('bbs.mud.ren')
     ->stage('production')
     ->user('deployer')
     ->multiplexing(true);
