@@ -7,6 +7,8 @@
           <div class="form-group">
             <label>用户名<small>（或邮箱）</small></label>
             <input type="text" class="form-control" v-model="username" required>
+            <small id="emailHelp" class="form-text text-muted">提示：<a href="http://mud.ren:8000" target="_blank">炎黄MUD</a>玩家可直接使用游戏账号登录</small>
+
           </div>
           <div class="form-group">
             <label>密码</label>

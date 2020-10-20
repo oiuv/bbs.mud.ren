@@ -103,6 +103,14 @@ export default {
         old_password: this.oldPassword,
         password: this.password,
         password_confirmation: this.passwordConfirmation
+      }).then(data => {
+        if (data.status == 200) {
+          this.$message.success(data.message)
+        }
+        else
+        {
+          this.$message.error('密码修改失败！')
+        }
       })
 
       this.oldPassword = ''
