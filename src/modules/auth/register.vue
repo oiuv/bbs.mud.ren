@@ -162,11 +162,11 @@ export default {
       try {
         await this.attemptRegister(this.$data)
 
-        this.$message.warning('注册成功，请先验证你邮箱地址！')
+        this.$message.warning('注册成功，请先验证你邮箱地址才能发布内容！')
         this.$router.push({ name: 'home' })
       } catch (e) {
         if (e.status !== 422) {
-          this.$message.error('注册失败！')
+          this.$message.error('注册失败，请使用火狐或谷歌浏览器！')
         }
       }
     }
