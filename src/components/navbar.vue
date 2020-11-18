@@ -3,7 +3,7 @@
     <div class="container">
       <nav class="navbar px-0 py-1 text-14 navbar-expand-lg navbar-light">
         <router-link :to="{ name: 'home' }" class="navbar-brand text-22 d-flex align-items-center antialiased">
-          <img class="mx-2 logo" src="https://www.mud.ren/logo.png" alt="mudren"><span class="text-14 text-muted ml-1">MUD游戏玩家社区</span><sup class="ml-1 text-10 text-danger"> Beta</sup> </router-link>
+          <img class="mx-2 logo" src="https://www.mud.ren/logo.png" alt="mudren"><span class="text-14 text-muted ml-1">MUD游戏玩家社区</span></router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
