@@ -27,7 +27,7 @@
       <div class="col-md-3">
         <guest-login-guide class="mb-2" />
         <quick-docs class="mb-2" />
-        <hot-tags />
+        <!-- <hot-tags /> -->
         <user-ranking class="mt-2" />
         <new-users class="mt-2" />
       </div>
