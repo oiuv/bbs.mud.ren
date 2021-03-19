@@ -88,7 +88,8 @@ export default {
   methods: {
     loadThreads (id, page = 1) {
       this.$http
-        .get(`nodes/${id}/threads?include=node&all=yes&page=${page}`)
+        // .get(`nodes/${id}/threads?include=node&all=yes&page=${page}`)
+        .get(`nodes/${id}/threads?include=node&tab=${this.currentThreadsTab}&page=${page}`)
         .then(threads => (this.threads[this.currentThreadsTab] = threads))
     },
     handlePageChanged (page) {
