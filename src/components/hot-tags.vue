@@ -24,7 +24,7 @@ export default {
   methods: {
     loadNodes () {
       this.$http
-        .get('nodes?hot=5&per_page=5')
+        .get('nodes?hot=20&per_page=20')
         .then(nodes => (this.nodes = nodes.data))
     }
   },
