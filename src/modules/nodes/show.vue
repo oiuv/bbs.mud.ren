@@ -93,7 +93,7 @@ export default {
         .then(threads => (this.threads[this.currentThreadsTab] = threads))
     },
     handlePageChanged (page) {
-      this.loadThreads(page)
+      this.loadThreads(this.$route.params.id, page)
     },
     getNode (id) {
       this.$http.get(`nodes/${id}`).then(data => {
