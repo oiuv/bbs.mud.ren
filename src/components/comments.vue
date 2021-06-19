@@ -56,7 +56,13 @@
             </div>
             <div class="mx-1 cursor-pointer" @click="reply(item)">
               <button class="btn btn-icon btn-light text-gray-60">
-                <reply /></button>
+                <reply />
+              </button>
+            </div>
+            <div class="mx-1 cursor-pointer" @click="edit(item)" v-if="currentUser && (currentUser.id == item.user.id || currentUser.is_admin)">
+              <button class="btn btn-icon btn-light text-gray-60">
+                <pencil-icon />
+              </button>
             </div>
           </div>
         </user-media>
@@ -93,6 +99,7 @@ import { mapGetters } from 'vuex'
 
 import ThumbUp from '$icons/ThumbUp'
 import Reply from '$icons/Reply'
+import PencilIcon from '$icons/Pencil'
 import Markdown from '$icons/Markdown'
 import ThumbDown from '$icons/ThumbDown'
 import ThumbUpOutline from '$icons/ThumbUpOutline'
@@ -106,6 +113,7 @@ export default {
     Markdown,
     MarkdownBody,
     Paginator,
+    PencilIcon,
     ThumbUp,
     Reply,
     ThumbDown,
@@ -139,8 +147,10 @@ export default {
   data () {
     return {
       writing: false,
+      isEdit: false,
       content: '',
       comments: [],
+      comment_id: 0,
       editorOptions: {
         minLines: 3,
         maxLines: 20
@@ -221,9 +231,36 @@ export default {
       }
       this.content = `@${item.user.username} `
       this.writing = true
+      this.isEdit = false
+      window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
+    },
+    edit (item) {
+      if (!this.$user().id) {
+        return this.$router.push({ name: 'auth.login' })
+      }
+      this.content = `${item.content.markdown}`
+      this.writing = true
+      this.isEdit = true
+      this.comment_id = `${item.content.contentable_id}`
       window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
     },
     submit () {
+      if (this.isEdit) {
+      this.$http
+        .patch('comments/' + this.comment_id, {
+          content: {
+            markdown: this.content,
+            type: 'markdown'
+          }
+        })
+        .then(() => {
+          this.content = ''
+          this.writing = false
+          this.$message.success('编辑完成！')
+          this.$emit('updated')
+          this.loadComments()
+        })
+      } else {
       this.$http
         .post('comments', {
           commentable_type: this.objectType,
@@ -240,6 +277,7 @@ export default {
           this.$emit('created')
           this.loadComments()
         })
+      }
     },
     syncCachedContent () {
       localforage.getItem(this.cacheKey, (err, content) => {
