@@ -2,20 +2,19 @@
   <div class="threads-items mb-2">
     <ul class="list-group list-group-flush">
       <li
-        class="list-group-item d-md-flex d-block align-items-center justify-content-between cursor-pointer"
+        class="list-group-item d-md-flex d-block align-items-center justify-content-between"
         v-for="item in threads.data"
         :key="item.id"
-        @click="$router.push({name: 'threads.show', params:{id: item.id}})"
       >
         <div class="d-flex align-items-center w-70">
-          <a href="#" class="mr-2">
+          <a :href="'/' + item.user.name" class="mr-2">
             <img :src="item.user.avatar" alt class="avatar-30">
           </a>
           <div class="text-gray-50">
-            <span class="badge badge-light">{{ item.node.title }}</span>
+            <a :href="'/nodes/' + item.node.id"><span class="badge badge-light">{{ item.node.title }}</span></a>
             <span v-if="item.excellent_at" class="badge badge-pill badge-success">精</span>
             <span v-if="item.pinned_at" class="badge badge-pill badge-danger">顶</span>
-            {{ item.title }}
+            <a :href="'/threads/' + item.id" target="_blank">{{ item.title }}</a>
           </div>
         </div>
         <div class="ml-auto d-flex align-items-center justify-content-md-end">
