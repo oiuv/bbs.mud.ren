@@ -28,8 +28,8 @@
 
     <paginator :meta="comments.meta" @change="handlePaginate"></paginator>
 
-    <div class="box box-flush">
-      <div class="border-bottom box-body py-2" :class="{'animated flash': $route.hash === '#comment-' + item.id}" v-if="item.content && item.content.body" v-for="(item,index) in comments.data" :key="item.id" :id="'comment-' + item.id" :name="'comment-' + item.id">
+    <div class="box box-flush" v-for="(item,index) in comments.data" :key="item.id">
+      <div class="border-bottom box-body py-2" :class="{'animated flash': $route.hash === '#comment-' + item.id}" v-if="item.content && item.content.body" :id="'comment-' + item.id" :name="'comment-' + item.id">
         <user-media :user="item.user">
           <template slot="name-appends">
             <router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link>
