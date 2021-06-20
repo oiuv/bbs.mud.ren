@@ -246,10 +246,17 @@ export default {
         })
     },
     handleDelete (thread) {
-      this.$http.delete(`threads/${thread.id}`).then(() => {
-        this.$message.success('已删除！')
-        this.$router.go(-1)
-      })
+      this.$confirm("你确定要删除吗？").then(() => {
+        this.$http.delete(`threads/${thread.id}`).then(() => {
+          this.$message.success('已删除！')
+          this.$router.push('/')
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
     },
     toggleStatus (timestamp) {
       this.thread[timestamp] = this.thread[timestamp]

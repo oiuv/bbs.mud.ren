@@ -7,7 +7,7 @@
       <template v-if="currentUser.has_activated">
         <div class="d-flex align-items-center">
           <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.username" />
-          <div class="text-18 text-muted ml-2 w-100" @click="writing = true">撰写评论...</div>
+          <div class="text-18 text-muted ml-2 w-100" @click="writing = true;isEdit = false">撰写评论...</div>
         </div>
       </template>
       <template v-else>
@@ -149,8 +149,8 @@ export default {
       writing: false,
       isEdit: false,
       content: '',
+      content_id: 0,
       comments: [],
-      comment_id: 0,
       editorOptions: {
         minLines: 3,
         maxLines: 20
@@ -231,7 +231,6 @@ export default {
       }
       this.content = `@${item.user.username} `
       this.writing = true
-      this.isEdit = false
       window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
     },
     edit (item) {
@@ -241,21 +240,20 @@ export default {
       this.content = `${item.content.markdown}`
       this.writing = true
       this.isEdit = true
-      this.comment_id = `${item.content.contentable_id}`
+      this.content_id = `${item.content.id}`
       window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
     },
     submit () {
       if (this.isEdit) {
       this.$http
-        .patch('comments/' + this.comment_id, {
-          content: {
-            markdown: this.content,
-            type: 'markdown'
-          }
+        .patch('contents/' + this.content_id, {
+          markdown: this.content
         })
         .then(() => {
           this.content = ''
           this.writing = false
+          this.isEdit = false
+          this.content_id = 0
           this.$message.success('编辑完成！')
           this.$emit('updated')
           this.loadComments()

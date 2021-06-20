@@ -46,7 +46,7 @@
       </li>
       <li class="py-1">
         <docs-icon class="mr-1"/>
-        <a class="text-gray-50" href="http://mud.ren:8080/" target="_blank">勇者斗恶龙MUD</a>
+        <a class="text-gray-50" href="http://mud.ren:8008/" target="_blank">诡秘之主MUD</a>
       </li>
       <li class="py-1">
         <docs-icon class="mr-1"/>
