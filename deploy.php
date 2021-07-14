@@ -4,7 +4,7 @@ namespace Deployer;
 require 'recipe/common.php';
 
 // Project name
-set('application', 'yikeio client');
+set('application', 'mudren client');
 
 // Project repository
 set('repository', 'git@github.com:oiuv/bbs.mud.ren.git');
