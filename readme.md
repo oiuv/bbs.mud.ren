@@ -7,11 +7,17 @@ MUDREN论坛项目基于[一刻社区](https://github.com/yikeio/yike.io)修改,
 
 > 🏵后端源码：https://github.com/oiuv/api.mud.ren
 
-> 🎬快速上手视频：[053. 优秀的开源社区——yike.io](https://learnku.com/courses/laravel-package/yikeio/2505)
-
 ## 安装
 
-克隆后先安装依赖：
+> nodejs推荐使用LTS版本: v14.17.*
+
+克隆源代码到本地：
+
+```shell
+$ git clone https://github.com/oiuv/bbs.mud.ren.git
+```
+
+安装依赖：
 
 ```shell
 $ npm install
@@ -32,7 +38,6 @@ $ npm run serve
 ## 配置
 
 Copy the `.env.example` to `.env.[ENV]`:
-
 
 ```shell
 # local

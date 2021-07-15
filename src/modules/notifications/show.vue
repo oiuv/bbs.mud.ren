@@ -7,7 +7,7 @@
             <bell-icon class="mr-1 text-16" />通知
           </div>
           <div class="nav flex-lg-column nav-pills">
-            <a href="javascript:void(0);" class="nav-link" v-for="tab,id of tabs" :class="{active: currentTab == id}" @click="currentTab = id">{{ tab }}</a>
+            <a href="javascript:void(0);" class="nav-link" v-for="tab,id of tabs" :key="tab" :class="{active: currentTab == id}" @click="currentTab = id">{{ tab }}</a>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default {
   data () {
     return {
       tabs: {
-        all: '全部 ',
+        all: '全部',
         follow: '关注',
         comment: '评论',
         subscribe: '订阅',
