@@ -6,7 +6,7 @@
         v-for="item in threads.data"
         :key="item.id"
       >
-        <div class="d-flex align-items-center w-70">
+        <div class="d-flex align-items-center">
           <a :href="'/' + item.user.name" class="mr-2">
             <img :src="item.user.avatar" alt class="avatar-30">
           </a>

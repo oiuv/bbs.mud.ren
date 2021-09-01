@@ -1,8 +1,7 @@
 <template>
   <div class="page-home">
-    <!-- <banner name="home"></banner> -->
-
-    <div class="row mt-3">
+    <banner name="home"></banner>
+    <div class="row mt-2">
       <div class="col-md-9">
         <div class="box box-flush">
           <div class="box-body">
