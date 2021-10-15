@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'standard',
+  extends: 'plugin:vue/base',
   plugins: ['html'],
   parser: 'babel-eslint',
   env: { es6: true },

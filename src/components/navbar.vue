@@ -22,7 +22,7 @@
               <a href="javascript:void(0);" class="nav-link">话题</a>
             </router-link>
             <li class="nav-item">
-              <a class="nav-link" href="https://wiki.mud.ren" target="_blank">WIKI</a>
+              <a class="nav-link" href="https://mud.ren/users" target="_blank">英雄榜</a>
             </li>
             <li class="nav-item">
               <nav-search />
