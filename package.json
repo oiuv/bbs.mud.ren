@@ -25,7 +25,7 @@
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "mo-js": "^0.288.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "node-sass": "^4.14.1",
     "popper.js": "^1.16.1",
     "prismjs": "^1.27.0",
