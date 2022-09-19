@@ -1,21 +1,15 @@
 
-[![Created Badge](https://badges.pufler.dev/created/oiuv/bbs.mud.ren)](https://badges.pufler.dev)
-[![Updated Badge](https://badges.pufler.dev/updated/oiuv/bbs.mud.ren)](https://bbs.mud.ren)
-[![Visits Badge](https://badges.pufler.dev/visits/oiuv/bbs.mud.ren)](https://bbs.mud.ren)
-
 <img align="right" width="100" src="https://www.mud.ren/logo.png"/>
 
 <h1 align="left"><a href="https://bbs.mud.ren">bbs.mud.ren</a></h1>
 
 MUDREN论坛项目基于[一刻社区](https://github.com/yikeio/yike.io)修改, 使用 Vuejs 开发的 Laravel SPA 项目。
 
-[![Contributors Display](https://badges.pufler.dev/contributors/oiuv/bbs.mud.ren?size=50&padding=5&bots=true)](https://github.com/oiuv/bbs.mud.ren)
-
-> 🏵后端源码：https://github.com/oiuv/api.mud.ren
+> 后端源码：https://github.com/oiuv/api.mud.ren
 
 ## 安装
 
-> nodejs请使用LTS版本: v14.*
+> nodejs版本: v14.* ，如果你的系统安装的是最新版，可以使用`nvs`切换版本。
 
 克隆源代码到本地：
 

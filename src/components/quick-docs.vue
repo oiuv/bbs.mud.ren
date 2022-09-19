@@ -10,7 +10,7 @@
       </li>
       <li class="py-1">
         <docs-icon class="mr-1"/>
-        <a class="text-gray-50" href="https://wiki.mud.ren/index.php?title=Lpc:Efun" target="_blank">LPC函数WIKI</a>
+        <a class="text-gray-50" href="https://mud.wiki/Lpc:Efun" target="_blank">LPC函数WIKI</a>
       </li>
       <li class="py-1">
         <docs-icon class="mr-1"/>

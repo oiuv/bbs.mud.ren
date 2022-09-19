@@ -33,7 +33,7 @@
             </a>
           </div>
           <div class="ml-1 text-gray-60">
-            <small>{{ item.created_at_timeago }}</small>
+            <small :title="item.created_at_timeago">{{ item.updated_at_timeago }}</small>
           </div>
         </div>
       </li>

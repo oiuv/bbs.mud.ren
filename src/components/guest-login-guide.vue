@@ -1,6 +1,6 @@
 <template>
   <div class="box guest-login-guide text-center" v-if="!isLogged">
-    <div class="text-18 p-2">加入MUDREN<br>爱MUD，爱生活</div>
+    <div class="text-18 p-2">加入MUDREN<br>享受文字游戏的乐趣</div>
     <router-link class="btn btn-block btn-primary" :to="{ name: 'auth.register' }">注册</router-link>
     <router-link class="btn btn-block btn-outline-primary" :to="{ name: 'auth.login' }">登录</router-link>
   </div>
