@@ -1,7 +1,7 @@
 {
   "plugins": [
     ["prismjs", {
-        "languages": ["markup", "markdown", "html", "css", "javascript", "js", "json", "php", "python", "py", "perl", "c", "cpp", "clike", "lua", "log", "nasm", "ini", "git", "diff", "bash", "shell", "batch", "regex", "csv", "sql", "http", "nginx"],
+        "languages": ["bash", "batch", "c", "cpp", "clike", "css", "csv", "diff", "git", "html", "http", "ini", "java", "javascript", "js", "json", "lua", "log", "markdown", "nasm", "nginx", "perl", "php", "python", "py", "regex", "shell", "sql", "markup"],
         "theme": "okaidia",
         "css": true
     }]
