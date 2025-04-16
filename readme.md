@@ -9,7 +9,7 @@ MUDREN论坛项目基于[一刻社区](https://github.com/yikeio/yike.io)修改,
 
 ## 安装
 
-> nodejs版本: v14.* ，如果你的系统安装的是最新版，可以使用`nvs`切换版本。
+> nodejs版本: v14.* ，如果你的系统安装的是最新版，可以使用`nvm`、`nvs`、`fnm`切换Node.js版本。
 
 克隆源代码到本地：
 
