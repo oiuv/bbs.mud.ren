@@ -25,7 +25,8 @@
               <a class="nav-link" href="https://mud.ren/users" target="_blank">英雄榜</a>
             </li>
             <li class="nav-item">
-              <nav-search />
+              <router-link :to="{ name: 'search' }" class="nav-link">搜索</router-link>
+              <!-- <nav-search /> -->
             </li>
           </ul>
 
