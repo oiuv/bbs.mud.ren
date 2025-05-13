@@ -50,6 +50,8 @@ export default http => {
         case 500:
         case 501:
         case 503:
+          console.error(`服务器错误 ${error.response.status}:`, error.response.data)
+          break
         default:
           Message.error('服务器出了点小问题，请在ＱＱ群[9783836]联系管理员雪风~！')
       }

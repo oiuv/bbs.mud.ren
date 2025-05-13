@@ -2,7 +2,7 @@
   <div class="search-page container">
     <!-- 搜索表单 -->
     <div class="search-form input-group mb-3">
-      <input class="form-control" type="search" v-model="q" placeholder="请输入要搜索的内容" aria-label="Search">
+      <input class="form-control" type="search" v-model="q" placeholder="请输入要搜索的内容（超过3个字符后自动搜索）" aria-label="Search">
       <button class="btn btn-primary" @click="search">搜索</button>
     </div>
     <!-- 加载提示 -->
@@ -42,11 +42,11 @@
     </div>
     <!-- 无搜索结果提示 -->
     <div class="alert alert-warning" v-else-if="q.length > 0 &&!loading &&!error">
-      未找到相关结果。
+      未找到相关结果，请换个关键词试试。
     </div>
     <!-- 搜索错误提示 -->
     <div class="alert alert-danger" v-else-if="error">
-      搜索出错，请换个关键词再试。
+      搜索出错，请换个关键词搜索。
     </div>
   </div>
 </template>
