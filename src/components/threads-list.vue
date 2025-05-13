@@ -7,7 +7,7 @@
         :key="item.id"
       >
         <div class="d-flex align-items-center">
-          <a :href="'/' + item.user.name" class="mr-2">
+          <a :href="'/' + item.user.username" class="mr-2">
             <img :src="item.user.avatar" alt class="avatar-30">
           </a>
           <div class="text-gray-50">

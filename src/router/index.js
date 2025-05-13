@@ -6,9 +6,8 @@ import { routes as notifications } from '$modules/notifications'
 import { routes as pages } from '$modules/pages'
 import { routes as threads } from '$modules/threads'
 import { routes as users } from '$modules/users'
-
-// 引入 SearchPage 组件
-import SearchPage from '$modules/search/SearchPage.vue';
+// 引入 search 组件
+import { routes as search } from '$modules/search';
 
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -27,11 +26,7 @@ const AppRoute = {
     ...nodes, 
     ...pages, 
     ...users,
-    {
-      path: 'search', // 定义搜索页面的路由路径
-      name: 'search', // 定义路由名称
-      component: SearchPage // 指定对应的组件
-    }
+    ...search
   ]
 }
 
