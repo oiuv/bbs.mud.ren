@@ -2,7 +2,7 @@
   <div class="search-page container">
     <!-- 搜索表单 -->
     <div class="search-form input-group mb-3">
-      <input class="form-control" type="search" v-model="q" placeholder="请输入要搜索的内容（超过3个字符后自动搜索）" aria-label="Search">
+      <input class="form-control" type="search" v-model="q" placeholder="请输入要搜索的内容" aria-label="Search">
       <button class="btn btn-primary" @click="search">搜索</button>
     </div>
     <!-- 加载提示 -->
@@ -25,10 +25,16 @@
           <router-link tag="a" target="_blank" :to="{name: 'threads.show', params:{id: item.id}}" class="btn btn-sm btn-outline-primary">查看详情</router-link>
         </div>
       </div>
-      <!-- 分页组件 -->
+      <!-- 优化后的分页组件 -->
       <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
-          <li class="page-item" :class="{ disabled:!links.prev }">
+          <!-- 首页按钮 -->
+          <li class="page-item" :class="{ disabled: meta.current_page === 1 }">
+            <a class="page-link" href="#" @click.prevent="goToPage(1)">首页</a>
+          </li>
+
+          <!-- 上一页按钮 -->
+          <li class="page-item" :class="{ disabled: !links.prev }">
             <a class="page-link" href="#" @click.prevent="prevPage">上一页</a>
           </li>
           <li class="page-item disabled">
@@ -36,6 +42,11 @@
           </li>
           <li class="page-item" :class="{ disabled:!links.next }">
             <a class="page-link" href="#" @click.prevent="nextPage">下一页</a>
+          </li>
+
+          <!-- 尾页按钮 -->
+          <li class="page-item" :class="{ disabled: meta.current_page === meta.last_page }">
+            <a class="page-link" href="#" @click.prevent="goToPage(meta.last_page)">尾页</a>
           </li>
         </ul>
       </nav>
@@ -74,7 +85,7 @@ export default {
   },
   watch: {
     q() {
-      if (this.q.length > 3) { // 只有输入超过3个字符才会自动搜索
+      if (this.q.length > 0) {
         this.meta.current_page = 1; // 搜索关键词改变时，重置页码
         this.search();
       } else {
@@ -117,6 +128,10 @@ export default {
         this.meta.current_page++;
         this.search();
       }
+    },
+    goToPage(page) {
+      this.meta.current_page = page;
+      this.search();
     }
   }
 };
