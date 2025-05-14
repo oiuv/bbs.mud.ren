@@ -21,7 +21,7 @@
                   <input type="text" ref="title_input" class="form-control form-control-lg" v-model="form.title" placeholder="请在这里输入标题（请精准表达主题）">
                 </div>
               </div>
-              <editor v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="不得少于30个字符~请使用 Markdown 格式排版（可用AI排版），初次发贴请仔细阅读：https://bbs.mud.ren/threads/1"></editor>
+              <editor ref="editorRef" v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="不得少于30个字符~请使用 Markdown 格式排版（可把内容发给AI排版），初次发贴请仔细阅读：https://bbs.mud.ren/threads/1"></editor>
               <div class="card-footer border-top p-2 d-flex justify-content-between">
                 <div class="left-actions d-flex align-items-center">
                   <span class="text-muted">发布到</span>
@@ -43,6 +43,8 @@
                 <div class="right-actions">
                   <button type="button" class="btn btn-primary" :disabled="!formReady" @click="showCaptcha(false)">立即发布</button>
                   <button type="button" class="btn btn-secondary ml-1" :disabled="!formReady" @click="submit(true)">保存草稿</button>
+                  <!-- 添加清除草稿按钮 -->
+                  <button type="button" class="btn btn-danger ml-1" @click="clearDraft">清除草稿</button>
                 </div>
               </div>
             </div>
@@ -198,6 +200,34 @@ export default {
           this.clearCache()
         })
         .finally(() => (this.busing = false))
+    },
+    // 新增清除草稿方法
+    clearDraft () {
+      this.$confirm('确定要清除草稿吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // 清空表单数据
+        this.form = {
+          node_id: null,
+          type: 'markdown',
+          is_draft: true,
+          title: '',
+          content: {
+            markdown: '',
+            body: ''
+          },
+          ticket: null,
+          randstr: null
+        };
+        // 清除缓存
+        this.clearCache();
+        this.$refs.editorRef.editor.setValue('')
+        this.$message.success('草稿已清除');
+      }).catch(() => {
+        this.$message.info('已取消清除草稿');
+      });
     }
   }
 }
