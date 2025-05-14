@@ -18,10 +18,10 @@
             <div class="card">
               <div class="card-header pt-3 border-bottom-0">
                 <div class="input-group input-group">
-                  <input type="text" ref="title_input" class="form-control form-control-lg" v-model="form.title" placeholder="请在这里输入标题（请精准表达）">
+                  <input type="text" ref="title_input" class="form-control form-control-lg" v-model="form.title" placeholder="请在这里输入标题（请精准表达主题）">
                 </div>
               </div>
-              <editor v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="不得少于30个字符~请使用 Markdown 格式排版，初次发贴请仔细阅读：https://bbs.mud.ren/threads/1"></editor>
+              <editor v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="不得少于30个字符~请使用 Markdown 格式排版（可用AI排版），初次发贴请仔细阅读：https://bbs.mud.ren/threads/1"></editor>
               <div class="card-footer border-top p-2 d-flex justify-content-between">
                 <div class="left-actions d-flex align-items-center">
                   <span class="text-muted">发布到</span>
@@ -33,7 +33,7 @@
                         :label="group.title">
                         <el-option v-for="item in group.children" :key="item.id" :value="item.id" :label="item.title">
                           <span style="float: left" class="pr-1">{{ item.title }}</span>
-                          <span style="float: right; color: #8492a6; font-size: 11px;">--{{ item.description }}</span>
+                          <span style="float: right; color: #8492a6; font-size: 11px;" class="d-none d-sm-block">--{{ item.description }}</span>
                         </el-option>
                       </el-option-group>
                     </el-select>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="right-actions">
                   <button type="button" class="btn btn-primary" :disabled="!formReady" @click="showCaptcha(false)">立即发布</button>
-                  <button type="button" class="btn btn-secondary ml-1" :disabled="!formReady" @click="submit(true)">保存为草稿</button>
+                  <button type="button" class="btn btn-secondary ml-1" :disabled="!formReady" @click="submit(true)">保存草稿</button>
                 </div>
               </div>
             </div>
