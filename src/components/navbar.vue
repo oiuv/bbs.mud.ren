@@ -12,12 +12,6 @@
             <router-link :to="{ name: 'home' }" exact tag="li" class="nav-item">
               <a href="javascript:void(0);" class="nav-link">首页</a>
             </router-link>
-            <!--<li class="nav-item">-->
-            <!--<a class="nav-link" href="#">讨论</a>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-            <!--<a class="nav-link" href="#">问答</a>-->
-            <!--</li>-->
             <router-link :to="{ name: 'nodes.show' }" exact tag="li" class="nav-item">
               <a href="javascript:void(0);" class="nav-link">话题</a>
             </router-link>
@@ -33,8 +27,9 @@
           <ul class="navbar-nav ml-md-auto flex-row d-md-flex align-items-center justify-content-around">
             <template v-if="isLogged">
               <li class="nav-item">
-                <router-link :to="{ name: 'threads.create' }" title="发贴" exact class="text-20 btn btn-icon btn-info">
-                  <plus-icon></plus-icon>
+                <!-- 优化后的发贴按钮 -->
+                <router-link :to="{ name: 'threads.create' }" title="发布内容" class="text-20 btn btn-lg btn-info">
+                  <plus-icon class="mr-1"></plus-icon>发贴
                 </router-link>
               </li>
               <li class="nav-item nav-item-icon">

@@ -27,7 +27,10 @@
                   <span class="text-muted">发布到</span>
                   <div class="dropdown ml-1">
                     <el-select filterable v-model="form.node_id">
-                      <el-option v-for="item in nodes" :key="item.id" :value="item.id" :label="item.title"></el-option>
+                      <el-option v-for="item in nodes" :key="item.id" :value="item.id" :label="item.title">
+                        <span style="float: left" class="pr-1">{{ item.title }}</span>
+                        <span style="float: right; color: #8492a6; font-size: 11px;">--{{ item.description }}</span>
+                      </el-option>
                     </el-select>
                   </div>
                   <span class="ml-2"><a href="/threads/51" target="_blank" class="text-info">编辑排版指南</a></span>
@@ -172,7 +175,7 @@ export default {
 
       if (isEdit) {
         promise = this.$http
-          .patch(`threads/${this.$route.params.id}`,this.form)
+          .patch(`threads/${this.$route.params.id}`, this.form)
       } else {
         promise = this.$http.post('threads', this.form)
       }
