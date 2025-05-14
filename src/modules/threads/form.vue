@@ -27,10 +27,15 @@
                   <span class="text-muted">发布到</span>
                   <div class="dropdown ml-1">
                     <el-select filterable v-model="form.node_id">
-                      <el-option v-for="item in nodes" :key="item.id" :value="item.id" :label="item.title">
-                        <span style="float: left" class="pr-1">{{ item.title }}</span>
-                        <span style="float: right; color: #8492a6; font-size: 11px;">--{{ item.description }}</span>
-                      </el-option>
+                      <el-option-group
+                        v-for="group in nodes"
+                        :key="group.title"
+                        :label="group.title">
+                        <el-option v-for="item in group.children" :key="item.id" :value="item.id" :label="item.title">
+                          <span style="float: left" class="pr-1">{{ item.title }}</span>
+                          <span style="float: right; color: #8492a6; font-size: 11px;">--{{ item.description }}</span>
+                        </el-option>
+                      </el-option-group>
                     </el-select>
                   </div>
                   <span class="ml-2"><a href="/threads/51" target="_blank" class="text-info">编辑排版指南</a></span>
@@ -54,7 +59,7 @@ import Editor from '$components/editor'
 import UserLocked from '$components/user-locked'
 import localforage from 'localforage'
 import Alert from '$icons/Alert'
-import { Select as ElSelect, Option as ElOption } from 'element-ui'
+import { Select as ElSelect, Option as ElOption, OptionGroup as ElOptionGroup } from 'element-ui'
 import 'element-ui/lib/theme-chalk/select.css'
 
 export default {
@@ -64,6 +69,7 @@ export default {
     Alert,
     ElSelect,
     ElOption,
+    ElOptionGroup,
     UserLocked
   },
   data () {
@@ -137,7 +143,7 @@ export default {
     loadNodes () {
       this.busing = true
       return this.$http
-        .get('nodes')
+        .get('nodes?all=yes')
         .then(response => {
           this.nodes = response.data
           this.busing = false
