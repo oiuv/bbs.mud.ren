@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     loadUsers () {
-      this.$http.get('users?order=ranking&limit=8').then(users => (this.users = users.data))
+      this.$http.get('users?order=ranking&limit=10').then(users => (this.users = users.data))
     }
   },
   mounted () {

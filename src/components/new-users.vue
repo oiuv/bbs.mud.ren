@@ -27,7 +27,7 @@ export default {
   methods: {
     loadUsers () {
       this.$http
-        .get('users?latest=1&limit=12')
+        .get('users?latest=1&limit=20')
         .then(users => (this.users = users.data))
     }
   },

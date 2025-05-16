@@ -229,7 +229,9 @@ export default {
       if (!this.$user().id) {
         return this.$router.push({ name: 'auth.login' })
       }
-      this.content = `@${item.user.username} `
+      // 引用被回复的内容
+      const quotedContent = `> ${item.content.markdown.replace(/\n/g, '\n> ')}\n\n`
+      this.content = `${quotedContent}@${item.user.username} `
       this.writing = true
       window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
     },
