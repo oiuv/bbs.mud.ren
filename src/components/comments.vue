@@ -64,6 +64,12 @@
                 <pencil-icon />
               </button>
             </div>
+            <!-- 添加删除按钮 -->
+            <div class="mx-1 cursor-pointer" @click="deleteComment(item)" v-if="currentUser && (currentUser.id == item.user.id || currentUser.is_admin)">
+              <button class="btn btn-icon btn-light text-gray-60">
+                <delete-icon />
+              </button>
+            </div>
           </div>
         </user-media>
         <markdown-body class="comment-content text-gray-40 pt-2" v-model="item.content.body"></markdown-body>
@@ -104,6 +110,7 @@ import Markdown from '$icons/Markdown'
 import ThumbDown from '$icons/ThumbDown'
 import ThumbUpOutline from '$icons/ThumbUpOutline'
 import ThumbDownOutline from '$icons/ThumbDownOutline'
+import DeleteIcon from '$icons/Delete' // 假设存在删除图标组件
 
 export default {
   name: 'comments',
@@ -118,7 +125,8 @@ export default {
     Reply,
     ThumbDown,
     ThumbUpOutline,
-    ThumbDownOutline
+    ThumbDownOutline,
+    DeleteIcon // 注册删除图标组件
   },
   computed: {
     ...mapGetters(['currentUser']),
@@ -303,6 +311,28 @@ export default {
       comments.map(comment => {
         window.pageUsers.some(u => u.id === comment.user_id) ||
           window.pageUsers.push(comment.user)
+      })
+    },
+    // 添加删除评论的方法
+    deleteComment (item) {
+      if (!this.$user().id) {
+        return this.$router.push({ name: 'auth.login' })
+      }
+      this.$confirm('确定要删除这条评论吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$http.delete(`comments/${item.id}`)
+          .then(() => {
+            this.$message.success('评论删除成功！')
+            this.loadComments()
+          })
+          .catch(() => {
+            this.$message.error('评论删除失败！')
+          })
+      }).catch(() => {
+        this.$message.info('已取消删除评论')
       })
     }
   }
