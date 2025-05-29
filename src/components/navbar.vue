@@ -22,6 +22,10 @@
               <router-link :to="{ name: 'search' }" class="nav-link">搜索</router-link>
               <!-- <nav-search /> -->
             </li>
+            <!-- 新增AI导航 -->
+            <router-link :to="{ name: 'ai' }" tag="li" class="nav-item">
+              <a href="javascript:void(0);" class="nav-link">AI</a>
+            </router-link>
           </ul>
 
           <ul class="navbar-nav ml-md-auto flex-row d-md-flex align-items-center justify-content-around">

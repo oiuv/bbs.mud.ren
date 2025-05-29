@@ -8,6 +8,8 @@ import { routes as threads } from '$modules/threads'
 import { routes as users } from '$modules/users'
 // 引入 search 组件
 import { routes as search } from '$modules/search';
+// 引入 AI 模块
+import { routes as ai } from '$modules/ai';
 
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -26,7 +28,8 @@ const AppRoute = {
     ...nodes, 
     ...pages, 
     ...users,
-    ...search
+    ...search,
+    ...ai
   ]
 }
 
