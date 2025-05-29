@@ -47,6 +47,9 @@ export default http => {
             window.location.href = '/auth/login'
           }
           break
+        case 404:
+          // 当状态码为 404 时，直接返回 Promise 拒绝，不显示错误消息
+          return Promise.reject(error.response);
         case 500:
         case 501:
         case 503:
