@@ -85,4 +85,7 @@ export const loadUser = ({ dispatch }) =>
     .loadUserData()
     // store user's data
     .then(user => dispatch('setUser', user))
-    .catch(logout)
+    .catch(error => {
+      dispatch('logout')
+      return Promise.reject(error)
+    })
