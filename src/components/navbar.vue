@@ -24,7 +24,7 @@
             </li>
             <!-- 新增AI导航 -->
             <router-link :to="{ name: 'ai' }" tag="li" class="nav-item">
-              <a href="javascript:void(0);" class="nav-link">AI</a>
+              <a href="javascript:void(0);" class="nav-link text-info">AI</a>
             </router-link>
           </ul>
 
