@@ -66,7 +66,7 @@ module.exports = {
     // sass-loader, use { sass: { ... } }
     loaderOptions: {
       sass: {
-        data: fs.readFileSync('src/assets/sass/_variables.scss', 'utf-8')
+        additionalData: fs.readFileSync('src/assets/sass/_variables.scss', 'utf-8')
       }
     }
 
@@ -91,7 +91,15 @@ module.exports = {
     https: false,
     hotOnly: false,
     // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#configuring-proxy
-    proxy: null, // string | Object
+    proxy: {
+      '/api': {
+        target: 'https://api.mud.ren',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
     before: app => {}
   },
 
