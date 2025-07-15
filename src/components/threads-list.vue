@@ -21,10 +21,29 @@
             <span v-if="item.excellent_at" class="badge badge-pill badge-success ml-1">精</span>
             <!-- 置顶标记 -->
             <span v-if="item.pinned_at" class="badge badge-pill badge-danger ml-1">顶</span>
+            <!-- 冻结标记 -->
+            <span v-if="item.frozen_at" class="badge badge-pill badge-secondary ml-1">冻</span>
+            <!-- 禁用标记 -->
+            <span v-if="item.banned_at" class="badge badge-pill badge-dark ml-1">禁</span>
+            
             <!-- 帖子标题 -->
             <a :href="'/threads/' + item.id" target="_blank" class="ml-1 text-decoration-none">
               {{ item.title }}
             </a>
+            <div class="d-none d-md-block">
+              <div class="text-muted text-12 mt-1">
+                由 <a :href="'/' + item.user.username" class="text-blue">{{ item.user.name }}</a> 发布于 {{ item.created_at_timeago }}
+                <span class="ml-2">最后回复：
+                  <span v-if="item.cache.last_reply_user_name">
+                    {{ item.cache.last_reply_user_name }}
+                  </span>
+                  <span v-else>
+                    无
+                  </span>
+                </span>
+                <span v-if="item.updated_at_timeago" class="ml-2" title="最近访问时间">最近访问：{{ item.updated_at_timeago }}</span>
+              </div>
+            </div>
           </div>
         </div>
         <!-- 右侧互动数据和更新时间部分 -->
@@ -42,9 +61,14 @@
               {{ item.cache.comments_count }}
             </a>
             <!-- 浏览量 -->
-            <a class="p-1">
+            <a class="p-1 mr-2">
               <view-icon class="text-warning"></view-icon>
               {{ item.cache.views_count }}
+            </a>
+            <!-- 订阅数 -->
+            <a class="p-1">
+              <subscribe-icon class="text-primary"></subscribe-icon>
+              {{ item.cache.subscriptions_count }}
             </a>
           </div>
           <!-- 帖子更新时间 -->
@@ -74,6 +98,7 @@ import ViewIcon from '$icons/Eye'
 import EmptyState from '$components/empty-state'
 import MedalIcon from '$icons/Medal'
 import TopIcon from '$icons/FormatVerticalAlignTop'
+import SubscribeIcon from '$icons/Rss'
 
 export default {
   name: 'threads-list',
@@ -84,7 +109,8 @@ export default {
     MedalIcon,
     TopIcon,
     Paginator,
-    EmptyState
+    EmptyState,
+    SubscribeIcon
   },
   props: {
     threads: {
