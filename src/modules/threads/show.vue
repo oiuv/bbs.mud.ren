@@ -31,7 +31,7 @@
                   <like-btn relation="thread" :item="thread"></like-btn>
                 </li>
                 <li class="nav-item">
-                  <a class="text-gray-50 btn btn-sm btn-link" href="#comments">
+                  <a class="text-gray-50 btn btn-sm btn-link" href="#comments" @click.prevent="scrollToComments">
                     <comment-icon></comment-icon>
                     {{ thread.cache.comments_count }} 条评论
                   </a>
@@ -105,7 +105,13 @@
                     </button>
                   </div>
                 </li>
+                
                 <li class="nav-item ml-auto">
+                  <a class="text-gray-50 btn btn-sm btn-link" href="#comments" @click.prevent="scrollToComments">
+                    <comment-icon></comment-icon>评论
+                  </a>
+                </li>
+                <li class="nav-item">
                   <subscribe-btn relation="thread" :item="thread"/>
                 </li>
               </ul>
@@ -266,6 +272,12 @@ export default {
         this.$message.success('搞定！')
         this.loadThread()
       })
+    },
+    scrollToComments () {
+      const commentsElement = document.querySelector('[name="comments"]')
+      if (commentsElement) {
+        commentsElement.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   },
   mounted () {

@@ -3,26 +3,32 @@
     <div class="py-2">
       <div class="text-16 text-gray-50">{{ comments.meta ? comments.meta.total : 0 }} 条评论</div>
     </div>
-    <div class="box mb-3" v-if="currentUser.id">
-      <template v-if="currentUser.has_activated">
-        <div class="d-flex align-items-center">
-          <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.username" />
-          <div class="text-18 text-muted ml-2 w-100" @click="writing = true;isEdit = false">撰写评论...</div>
+    <div class="box mb-3" v-if="currentUser.id && currentUser.has_activated">
+      <div class="card card-flush shadow-30 pop-comment-form">
+        <editor v-model="content" class="comment-editor" ref="editor" placeholder="请使用 markdown 语法" :options="editorOptions"></editor>
+        <div class="p-2 d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-end">
+            <a href="https://guides.github.com/features/mastering-markdown/" class="text-gray-50" target="_blank"><span class="text-14 material-design-icon"><svg class="material-design-icon__svg" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path>
+                </svg></span> Markdown 语法指南</a>
+          </div>
+          <div class="pop-form-btns">
+            <button type="button" class="btn btn-sm btn-primary" :disabled="!formReady" @click="submit">发表评论</button>
+            <button type="button" class="ml-2 btn btn-sm btn-secondary" @click="cancelEdit">清空</button>
+          </div>
         </div>
-      </template>
-      <template v-else>
-        <div class="text-18 ml-2 text-muted text-center">您需要激活账户才能评论~</div>
-      </template>
+      </div>
     </div>
-    <div v-else>
-      <div class="box mb-3" v-if="currentUser">
-        <div class="text-18 ml-2 text-center">
-          您需要
-          <router-link :to="{ name: 'auth.login' }" tag="a" class="text-blue">登录</router-link>
-          或
-          <router-link :to="{ name: 'auth.register' }" tag="a" class="text-blue">注册</router-link>
-          才能发表评论
-        </div>
+    <div class="box mb-3" v-else-if="currentUser.id && !currentUser.has_activated">
+      <div class="text-18 ml-2 text-muted text-center">您需要激活账户才能评论~</div>
+    </div>
+    <div class="box mb-3" v-else>
+      <div class="text-18 ml-2 text-center">
+        您需要
+        <router-link :to="{ name: 'auth.login' }" tag="a" class="text-blue">登录</router-link>
+        或
+        <router-link :to="{ name: 'auth.register' }" tag="a" class="text-blue">注册</router-link>
+        才能发表评论
       </div>
     </div>
 
@@ -78,20 +84,7 @@
 
     <paginator :meta="comments.meta" @change="handlePaginate"></paginator>
 
-    <div class="card card-flush shadow-30 pop-comment-form" :class="{'show': writing}">
-      <editor v-model="content" class="comment-editor" ref="editor" placeholder="请使用 markdown 语法" :options="editorOptions"></editor>
-      <div class="p-2 d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-end">
-          <a href="https://guides.github.com/features/mastering-markdown/" class="text-gray-50" target="_blank"><span class="text-14 material-design-icon"><svg class="material-design-icon__svg" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
-                <path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path>
-              </svg></span> Markdown 语法指南</a>
-        </div>
-        <div class="pop-form-btns">
-          <button type="button" class="btn btn-sm btn-primary" :disabled="!formReady" @click="submit">提交</button>
-          <button type="button" class="ml-2 btn btn-sm btn-secondary" @click="writing=false">取消</button>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </template>
 
@@ -154,7 +147,6 @@ export default {
   },
   data () {
     return {
-      writing: false,
       isEdit: false,
       content: '',
       content_id: 0,
@@ -181,19 +173,6 @@ export default {
     },
     content () {
       localforage.setItem(this.cacheKey, this.content)
-    },
-    writing () {
-      if (!this.writing) {
-        this.content = ''
-        localforage.removeItem(this.cacheKey)
-        this.$refs['editor'].editor.setValue('')
-      } else {
-        let editor = this.$refs['editor'].editor
-        editor.focus()
-        setTimeout(() => {
-          editor.setCursor(editor.lineCount(), 0)
-        })
-      }
     }
   },
   mounted () {
@@ -240,7 +219,11 @@ export default {
       // 引用被回复的内容
       const quotedContent = `> ${item.content.markdown.replace(/\n/g, '\n> ')}\n\n`
       this.content = `${quotedContent}@${item.user.username} `
-      this.writing = true
+      this.isEdit = false
+      this.$nextTick(() => {
+        this.$refs['editor'].editor.focus()
+        this.$refs['editor'].editor.setCursor(this.$refs['editor'].editor.lineCount(), 0)
+      })
       window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
     },
     edit (item) {
@@ -248,9 +231,12 @@ export default {
         return this.$router.push({ name: 'auth.login' })
       }
       this.content = `${item.content.markdown}`
-      this.writing = true
       this.isEdit = true
       this.content_id = `${item.content.id}`
+      this.$nextTick(() => {
+        this.$refs['editor'].editor.focus()
+        this.$refs['editor'].editor.setCursor(this.$refs['editor'].editor.lineCount(), 0)
+      })
       window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
     },
     submit () {
@@ -261,7 +247,8 @@ export default {
         })
         .then(() => {
           this.content = ''
-          this.writing = false
+          localforage.removeItem(this.cacheKey)
+          this.$refs['editor'].editor.setValue('')
           this.isEdit = false
           this.content_id = 0
           this.$message.success('编辑完成！')
@@ -280,7 +267,8 @@ export default {
         })
         .then(() => {
           this.content = ''
-          this.writing = false
+          localforage.removeItem(this.cacheKey)
+          this.$refs['editor'].editor.setValue('')
           this.$message.success('评论成功！')
           this.$emit('created')
           this.loadComments()
@@ -290,7 +278,6 @@ export default {
     syncCachedContent () {
       localforage.getItem(this.cacheKey, (err, content) => {
         if (!err && content && content.length > 0) {
-          this.writing = true
           this.content = content
         }
       })
@@ -334,6 +321,13 @@ export default {
       }).catch(() => {
         this.$message.info('已取消删除评论')
       })
+    },
+    cancelEdit () {
+      this.content = ''
+      localforage.removeItem(this.cacheKey)
+      this.$refs['editor'].editor.setValue('')
+      this.isEdit = false
+      this.content_id = 0
     }
   }
 }
@@ -343,11 +337,6 @@ export default {
 .comments {
   .pop-comment-form {
     border: none;
-    max-height: 0;
-
-    &.show {
-      max-height: 320px;
-    }
   }
   .comment-editor .CodeMirror {
     height: auto;
@@ -359,9 +348,7 @@ export default {
     bottom: 55px;
     min-width: 500px;
     max-width: 100%;
-    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s;
   }
 
   .markdown-body.comment-content p:last-child {
