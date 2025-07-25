@@ -7,17 +7,17 @@
           <div class="col-lg-8">
             <h1 class="display-5 fw-bold mb-2">论坛版块</h1>
             <p class="lead mb-3">探索各个讨论区，找到你感兴趣的话题</p>
-            <div class="d-flex justify-content-center gap-2 flex-wrap">
-              <span class="badge bg-light text-primary px-3 py-2 mb-1">
-                <i class="fas fa-users me-1"></i>
+            <div class="d-flex justify-content-center gap-3 flex-wrap badges-container">
+              <span class="badge-feature bg-light text-primary px-4 py-2">
+                <i class="fas fa-users me-2"></i>
                 活跃社区
               </span>
-              <span class="badge bg-light text-primary px-3 py-2 mb-1">
-                <i class="fas fa-comments me-1"></i>
+              <span class="badge-feature bg-light text-primary px-4 py-2">
+                <i class="fas fa-comments me-2"></i>
                 精彩讨论
               </span>
-              <span class="badge bg-light text-primary px-3 py-2 mb-1">
-                <i class="fas fa-lightbulb me-1"></i>
+              <span class="badge-feature bg-light text-primary px-4 py-2">
+                <i class="fas fa-lightbulb me-2"></i>
                 知识分享
               </span>
             </div>
@@ -55,7 +55,7 @@
                   <div class="child-card card border-0 shadow-sm hover-card">
                     <div class="card-body p-3">
                       <div class="d-flex align-items-center">
-                                                <!-- 图标区域 -->
+                        <!-- 图标区域 -->
                         <div class="me-4 flex-shrink-0">
                           <div v-if="child.icon" 
                                class="child-icon bg-gradient-primary text-white rounded-3 d-flex align-items-center justify-content-center" 
@@ -70,54 +70,54 @@
                         </div>
                         
                         <!-- 内容区域 -->
-                                                    <div class="flex-grow-1">
-                              <div class="d-flex justify-content-between align-items-center">
-                                <div class="flex-grow-1 me-4">
-                                  <div class="d-flex align-items-center mb-1">
-                                    <h5 class="h6 mb-0 fw-bold text-dark">
-                                      {{ child.title }}
-                                    </h5>
-                                    <i v-if="child.has_subscribed" 
-                                       class="fas fa-star text-warning ms-2" 
-                                       style="font-size: 0.75rem;"
-                                       title="已订阅"></i>
-                                  </div>
-                                  <p class="text-muted mb-2" style="font-size: 0.875rem; line-height: 1.5; margin-bottom: 0.5rem;">
-                                    {{ child.description }}
-                                  </p>
-                                                                    <div class="d-flex align-items-center text-muted flex-wrap" style="font-size: 0.8rem; gap: 1.25rem;">
-                                    <span class="d-flex align-items-center">
-                                      <i class="far fa-file-alt" style="font-size: 0.75rem; width: 16px; text-align: center;"></i>
-                                      <span class="ms-2">
-                                        <span class="fw-medium">{{ (child.cache && child.cache.threads_count) || 0 }}</span>
-                                        <span class="ms-1">主题</span>
-                                      </span>
-                                    </span>
-                                    <span class="d-flex align-items-center">
-                                      <i class="far fa-user" style="font-size: 0.75rem; width: 16px; text-align: center;"></i>
-                                      <span class="ms-2">
-                                        <span class="fw-medium">{{ (child.cache && child.cache.subscribers_count) || 0 }}</span>
-                                        <span class="ms-1">订阅</span>
-                                      </span>
-                                    </span>
-                                    <span v-if="child.last_thread" 
-                                          class="text-truncate d-flex align-items-center"
-                                          style="max-width: 250px;">
-                                      <i class="far fa-clock" style="font-size: 0.75rem; width: 16px; text-align: center;"></i>
-                                      <span class="text-truncate ms-2">{{ child.last_thread.title }}</span>
-                                    </span>
-                                  </div>
-                                </div>
-                                
-                                <!-- 右侧箭头 -->
-                                <div class="flex-shrink-0 d-flex align-items-center">
-                                  <div class="text-primary d-flex align-items-center justify-content-center" 
-                                       style="width: 28px; height: 28px; margin-top: 0;">
-                                    <i class="fas fa-chevron-right" style="font-size: 0.85rem;"></i>
-                                  </div>
-                                </div>
+                        <div class="flex-grow-1">
+                          <div class="d-flex justify-content-between">
+                            <div class="flex-grow-1 me-4">
+                              <div class="d-flex align-items-center mb-2">
+                                <h5 class="h6 mb-0 fw-bold text-dark">
+                                  {{ child.title }}
+                                </h5>
+                                <i v-if="child.has_subscribed" 
+                                   class="fas fa-star text-warning ms-2" 
+                                   style="font-size: 0.75rem;"
+                                   title="已订阅"></i>
+                              </div>
+                              <p class="text-muted mb-2" style="font-size: 0.9rem; line-height: 1.6;">
+                                {{ child.description }}
+                              </p>
+                              <div class="d-flex align-items-center text-muted flex-wrap mt-1" style="font-size: 0.85rem; gap: 1.5rem;">
+                                <span class="d-flex align-items-center">
+                                  <i class="far fa-file-alt" style="font-size: 0.8rem; width: 16px; text-align: center;"></i>
+                                  <span class="ms-2">
+                                    <span class="fw-medium">{{ (child.cache && child.cache.threads_count) || 0 }}</span>
+                                    <span class="ms-1">主题</span>
+                                  </span>
+                                </span>
+                                <span class="d-flex align-items-center">
+                                  <i class="far fa-user" style="font-size: 0.8rem; width: 16px; text-align: center;"></i>
+                                  <span class="ms-2">
+                                    <span class="fw-medium">{{ (child.cache && child.cache.subscribers_count) || 0 }}</span>
+                                    <span class="ms-1">订阅</span>
+                                  </span>
+                                </span>
+                                <span v-if="child.last_thread" 
+                                      class="text-truncate d-flex align-items-center"
+                                      style="max-width: 250px;">
+                                  <i class="far fa-clock" style="font-size: 0.8rem; width: 16px; text-align: center;"></i>
+                                  <span class="text-truncate ms-2">{{ child.last_thread.title }}</span>
+                                </span>
                               </div>
                             </div>
+                            
+                            <!-- 右侧箭头 -->
+                            <div class="flex-shrink-0 d-flex align-items-center">
+                              <div class="text-primary d-flex align-items-center justify-content-center rounded-circle" 
+                                   style="width: 32px; height: 32px; background: rgba(102, 126, 234, 0.1);">
+                                <i class="fas fa-chevron-right" style="font-size: 0.9rem;"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -156,6 +156,9 @@ export default {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
   overflow: hidden;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 2.5rem 0 !important;
   
   &::before {
     content: '';
@@ -167,6 +170,45 @@ export default {
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
     opacity: 0.3;
   }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 80%);
+    border-radius: 50%;
+    filter: blur(5px);
+  }
+}
+
+.badges-container {
+  margin-top: 1.5rem;
+}
+
+.badge-feature {
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    background: rgba(102, 126, 234, 0.1) !important;
+  }
+  
+  i {
+    transition: all 0.3s ease;
+  }
+  
+  &:hover i {
+    transform: scale(1.2);
+  }
 }
 
 .parent-section {
@@ -176,11 +218,14 @@ export default {
 .parent-header {
   transition: all 0.3s ease;
   border-left: 4px solid #667eea !important;
-  margin-bottom: 1rem !important;
+  margin-bottom: 1.25rem !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.15) !important;
+    border-left: 4px solid #764ba2 !important;
   }
 }
 
@@ -203,19 +248,20 @@ export default {
   }
   
   .child-card {
-    transition: all 0.2s ease;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
     background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     
     &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-      border-color: rgba(102, 126, 234, 0.15) !important;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2) !important;
+      border-color: rgba(102, 126, 234, 0.25) !important;
     }
     
     .card-body {
-      padding: 1.25rem !important;
+      padding: 1.5rem !important;
     }
   }
 }
@@ -224,13 +270,18 @@ export default {
   cursor: pointer;
   
   &:hover .child-icon {
-    transform: scale(1.02);
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
   }
   
   &:hover .fa-chevron-right {
-    transform: translateX(3px);
+    transform: translateX(5px);
     color: #667eea;
+  }
+  
+  &:hover .text-primary {
+    background: rgba(102, 126, 234, 0.2) !important;
+    transition: all 0.3s ease;
   }
 }
 
@@ -277,6 +328,7 @@ export default {
 @media (max-width: 768px) {
   .hero-section {
     padding: 2rem 0;
+    border-radius: 0 0 15px 15px;
   }
   
   .display-5 {
@@ -288,15 +340,15 @@ export default {
     margin-bottom: 1rem !important;
   }
   
-  .badge {
-    font-size: 0.8rem;
-    padding: 0.5rem 0.75rem !important;
+  .badge-feature {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem !important;
     margin-bottom: 0.5rem !important;
   }
   
   .parent-header {
-    padding: 1rem !important;
-    margin-bottom: 0.75rem !important;
+    padding: 1.25rem !important;
+    margin-bottom: 1rem !important;
   }
   
   .parent-section {
@@ -304,7 +356,7 @@ export default {
   }
   
   .child-card .card-body {
-    padding: 1rem !important;
+    padding: 1.25rem !important;
   }
   
   .child-icon {
@@ -326,6 +378,7 @@ export default {
 @media (max-width: 576px) {
   .hero-section {
     padding: 1.5rem 0;
+    border-radius: 0 0 10px 10px;
   }
   
   .display-5 {
@@ -336,14 +389,14 @@ export default {
     font-size: 0.9rem;
   }
   
-  .badge {
+  .badge-feature {
     font-size: 0.75rem;
-    padding: 0.4rem 0.6rem !important;
+    padding: 0.4rem 0.8rem !important;
     margin-bottom: 0.25rem !important;
   }
   
   .child-card .card-body {
-    padding: 0.875rem !important;
+    padding: 1rem !important;
   }
   
   .child-icon {
@@ -363,7 +416,17 @@ export default {
   
   .d-flex.text-muted {
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.75rem;
+  }
+  
+  .child-card .flex-grow-1.me-4 {
+    margin-right: 0 !important;
+    margin-bottom: 1rem;
+  }
+  
+  .child-card .d-flex.justify-content-between {
+    flex-direction: column;
+    width: 100%;
   }
 }
 </style>
