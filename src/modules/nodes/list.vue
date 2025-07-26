@@ -8,15 +8,15 @@
             <h1 class="display-5 fw-bold mb-2">论坛版块</h1>
             <p class="lead mb-3">探索各个讨论区，找到你感兴趣的话题</p>
             <div class="d-flex justify-content-center gap-3 flex-wrap badges-container">
-              <span class="badge-feature bg-light text-primary px-4 py-2">
+              <span class="badge-feature bg-white text-primary border border-white px-4 py-2">
                 <i class="fas fa-users me-2"></i>
                 活跃社区
               </span>
-              <span class="badge-feature bg-light text-primary px-4 py-2">
+              <span class="badge-feature bg-white text-primary border border-white px-4 py-2">
                 <i class="fas fa-comments me-2"></i>
                 精彩讨论
               </span>
-              <span class="badge-feature bg-light text-primary px-4 py-2">
+              <span class="badge-feature bg-white text-primary border border-white px-4 py-2">
                 <i class="fas fa-lightbulb me-2"></i>
                 知识分享
               </span>
@@ -110,7 +110,7 @@
                             </div>
                             
                             <!-- 右侧箭头 -->
-                            <div class="flex-shrink-0 d-flex align-items-center">
+                            <div class="flex-shrink-0 d-none d-sm-flex align-items-center">
                               <div class="text-primary d-flex align-items-center justify-content-center rounded-circle" 
                                    style="width: 32px; height: 32px; background: rgba(102, 126, 234, 0.1);">
                                 <i class="fas fa-chevron-right" style="font-size: 0.9rem;"></i>
@@ -194,12 +194,13 @@ export default {
   border-radius: 50px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(102, 126, 234, 0.2);
   
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-    background: rgba(102, 126, 234, 0.1) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    color: #667eea !important;
   }
   
   i {
@@ -208,6 +209,7 @@ export default {
   
   &:hover i {
     transform: scale(1.2);
+    color: #667eea;
   }
 }
 
