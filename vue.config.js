@@ -66,7 +66,18 @@ module.exports = {
     // sass-loader, use { sass: { ... } }
     loaderOptions: {
       sass: {
-        additionalData: fs.readFileSync('src/assets/sass/_variables.scss', 'utf-8')
+        additionalData: fs.readFileSync('src/assets/sass/_variables.scss', 'utf-8'),
+        sassOptions: {
+          quietDeps: true,
+          silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'slash-div', 'mixed-decls', 'color-functions', 'abs-percent']
+        }
+      },
+      scss: {
+        additionalData: fs.readFileSync('src/assets/sass/_variables.scss', 'utf-8'),
+        sassOptions: {
+          quietDeps: true,
+          silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'slash-div', 'mixed-decls', 'color-functions', 'abs-percent']
+        }
       }
     }
 
