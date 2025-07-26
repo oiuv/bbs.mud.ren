@@ -1,12 +1,13 @@
 export default [
   {
-    path: 'ai',
+    path: '/ai',
     name: 'ai',
     component: () => import('./Show'),
     meta: {
       requiresAuth: true,
       container: false,
-      navbar: true
+      navbar: true,
+      footer: false
     }
   }
 ]

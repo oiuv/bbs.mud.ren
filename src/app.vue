@@ -26,7 +26,7 @@
       <div class="main-content" :class="{'container my-3': withContainer}">
         <router-view />
       </div>
-      <footer-bar />
+      <footer-bar v-if="shouldShowFooter" />
     </div>
     <div class="position-absolute w-100 h-100 bg-white opacity-70" v-if="isToggled" @click="toggle"></div>
     <div class="back-to-top" ref="backToTopLayer">
@@ -68,6 +68,12 @@ export default {
       }
 
       return true
+    },
+    shouldShowFooter () {
+      return (
+        typeof this.$route.meta['footer'] === 'undefined' ||
+        !!this.$route.meta['footer']
+      )
     }
   },
   methods: {
