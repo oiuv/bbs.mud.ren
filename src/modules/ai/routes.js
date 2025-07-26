@@ -4,7 +4,9 @@ export default [
     name: 'ai',
     component: () => import('./Show'),
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      container: false,
+      navbar: true
     }
   }
 ]
