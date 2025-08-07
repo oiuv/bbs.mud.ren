@@ -1,12 +1,22 @@
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:vue/recommended' // or 'plugin:vue/base'
+    'plugin:vue/recommended'
   ],
-  plugins: ['html'],
-  parser: 'babel-eslint',
-  env: { es6: true },
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@babel/eslint-parser',
+    ecmaVersion: 2020,
+    sourceType: 'module'
+  },
+  env: { 
+    es6: true,
+    browser: true,
+    node: true
+  },
   rules: {
-    semi: [2, 'never']
+    semi: [2, 'never'],
+    'vue/html-self-closing': 'off',
+    'vue/max-attributes-per-line': 'off'
   }
 }
