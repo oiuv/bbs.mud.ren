@@ -108,7 +108,7 @@
                       type="button"
                       @click="copyMarkdown"
                     >
-                      <content-copy-icon class="mr-1"></content-copy-icon>复制Markdown
+                      <content-copy-icon class="mr-1"></content-copy-icon>复制原文
                     </button>
                   </div>
                 </li>
