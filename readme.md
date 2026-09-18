@@ -80,6 +80,18 @@ VUE_APP_CAPTCHA_ID_PUBLISH=
 
 环境变量在构建时写入前端产物。修改 API 地址等配置后需要重新构建；不要在 `VUE_APP_*` 中保存私有服务密钥。
 
+## AI 助手（Dify）
+
+`/ai` 在登录后加载 Dify 整页聊天，自动传入当前账号的信息：
+
+- `systemVariables.user_id`：`mudren:<用户 ID>:<昵称>`，例如 `mudren:1:雪风`。昵称为空时使用用户名，两者都为空时使用 `用户 <ID>`。
+- `userVariables.name`：昵称，未设置时使用用户名。
+- `userVariables.avatar_url`：头像地址；未设置或地址无效时使用 Dify 默认头像。
+
+参数按 [Dify 官方嵌入脚本](https://github.com/langgenius/dify/blob/main/web/public/embed.js)的 gzip + Base64 格式编码到 iframe 地址，支持中文昵称。退出登录会移除聊天窗口，切换账号或更新昵称、头像会重新加载。仅传递上述公开资料，不传递邮箱、论坛登录令牌或 API 密钥。`user_id` 用于 Dify 用户标识，不代替后端鉴权；历史会话的保存和恢复由 Dify 管理，本站不固定 `conversation_id`。从旧的 `mudren:<用户 ID>` 格式切换，或以后修改昵称，都会改变 Dify 用户标识；旧标识下的会话不会自动迁移。
+
+`.env.local` / `.env.production` 可通过 `VUE_APP_DIFY_BASE_URL` 和 `VUE_APP_DIFY_TOKEN` 覆盖默认应用；这里的 token 是公开的嵌入标识，不是 Dify API 密钥。修改后需重新构建。浏览器需支持 `CompressionStream`，不支持时页面会提示升级。
+
 ## License
 
 MIT
