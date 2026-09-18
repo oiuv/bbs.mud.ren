@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This is the MUDREN forum frontend, using Vue 2, Vue Router 3, Vuex 3, and Vue CLI 3. The Laravel API is maintained separately.
+This is the MUDREN forum frontend, using Vue 2, Vue Router 3, Vuex 3, and Vue CLI 5. The Laravel API is maintained separately.
 
 - `src/main.js` initializes the app; `src/app.vue` provides the shared layout.
 - `src/modules/` groups features: `auth`, `threads`, `users`, `nodes`, `notifications`, `search`, and `ai`. Modules expose routes through `routes.js` and `index.js`.
@@ -13,17 +13,17 @@ This is the MUDREN forum frontend, using Vue 2, Vue Router 3, Vuex 3, and Vue CL
 
 ## Build, Test, and Development Commands
 
-The README specifies Node.js 14. Check your runtime before installing dependencies; the declared toolchain includes `node-sass` 4.
+Use Node.js 24 LTS, as specified by `package.json` and `.nvmrc`. The build uses Webpack 5 and Dart Sass.
 
-- `npm install`: install dependencies.
+- `npm ci --include=dev`: install locked dependencies, including build tools.
 - `npm run serve`: start the development server on port 8081 and open a browser.
 - `npm run build`: generate the production bundle in `dist/`.
 - `npm run lint`: run Vue CLI ESLint; it can automatically fix files.
-- `npm run lint -- --no-fix`: check lint without applying fixes.
+- `npm run lint:check`: check lint without applying fixes.
 
 ## Coding Style & Naming Conventions
 
-Follow `.editorconfig`: two-space indentation, UTF-8, LF endings, and final newlines for Vue, JavaScript, and SCSS. Use Vue 2 Options API, single-quoted JavaScript strings, and omit semicolons. ESLint uses Vue rules and `babel-eslint`.
+Follow `.editorconfig`: two-space indentation, UTF-8, LF endings, and final newlines for Vue, JavaScript, and SCSS. Use Vue 2 Options API, single-quoted JavaScript strings, and omit semicolons. ESLint uses Vue rules, `vue-eslint-parser`, and `@babel/eslint-parser`.
 
 Match neighboring filenames, typically lowercase or kebab-case components such as `user-card.vue`. Preserve existing capitalization exceptions. Use aliases such as `$components`, `$modules`, `$utils`, and `$sass`.
 

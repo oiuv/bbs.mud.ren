@@ -1,19 +1,16 @@
 {
   "name": "mudren",
-  "version": "1.14.18",
+  "version": "1.24.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:check": "vue-cli-service lint --no-fix"
   },
   "dependencies": {
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-eslint": "^3.7.0",
-    "@vue/cli-service": "^3.8.0",
     "animate.css": "^3.7.2",
     "axios": "^0.30.0",
-    "babel-plugin-prismjs": "^2.1.0",
     "bootstrap": "^4.6.1",
     "brace": "^0.11.1",
     "clipboard": "^2.0.10",
@@ -26,36 +23,18 @@
     "lodash": "^4.17.21",
     "mo-js": "^0.288.2",
     "moment": "^2.29.4",
-    "node-sass": "^4.14.1",
     "popper.js": "^1.16.1",
     "prismjs": "^1.30.0",
     "qrcode": "^1.5.0",
-    "sass-loader": "^7.3.1",
     "tributejs": "^3.7.1",
     "typeface-ubuntu-mono": "0.0.72",
-    "vue": "^2.6.14",
+    "vue": "2.7.16",
     "vue-avatar-cropper": "1.0.5",
     "vue-material-design-icons": "^3.4.0",
     "vue-router": "^3.5.3",
-    "vue-template-compiler": "^2.6.14",
+    "vue-template-compiler": "2.7.16",
     "vuex": "^3.6.2",
     "vuex-router-sync": "^5.0.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {
-      "semi": 0
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "postcss": {
     "plugins": {
@@ -68,16 +47,20 @@
     "not ie <= 8"
   ],
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-html": "^5.0.5",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.3.1",
-    "eslint-plugin-standard": "^4.1.0",
-    "eslint-plugin-vue": "^5.2.3",
-    "standard": "^16.0.4"
+    "@babel/core": "^7.28.0",
+    "@babel/eslint-parser": "^7.28.0",
+    "@vue/cli-plugin-babel": "^5.0.9",
+    "@vue/cli-plugin-eslint": "^5.0.9",
+    "@vue/cli-service": "^5.0.9",
+    "autoprefixer": "^10.4.21",
+    "babel-plugin-prismjs": "^2.1.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.33.0",
+    "sass": "^1.104.1",
+    "sass-loader": "^17.0.1",
+    "vue-eslint-parser": "^9.4.3"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }

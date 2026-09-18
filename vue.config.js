@@ -65,8 +65,18 @@ module.exports = {
     // pass custom options to pre-processor loaders. e.g. to pass options to
     // sass-loader, use { sass: { ... } }
     loaderOptions: {
-      sass: {
-        data: fs.readFileSync('src/assets/sass/_variables.scss', 'utf-8')
+      css: {
+        url: {
+          // Root-relative assets are copied from public/ without bundling.
+          filter: url => !url.startsWith('/')
+        }
+      },
+      scss: {
+        implementation: require('sass'),
+        additionalData: fs.readFileSync(path.resolve(__dirname, 'src/assets/sass/_variables.scss'), 'utf-8'),
+        sassOptions: {
+          quietDeps: true
+        }
       }
     }
 
@@ -88,11 +98,7 @@ module.exports = {
     open: process.platform === 'darwin',
     host: '0.0.0.0',
     port: 8081,
-    https: false,
-    hotOnly: false,
-    // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#configuring-proxy
-    proxy: null, // string | Object
-    before: app => {}
+    hot: true
   },
 
   // options for 3rd party plugins
