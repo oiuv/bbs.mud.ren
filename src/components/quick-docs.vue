@@ -26,6 +26,10 @@
       </li>
       <li class="py-1">
         <docs-icon class="mr-1"/>
+        <a class="text-gray-50" href="https://mudlibs.fluffos.info/" target="_blank">中文MUD博物馆</a>
+      </li>
+      <li class="py-1">
+        <docs-icon class="mr-1"/>
         <a class="text-gray-50" href="https://github.com/mudren" target="_blank">MUDLIB下载</a>
       </li>
       <li class="py-1">
@@ -47,10 +51,6 @@
       <li class="py-1">
         <docs-icon class="mr-1"/>
         <a class="text-gray-50" href="https://mud.ren:8888/" target="_blank">炎黄群侠传MUD</a>
-      </li>
-      <li class="py-1">
-        <docs-icon class="mr-1"/>
-        <a class="text-gray-50" href="https://bbs.mud.ren/threads/162" target="_blank">MUD站点宣传</a>
       </li>
     </ul>
   </div>

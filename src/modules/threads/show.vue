@@ -31,7 +31,7 @@
                   <like-btn relation="thread" :item="thread"></like-btn>
                 </li>
                 <li class="nav-item">
-                  <a class="text-gray-50 btn btn-sm btn-link" href="#comments">
+                  <a class="text-gray-50 btn btn-sm btn-link" href="#comments" @click.prevent="scrollToComments">
                     <comment-icon></comment-icon>
                     {{ thread.cache.comments_count }} 条评论
                   </a>
@@ -103,9 +103,22 @@
                     >
                       <alert-box-icon class="mr-1"></alert-box-icon>举报
                     </button>
+                    <button
+                      class="dropdown-item cursor-pointer"
+                      type="button"
+                      @click="copyMarkdown"
+                    >
+                      <content-copy-icon class="mr-1"></content-copy-icon>复制原文
+                    </button>
                   </div>
                 </li>
+
                 <li class="nav-item ml-auto">
+                  <a class="text-gray-50 btn btn-sm btn-link" href="#comments" @click.prevent="scrollToComments">
+                    <comment-icon></comment-icon>评论
+                  </a>
+                </li>
+                <li class="nav-item">
                   <subscribe-btn relation="thread" :item="thread"/>
                 </li>
               </ul>
@@ -157,6 +170,7 @@ import TopIcon from '$icons/FormatVerticalAlignTop'
 import PencilIcon from '$icons/Pencil'
 import DeleteIcon from '$icons/Delete'
 import AlertBoxIcon from '$icons/AlertBox'
+import ContentCopyIcon from '$icons/ContentCopy'
 import UserMedia from '$components/user-media'
 import HotTags from '$components/hot-tags'
 import UserListCard from '$components/user-list-card'
@@ -195,6 +209,7 @@ export default {
     HotTags,
     PencilIcon,
     AlertBoxIcon,
+    ContentCopyIcon,
     DeleteIcon,
     ShareIcon,
     StarIcon,
@@ -266,6 +281,33 @@ export default {
         this.$message.success('搞定！')
         this.loadThread()
       })
+    },
+    scrollToComments () {
+      const commentsElement = document.querySelector('[name="comments"]')
+      if (commentsElement) {
+        commentsElement.scrollIntoView({ behavior: 'smooth' })
+      }
+    },
+    copyMarkdown () {
+      const markdown = this.thread.content && this.thread.content.markdown
+      if (!markdown) {
+        this.$message.warning('该帖子没有Markdown内容')
+        return
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(markdown).then(() => {
+          this.$message.success('Markdown内容已复制到剪贴板')
+        })
+      } else {
+        // 降级方案
+        const textarea = document.createElement('textarea')
+        textarea.value = markdown
+        document.body.appendChild(textarea)
+        textarea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textarea)
+        this.$message.success('Markdown内容已复制到剪贴板')
+      }
     }
   },
   mounted () {

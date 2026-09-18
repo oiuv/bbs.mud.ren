@@ -13,7 +13,7 @@
               <a href="javascript:void(0);" class="nav-link">首页</a>
             </router-link>
             <router-link :to="{ name: 'nodes.show' }" exact tag="li" class="nav-item">
-              <a href="javascript:void(0);" class="nav-link">话题</a>
+              <a href="javascript:void(0);" class="nav-link">论坛</a>
             </router-link>
             <li class="nav-item">
               <a class="nav-link" href="https://mud.ren/users" target="_blank">英雄榜</a>

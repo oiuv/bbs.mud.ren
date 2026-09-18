@@ -2,18 +2,18 @@
 
 ## Project Structure & Module Organization
 
-This is the MUDREN forum frontend, using Vue 2, Vue Router 3, Vuex 3, and Vue CLI 5. The Laravel API is maintained separately.
+MUDREN is a Vue 2 forum frontend with Vue Router 3, Vuex 3, Vue CLI 5, Element UI, and Bootstrap 4. The Laravel API is maintained separately.
 
 - `src/main.js` initializes the app; `src/app.vue` provides the shared layout.
-- `src/modules/` groups features: `auth`, `threads`, `users`, `nodes`, `notifications`, `search`, and `ai`. Modules expose routes through `routes.js` and `index.js`.
-- `src/components/` contains reusable UI and the CodeMirror Markdown editor.
+- `src/modules/` groups features: `auth`, `home`, `threads`, `users`, `nodes`, `notifications`, `pages`, `search`, and `ai`. Modules expose routes through `routes.js` and `index.js`.
+- `src/components/` contains reusable UI and the CodeMirror Markdown editor with attachment uploads.
 - `src/router/`, `src/vuex/`, and `src/utils/http/` handle navigation, state, and Axios requests.
 - `src/assets/sass/` contains styles; `public/` contains static assets and the HTML template. Generated output goes to ignored `dist/`.
-- `openspec/` contains specification scaffolding. No automated test directory exists.
+- `openspec/` contains specification scaffolding.
 
 ## Build, Test, and Development Commands
 
-Use Node.js 24 LTS, as specified by `package.json` and `.nvmrc`. The build uses Webpack 5 and Dart Sass.
+Use Node.js 24 LTS (`.nvmrc`); builds use Webpack 5 and Dart Sass.
 
 - `npm ci --include=dev`: install locked dependencies, including build tools.
 - `npm run serve`: start the development server on port 8081 and open a browser.
@@ -29,12 +29,14 @@ Match neighboring filenames, typically lowercase or kebab-case components such a
 
 ## Testing Guidelines
 
-No test framework, `npm test` script, coverage threshold, or test naming convention is configured. For functional changes, run lint and build, then manually exercise affected routes against a configured API. Check relevant authenticated, guest, error, and mobile states. Record results and blockers in the PR.
+No test framework, `npm test` script, coverage threshold, or test naming convention is configured. Run lint and build; manually check affected routes against a configured API. Check relevant authenticated, guest, error, and mobile states. Record results and blockers in the PR.
 
 ## Commit & Pull Request Guidelines
 
 History uses short Chinese descriptions and occasional `fix:` prefixes; no uniform format is enforced. Write focused messages describing changed behavior. PRs should explain purpose, affected modules, validation, related issues when applicable, and include screenshots for UI changes.
 
-## Configuration
+## Configuration & Deployment
 
 Copy `.env.example` to `.env.local`; configure the API URL, Passport client, and Tencent CAPTCHA IDs. Keep environment files untracked. Treat `VUE_APP_*` values as browser-visible; never place private service keys there.
+
+In development, `/api` proxies to `https://api.mud.ren`, stripping the prefix. `deploy.php` uses Deployer to build on the server; publish `dist/` as static files.

@@ -181,11 +181,19 @@ export default {
       let promise = null
       let isEdit = this.$route.name == 'threads.edit'
 
+      // 构建提交数据，不发送 content.body（HTML由后端从markdown自动生成）
+      // 避免POST请求体中的HTML标签被阿里云WAF拦截（405错误）
+      const submitData = Object.assign({}, this.form, {
+        content: {
+          markdown: this.form.content.markdown
+        }
+      })
+
       if (isEdit) {
         promise = this.$http
-          .patch(`threads/${this.$route.params.id}`, this.form)
+          .patch(`threads/${this.$route.params.id}`, submitData)
       } else {
-        promise = this.$http.post('threads', this.form)
+        promise = this.$http.post('threads', submitData)
       }
 
       promise

@@ -75,7 +75,8 @@ module.exports = {
         implementation: require('sass'),
         additionalData: fs.readFileSync(path.resolve(__dirname, 'src/assets/sass/_variables.scss'), 'utf-8'),
         sassOptions: {
-          quietDeps: true
+          quietDeps: true,
+          silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'slash-div', 'color-functions', 'abs-percent']
         }
       }
     }
@@ -98,7 +99,16 @@ module.exports = {
     open: process.platform === 'darwin',
     host: '0.0.0.0',
     port: 8081,
-    hot: true
+    hot: true,
+    proxy: {
+      '/api': {
+        target: 'https://api.mud.ren',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   },
 
   // options for 3rd party plugins

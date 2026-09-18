@@ -13,6 +13,8 @@ module.exports = {
   rules: {
     semi: [2, 'never'],
     // Existing Vue 2 components use names such as app, editor, and navbar.
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    'vue/html-self-closing': 'off',
+    'vue/max-attributes-per-line': 'off'
   }
 }

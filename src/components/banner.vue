@@ -1,18 +1,19 @@
 <template>
-  <div :id="id" class="carousel slide" data-ride="carousel" v-if="banner">
-    <!-- <ol class="carousel-indicators" v-if="banner.banners.length > 1">
+  <div :id="id" class="carousel slide carousel-fade" v-if="banner">
+    <ol class="carousel-indicators" v-if="banner.banners.length > 1">
       <li
         :data-target="idSelector"
-        :data-slide-to="i - 1"
-        class="active"
-        v-for="i in banner.banners.length"
-        :key="i"
+        :data-slide-to="index"
+        :class="{active: index === currentIndex}"
+        v-for="(item, index) in banner.banners"
+        :key="index"
+        @click="goToSlide(index)"
       ></li>
-    </ol> -->
+    </ol>
     <div class="carousel-inner">
       <div
-        class="carousel-item active"
-        v-for="item of banner.banners"
+        class="carousel-item" :class="{active: index === currentIndex}"
+        v-for="(item, index) of banner.banners"
         :key="item.id"
       >
         <a :href="item.url || 'javascript:;'" target="_blank">
@@ -24,12 +25,13 @@
         </a>
       </div>
     </div>
-    <!-- <a
+    <a
       class="carousel-control-prev"
       :href="idSelector"
       role="button"
       data-slide="prev"
       v-if="banner.banners.length > 1"
+      @click.prevent="prevSlide()"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true">
         <arrow-left></arrow-left>
@@ -42,12 +44,13 @@
       role="button"
       data-slide="next"
       v-if="banner.banners.length > 1"
+      @click.prevent="nextSlide()"
     >
       <span class="carousel-control-next-icon" aria-hidden="true">
         <arrow-right></arrow-right>
       </span>
       <span class="sr-only">Next</span>
-    </a> -->
+    </a>
   </div>
 </template>
 
@@ -75,6 +78,8 @@ export default {
   data() {
     return {
       banner: null,
+      currentIndex: 0,
+      intervalId: null,
     };
   },
   methods: {
@@ -82,17 +87,40 @@ export default {
       this.$http
         .get("banners/" + this.name)
         .then((banner) => {
-          // 随机取一条banner
-          banner.banners = [
-            banner.banners[Math.floor(Math.random() * banner.banners.length)],
-          ];
           this.banner = banner;
+          if (this.banner && this.banner.banners.length > 1) {
+            this.startAutoPlay();
+          }
         })
         .catch((err) => {});
+    },
+    nextSlide() {
+      this.currentIndex = (this.currentIndex + 1) % this.banner.banners.length;
+    },
+    prevSlide() {
+      this.currentIndex = (this.currentIndex - 1 + this.banner.banners.length) % this.banner.banners.length;
+    },
+    goToSlide(index) {
+      this.currentIndex = index;
+    },
+    startAutoPlay() {
+      this.stopAutoPlay();
+      this.intervalId = setInterval(() => {
+        this.nextSlide();
+      }, 5000); // 5秒切换一次
+    },
+    stopAutoPlay() {
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
+        this.intervalId = null;
+      }
     },
   },
   mounted() {
     this.loadBanner();
+  },
+  beforeDestroy() {
+    this.stopAutoPlay();
   },
 };
 </script>

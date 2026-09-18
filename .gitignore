@@ -6,6 +6,10 @@ yarn.lock
 # local env files
 .env.local
 .env.production
+.env
+
+# JSON files
+*.json
 
 # Log files
 npm-debug.log*
@@ -20,4 +24,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# Temporary files
+commit_message.txt
 .codegraph/
