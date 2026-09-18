@@ -3,7 +3,7 @@
 
 <h1 align="left"><a href="https://bbs.mud.ren">bbs.mud.ren</a></h1>
 
-MUDREN论坛项目基于[一刻社区](https://github.com/yikeio/yike.io)修改, 使用 Vuejs 开发的 Laravel SPA 项目。
+MUDREN 是独立维护的社区论坛前端，基于 Vue 2 开发，与独立部署的 Laravel 后端 API 配合使用。
 
 > 后端源码：https://github.com/oiuv/api.mud.ren
 
