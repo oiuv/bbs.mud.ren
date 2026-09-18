@@ -15,12 +15,11 @@
 <script>
 import GooglePlus from '$icons/GooglePlus'
 import FacebookIcon from '$icons/Facebook'
-import QqIcon from '$icons/Qqchat'
 import GithubIcon from '$icons/GithubCircle'
 
 export default {
   name: 'oauth-btn',
-  components: { GooglePlus, FacebookIcon, QqIcon, GithubIcon },
+  components: { GooglePlus, FacebookIcon, GithubIcon },
   methods: {
     oauth (platform) {
       let iOSChrome =

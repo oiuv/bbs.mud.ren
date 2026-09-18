@@ -1,5 +1,5 @@
 <template>
-  <relation-btn :relation="relation" action="subscribe" :item="item">
+  <relation-btn :relation="relation" action="subscribe" :item="item" @update:item="$emit('update:item', $event)">
     <button slot="on" class="btn btn-sm text-gray-50">
       <volume-high /><span class="pl-1">订阅</span>
     </button>

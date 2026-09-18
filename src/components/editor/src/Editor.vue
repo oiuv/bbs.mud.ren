@@ -55,17 +55,6 @@ import EmojiCompleter from '../emoji-completer'
 import AtCompleter from '../at-completer'
 import '../attachment'
 import { mapGetters } from 'vuex'
-import PlusIcon from '$icons/Plus'
-import LinkIcon from '$icons/Link'
-import FormatHeader1Icon from '$icons/FormatHeader1'
-import FormatHeader2Icon from '$icons/FormatHeader2'
-import FormatHeader3Icon from '$icons/FormatHeader3'
-import FormatBoldIcon from '$icons/FormatBold'
-import FormatItalicIcon from '$icons/FormatItalic'
-import FormatQuoteOpenIcon from '$icons/FormatQuoteOpen'
-import CodeTagsIcon from '$icons/CodeTags'
-import FormatListBulletedIcon from '$icons/FormatListBulleted'
-import FormatListNumbersIcon from '$icons/FormatListNumbered'
 import MarkdownBody from '$components/markdown-body'
 
 require('codemirror/mode/gfm/gfm')
@@ -104,18 +93,7 @@ export default {
     }
   },
   components: {
-    MarkdownBody,
-    PlusIcon,
-    FormatHeader1Icon,
-    FormatHeader2Icon,
-    FormatHeader3Icon,
-    FormatBoldIcon,
-    FormatItalicIcon,
-    FormatQuoteOpenIcon,
-    FormatListNumbersIcon,
-    FormatListBulletedIcon,
-    CodeTagsIcon,
-    LinkIcon
+    MarkdownBody
   },
   data () {
     return {

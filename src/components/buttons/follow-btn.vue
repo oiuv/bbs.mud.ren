@@ -3,6 +3,7 @@
     relation="user"
     action="follow"
     :item="item"
+    @update:item="$emit('update:item', $event)"
     v-if="currentUser.id && item.id != currentUser.id"
   >
     <template slot="on">

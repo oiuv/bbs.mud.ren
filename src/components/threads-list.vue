@@ -96,8 +96,6 @@ import LikeIcon from '$icons/Heart'
 import CommentIcon from '$icons/Comment'
 import ViewIcon from '$icons/Eye'
 import EmptyState from '$components/empty-state'
-import MedalIcon from '$icons/Medal'
-import TopIcon from '$icons/FormatVerticalAlignTop'
 import SubscribeIcon from '$icons/Rss'
 
 export default {
@@ -106,8 +104,6 @@ export default {
     LikeIcon,
     CommentIcon,
     ViewIcon,
-    MedalIcon,
-    TopIcon,
     Paginator,
     EmptyState,
     SubscribeIcon

@@ -36,7 +36,6 @@
 
 <script>
 import Banner from '$components/banner'
-import HotTags from '$components/hot-tags'
 import UserRanking from '$components/user-ranking'
 import NewUsers from '$components/new-users'
 import QuickDocs from '$components/quick-docs'
@@ -58,7 +57,6 @@ export default {
   components: {
     Banner,
     QuickDocs,
-    HotTags,
     UserRanking,
     NewUsers,
     ThreadsList,

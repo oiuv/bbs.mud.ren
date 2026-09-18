@@ -8,7 +8,7 @@
             <p>{{ node.description }}</p>
           </div>
           <div class="col-md-6 d-flex justify-content-end">
-            <subscribe-btn relation="node" :item="node" />
+            <subscribe-btn relation="node" :item.sync="node" />
           </div>
         </div>
       </div>

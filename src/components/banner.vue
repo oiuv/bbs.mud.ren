@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import ArrowLeft from "$icons/ArrowLeft";
-import ArrowRight from "$icons/ArrowRight";
+import ArrowLeft from "$icons/ArrowLeft"
+import ArrowRight from "$icons/ArrowRight"
 
 export default {
   name: "Banner",
@@ -69,10 +69,10 @@ export default {
   },
   computed: {
     id() {
-      return "banner-" + this.name;
+      return "banner-" + this.name
     },
     idSelector() {
-      return "#" + this.id;
+      return "#" + this.id
     },
   },
   data() {
@@ -80,49 +80,49 @@ export default {
       banner: null,
       currentIndex: 0,
       intervalId: null,
-    };
+    }
   },
   methods: {
     loadBanner() {
       this.$http
         .get("banners/" + this.name)
         .then((banner) => {
-          this.banner = banner;
+          this.banner = banner
           if (this.banner && this.banner.banners.length > 1) {
-            this.startAutoPlay();
+            this.startAutoPlay()
           }
         })
-        .catch((err) => {});
+        .catch(() => {})
     },
     nextSlide() {
-      this.currentIndex = (this.currentIndex + 1) % this.banner.banners.length;
+      this.currentIndex = (this.currentIndex + 1) % this.banner.banners.length
     },
     prevSlide() {
-      this.currentIndex = (this.currentIndex - 1 + this.banner.banners.length) % this.banner.banners.length;
+      this.currentIndex = (this.currentIndex - 1 + this.banner.banners.length) % this.banner.banners.length
     },
     goToSlide(index) {
-      this.currentIndex = index;
+      this.currentIndex = index
     },
     startAutoPlay() {
-      this.stopAutoPlay();
+      this.stopAutoPlay()
       this.intervalId = setInterval(() => {
-        this.nextSlide();
-      }, 5000); // 5秒切换一次
+        this.nextSlide()
+      }, 5000) // 5秒切换一次
     },
     stopAutoPlay() {
       if (this.intervalId) {
-        clearInterval(this.intervalId);
-        this.intervalId = null;
+        clearInterval(this.intervalId)
+        this.intervalId = null
       }
     },
   },
   mounted() {
-    this.loadBanner();
+    this.loadBanner()
   },
   beforeDestroy() {
-    this.stopAutoPlay();
+    this.stopAutoPlay()
   },
-};
+}
 </script>
 
 <style lang="scss">

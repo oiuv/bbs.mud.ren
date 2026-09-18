@@ -15,7 +15,7 @@
           >@{{ user.username }}</router-link>
         </div>
       </div>
-      <follow-btn :item="user" class="ml-md-auto mt-1 mtsm-0"></follow-btn>
+      <follow-btn :item="user" class="ml-md-auto mt-1 mtsm-0" @update:item="$emit('update:user', $event)"></follow-btn>
     </div>
     <div class="text-gray-70">
       <div class="py-2">{{ user.bio }}</div>
@@ -27,10 +27,8 @@
 </template>
 
 <script>
-import UserMedia from '$components/user-media'
 import FollowBtn from '$components/buttons/follow-btn'
 import MapMarkerIcon from '$icons/MapMarker'
-import PlusIcon from '$icons/Plus'
 
 export default {
   name: 'UserCard',
@@ -40,6 +38,6 @@ export default {
       required: true
     }
   },
-  components: { UserMedia, FollowBtn, MapMarkerIcon, PlusIcon }
+  components: { FollowBtn, MapMarkerIcon }
 }
 </script>

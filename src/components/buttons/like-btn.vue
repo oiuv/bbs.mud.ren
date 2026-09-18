@@ -31,7 +31,14 @@ export default {
   },
   methods: {
     afterToggle (bool) {
-      bool ? this.item.cache.likes_count++ : this.item.cache.likes_count--
+      this.$emit('update:item', {
+        ...this.item,
+        has_liked: bool,
+        cache: {
+          ...this.item.cache,
+          likes_count: this.item.cache.likes_count + (bool ? 1 : -1)
+        }
+      })
     }
   }
 }

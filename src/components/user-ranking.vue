@@ -5,9 +5,9 @@
       <!--<button class="btn btn-ghost btn-icon"><arrow-right-icon></arrow-right-icon></button>-->
     </div>
     <ul class="plan-list">
-      <user-media class="mb-2 d-flex align-items-center" v-for="item in users" :key="item.id" :user="item">
+      <user-media class="mb-2 d-flex align-items-center" v-for="(item, index) in users" :key="item.id" :user="item">
         <template slot="appends">
-          <follow-btn :item="item" class="ml-auto" simple></follow-btn>
+          <follow-btn :item.sync="users[index]" class="ml-auto" simple></follow-btn>
         </template>
         <template slot="description">
           <!-- <div class="text-gray-70 text-12">注册于{{ item.created_at_timeago }}</div> -->
@@ -20,14 +20,11 @@
 
 <script>
 import UserMedia from '$components/user-media'
-import ArrowRightIcon from '$icons/ArrowRight'
-import CheckIcon from '$icons/Check'
-import PlusIcon from '$icons/Plus'
 import FollowBtn from '$components/buttons/follow-btn'
 
 export default {
   name: 'NewUsers',
-  components: { FollowBtn, UserMedia, ArrowRightIcon, CheckIcon, PlusIcon },
+  components: { FollowBtn, UserMedia },
   data () {
     return {
       users: []

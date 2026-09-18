@@ -29,11 +29,7 @@
 </template>
 
 <script>
-import RelationBtn from './relation-btn'
 import LinkVariant from '$icons/LinkVariant'
-import VolumeMute from '$icons/VolumeMute'
-import VolumeHigh from '$icons/VolumeHigh'
-import CheckIcon from '$icons/Check'
 import TwitterIcon from '$icons/Twitter'
 import FacebookIcon from '$icons/Facebook'
 import ClipboardJS from 'clipboard'
@@ -41,11 +37,7 @@ import ClipboardJS from 'clipboard'
 export default {
   name: 'share-action',
   components: {
-    RelationBtn,
     LinkVariant,
-    VolumeMute,
-    VolumeHigh,
-    CheckIcon,
     TwitterIcon,
     FacebookIcon
   },

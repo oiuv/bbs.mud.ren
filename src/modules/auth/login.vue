@@ -33,7 +33,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import SocialiteBtns from '$components/socialite-login'
 export default {
   data () {
     return {
@@ -41,7 +40,6 @@ export default {
       password: ''
     }
   },
-  components: { SocialiteBtns },
   methods: {
     ...mapActions(['attemptLogin']),
 

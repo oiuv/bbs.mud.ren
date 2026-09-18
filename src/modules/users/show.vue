@@ -40,7 +40,7 @@
           </div>
         </div>
         <template v-if="currentUser && currentUser.id != user.id && !user.banned_at">
-          <follow-btn :item="user" class="d-inline-block ml-md-auto"></follow-btn>
+          <follow-btn :item.sync="user" class="d-inline-block ml-md-auto"></follow-btn>
         </template>
       </div>
     </header>

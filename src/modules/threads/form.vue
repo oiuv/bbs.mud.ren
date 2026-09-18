@@ -228,14 +228,14 @@ export default {
           },
           ticket: null,
           randstr: null
-        };
+        }
         // 清除缓存
-        this.clearCache();
+        this.clearCache()
         this.$refs.editorRef.editor.setValue('')
-        this.$message.success('草稿已清除');
+        this.$message.success('草稿已清除')
       }).catch(() => {
-        this.$message.info('已取消清除草稿');
-      });
+        this.$message.info('已取消清除草稿')
+      })
     }
   }
 }

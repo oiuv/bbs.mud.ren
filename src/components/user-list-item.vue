@@ -17,7 +17,7 @@
       <div class="text-12 text-gray-70">{{ user.bio }}</div>
     </div>
     <slot name="appends" :data="user">
-      <follow-btn :item="user" simple class="ml-auto"></follow-btn>
+      <follow-btn :item="user" simple class="ml-auto" @update:item="$emit('update:user', $event)"></follow-btn>
     </slot>
   </div>
 </template>

@@ -25,14 +25,12 @@
         class="flex-wrap justify-content-center"
       ></user-social-btns>
     </div>
-    <follow-btn :item="user" class="pb-2 ml-auto"></follow-btn>
+    <follow-btn :item="user" class="pb-2 ml-auto" @update:item="$emit('update:user', $event)"></follow-btn>
   </div>
 </template>
 
 <script>
-import UserMedia from '$components/user-media'
 import FollowBtn from '$components/buttons/follow-btn'
-import PlusIcon from '$icons/Plus'
 import UserSocialBtns from '$components/user-social-btns'
 
 export default {
@@ -43,7 +41,7 @@ export default {
       required: true
     }
   },
-  components: { UserMedia, FollowBtn, PlusIcon, UserSocialBtns }
+  components: { FollowBtn, UserSocialBtns }
 }
 </script>
 

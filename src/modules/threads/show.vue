@@ -28,7 +28,7 @@
             <div class="container">
               <ul class="nav align-items-center">
                 <li class="nav-item">
-                  <like-btn relation="thread" :item="thread"></like-btn>
+                  <like-btn relation="thread" :item.sync="thread"></like-btn>
                 </li>
                 <li class="nav-item">
                   <a class="text-gray-50 btn btn-sm btn-link" href="#comments" @click.prevent="scrollToComments">
@@ -119,7 +119,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <subscribe-btn relation="thread" :item="thread"/>
+                  <subscribe-btn relation="thread" :item.sync="thread"/>
                 </li>
               </ul>
             </div>
@@ -138,7 +138,7 @@
                 </div>
               </div>
               <div class="right-action">
-                <follow-btn :item="thread.user"></follow-btn>
+                <follow-btn :item.sync="thread.user"></follow-btn>
               </div>
             </div>
           </div>
@@ -147,12 +147,12 @@
           <comments object-type="App\Thread" :object-id="thread.id" @created="loadThread"></comments>
         </div>
         <div class="thread-toolbar">
-          <animate-action :item="thread"/>
+          <animate-action :item.sync="thread"/>
           <share-action class="mt-3" :item="thread"/>
         </div>
       </div>
       <div class="col-md-3 position-relative">
-        <user-profile-card class="user-profile-card" :user="thread.user"></user-profile-card>
+        <user-profile-card class="user-profile-card" :user.sync="thread.user"></user-profile-card>
         <user-list-card title="他们觉得很赞" :users="thread.likers" class="mt-2"/>
         <hot-tags class="mt-2"></hot-tags>
       </div>
@@ -176,7 +176,6 @@ import HotTags from '$components/hot-tags'
 import UserListCard from '$components/user-list-card'
 import WechatQrcode from '$components/wechat-qrcode'
 import Comments from '$components/comments'
-import StarIcon from '$icons/Star'
 import MoreIcon from '$icons/DotsHorizontal'
 import ShareIcon from '$icons/Share'
 import SubscribeBtn from '$components/buttons/subscribe-btn'
@@ -190,7 +189,6 @@ import UserProfileCard from '$components/user-profile-card'
 import ShareDropdown from '$components/share-dropdown'
 
 import CommentIcon from '$icons/Comment'
-import ViewIcon from '$icons/Eye'
 
 import { mapGetters } from 'vuex'
 
@@ -203,7 +201,6 @@ export default {
     ReportForm,
     SubscribeBtn,
     CommentIcon,
-    ViewIcon,
     FollowBtn,
     UserMedia,
     HotTags,
@@ -212,7 +209,6 @@ export default {
     ContentCopyIcon,
     DeleteIcon,
     ShareIcon,
-    StarIcon,
     MoreIcon,
     MedalIcon,
     TopIcon,
@@ -270,8 +266,8 @@ export default {
         this.$message({
           type: 'info',
           message: '已取消删除'
-        });
-      });
+        })
+      })
     },
     toggleStatus (timestamp) {
       this.thread[timestamp] = this.thread[timestamp]

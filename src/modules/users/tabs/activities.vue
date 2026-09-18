@@ -4,7 +4,7 @@
       <empty-state />
     </div>
     <ul class="timeline pb-2" v-else>
-      <li class="timeline-item" v-for="activity in activities.data" :key="activity.id" v-if="activity.subject">
+      <li class="timeline-item" v-for="activity in visibleActivities" :key="activity.id">
         <div class="timeline-heading">
           <div class="d-flex">
             <router-link :to="{name:'users.show', params: {username: $parent.user.username}}">
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="timeline-body">
-          <user-card :user="activity.subject" v-if="activity.log_name == 'follow.user'"></user-card>
+          <user-card :user.sync="activity.subject" v-if="activity.log_name == 'follow.user'"></user-card>
           <div class="box cursor-pointer" v-else>
             <router-link class="text-muted" :to="subjectLink(activity)">{{ activity.properties['content'] || '无' }}</router-link>
           </div>
@@ -81,6 +81,11 @@ export default {
     }
   },
   components: { UserCard, ArrowDownIcon, SourceCommitEnd, EmptyState },
+  computed: {
+    visibleActivities () {
+      return this.activities.data.filter(activity => activity.subject)
+    }
+  },
   beforeRouteUpdate (to, from, next) {
     if (to.params.username != from.params.username) {
       this.activities = {

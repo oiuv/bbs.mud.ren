@@ -40,7 +40,6 @@
 import { mapGetters, mapActions } from 'vuex'
 import Navbar from '$components/navbar'
 import FooterBar from '$components/footer'
-import Sidebar from '$components/sidebar'
 import ArrowUpIcon from '$icons/ArrowUp'
 
 export default {
@@ -48,7 +47,6 @@ export default {
   components: {
     Navbar,
     FooterBar,
-    Sidebar,
     ArrowUpIcon
   },
   computed: {

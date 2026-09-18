@@ -6,9 +6,9 @@
     <!--</div>-->
     <!--</form>-->
     <div class="list-group list-group-flush">
-      <user-list-item class="list-group-item" :user="user" :key="user.id" v-for="user of users.data"></user-list-item>
+      <user-list-item class="list-group-item" :user.sync="users.data[index]" :key="user.id" v-for="(user, index) of users.data"></user-list-item>
       <empty-state v-if="users.data && users.data.length == 0"></empty-state>
-      <paginator :meta="users.meta"></paginator>
+      <paginator :meta="users.meta" @change="followings"></paginator>
     </div>
     <div class="text-center" v-if="false">
       <button class="mt-2 btn btn-ghost">Load More</button>
@@ -21,19 +21,13 @@ import { mapGetters } from 'vuex'
 import EmptyState from '$components/empty-state'
 import UserListItem from '$components/user-list-item'
 import Paginator from '$components/paginator'
-import EmailIcon from '$icons/Email'
-import PlusIcon from '$icons/Plus'
-import MinusIcon from '$icons/Minus'
 
 export default {
   name: 'user-followings',
   components: {
     UserListItem,
     EmptyState,
-    Paginator,
-    PlusIcon,
-    EmailIcon,
-    MinusIcon
+    Paginator
   },
   data () {
     return {
@@ -47,9 +41,9 @@ export default {
     this.followings()
   },
   methods: {
-    async followings () {
+    async followings (page = 1) {
       this.users = await this.$http.get(
-        `user/${this.$parent.user.username}/followings`
+        `user/${this.$parent.user.username}/followings`, { params: { page } }
       )
     }
   }

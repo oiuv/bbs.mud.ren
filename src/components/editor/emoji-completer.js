@@ -1528,9 +1528,11 @@ for (let key in emojis) {
 
 let emojiCompleter = function (cm) {
   CodeMirror.showHint(cm, function () {
-    let cur = cm.getCursor(); let token = cm.getTokenAt(cur)
-    let start = token.start; let end = cur.ch; let word = token.string.slice(0, end - start)
-    let ch = cur.ch; let line = cur.line
+    let cur = cm.getCursor()
+    let token = cm.getTokenAt(cur)
+    let end = cur.ch
+    let ch = cur.ch
+    let line = cur.line
     let currentWord = token.string
 
     while (ch-- > -1) {

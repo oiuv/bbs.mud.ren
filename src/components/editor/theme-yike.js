@@ -1,4 +1,6 @@
-ace.define('ace/theme/yike', ['require', 'exports', 'module', 'ace/lib/dom'], function (acequire, exports, module) {
+import ace from 'brace'
+
+ace.define('ace/theme/yike', ['require', 'exports', 'module', 'ace/lib/dom'], function (acequire, exports) {
   exports.isDark = false
   exports.cssClass = 'ace-yike'
   exports.cssText = `.ace-yike .ace_gutter {

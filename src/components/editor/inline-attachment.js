@@ -1,5 +1,4 @@
 /* jslint newcap: true */
-/* global XMLHttpRequest: false, FormData: false */
 /*
  * Inline Text Attachment
  *
@@ -39,7 +38,7 @@
       for (var i = arguments.length - 1; i >= 0; i--) {
         var obj = arguments[i]
         for (var k in obj) {
-          if (obj.hasOwnProperty(k)) {
+          if (Object.prototype.hasOwnProperty.call(obj, k)) {
             result[k] = obj[k]
           }
         }
@@ -256,7 +255,7 @@
     // Append the extra parameters to the formdata
     if (typeof settings.extraParams === 'object') {
       for (var key in settings.extraParams) {
-        if (settings.extraParams.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(settings.extraParams, key)) {
           formData.append(key, settings.extraParams[key])
         }
       }
@@ -267,7 +266,7 @@
     // Add any available extra headers
     if (typeof settings.extraHeaders === 'object') {
       for (var header in settings.extraHeaders) {
-        if (settings.extraHeaders.hasOwnProperty(header)) {
+        if (Object.prototype.hasOwnProperty.call(settings.extraHeaders, header)) {
           xhr.setRequestHeader(header, settings.extraHeaders[header])
         }
       }

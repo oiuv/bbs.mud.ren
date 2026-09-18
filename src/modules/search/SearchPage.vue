@@ -81,60 +81,60 @@ export default {
         to: 10,
         total: 0
       }
-    };
+    }
   },
   watch: {
     q() {
       if (this.q.length > 0) {
-        this.meta.current_page = 1; // 搜索关键词改变时，重置页码
-        this.search();
+        this.meta.current_page = 1 // 搜索关键词改变时，重置页码
+        this.search()
       } else {
-        this.threads = [];
+        this.threads = []
       }
     }
   },
   methods: {
     highlightContent(item) {
-      return (item.highlights['content'] || []).join('...');
+      return (item.highlights['content'] || []).join('...')
     },
     search() {
       if (this.q.length > 0) {
-        this.loading = true;
-        this.error = false;
+        this.loading = true
+        this.error = false
         // 发送请求时传递查询参数
         this.$http.get(`/threads/search?q=${this.q}&page=${this.meta.current_page}`).then(response => {
-          this.threads = response.data;
-          this.links = response.links;
-          this.meta = response.meta;
-          this.loading = false;
+          this.threads = response.data
+          this.links = response.links
+          this.meta = response.meta
+          this.loading = false
         }).catch(error => {
-          console.error('搜索出错:', error);
-          this.threads = [];
-          this.loading = false;
-          this.error = true;
-        });
+          console.error('搜索出错:', error)
+          this.threads = []
+          this.loading = false
+          this.error = true
+        })
       } else {
-        this.threads = [];
+        this.threads = []
       }
     },
     prevPage() {
       if (this.links.prev) {
-        this.meta.current_page--;
-        this.search();
+        this.meta.current_page--
+        this.search()
       }
     },
     nextPage() {
       if (this.links.next) {
-        this.meta.current_page++;
-        this.search();
+        this.meta.current_page++
+        this.search()
       }
     },
     goToPage(page) {
-      this.meta.current_page = page;
-      this.search();
+      this.meta.current_page = page
+      this.search()
     }
   }
-};
+}
 </script>
 
 <style scoped lang="scss">

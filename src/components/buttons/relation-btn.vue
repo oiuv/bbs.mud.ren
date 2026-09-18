@@ -46,14 +46,14 @@ export default {
     toggle () {
       // let action = !this.item[this.actions[this.action]] ? this.action : `${this.action}`
 
-      this.$http.post(`relations/${this.action}`, {
+      return this.$http.post(`relations/${this.action}`, {
         followable_type: this.types[this.relation],
         followable_id: this.item.id
       }).then(() => {
-        this.item[this.actions[this.action]] = !this.item[
-          this.actions[this.action]
-        ]
-        this.$emit('after-toggle', this.item[this.actions[this.action]])
+        const field = this.actions[this.action]
+        const active = !this.item[field]
+        this.$emit('update:item', { ...this.item, [field]: active })
+        this.$emit('after-toggle', active)
       })
     }
   }

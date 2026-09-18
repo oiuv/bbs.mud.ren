@@ -14,11 +14,10 @@
 
 <script>
 import UserMedia from '$components/user-media'
-import ArrowRight from '$icons/ArrowRight'
 
 export default {
   name: 'user-list-card',
-  components: { UserMedia, ArrowRight },
+  components: { UserMedia },
   props: {
     title: {
       type: String,

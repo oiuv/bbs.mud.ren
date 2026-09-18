@@ -99,7 +99,6 @@ import { mapGetters } from 'vuex'
 import ThumbUp from '$icons/ThumbUp'
 import Reply from '$icons/Reply'
 import PencilIcon from '$icons/Pencil'
-import Markdown from '$icons/Markdown'
 import ThumbDown from '$icons/ThumbDown'
 import ThumbUpOutline from '$icons/ThumbUpOutline'
 import ThumbDownOutline from '$icons/ThumbDownOutline'
@@ -110,7 +109,6 @@ export default {
   components: {
     Editor,
     UserMedia,
-    Markdown,
     MarkdownBody,
     Paginator,
     PencilIcon,
@@ -119,7 +117,7 @@ export default {
     ThumbDown,
     ThumbUpOutline,
     ThumbDownOutline,
-    DeleteIcon // 注册删除图标组件
+    DeleteIcon
   },
   computed: {
     ...mapGetters(['currentUser']),

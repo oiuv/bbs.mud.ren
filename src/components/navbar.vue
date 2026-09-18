@@ -83,26 +83,20 @@
 </template>
 
 <script>
-import MenuIcon from '$icons/Menu'
 import BellIcon from '$icons/Bell'
 import PlusIcon from '$icons/Plus'
-import MagnifyIcon from '$icons/Magnify'
 import AccountIcon from '$icons/Account'
 import AccountEditIcon from '$icons/AccountEdit'
 import LogoutVariant from '$icons/LogoutVariant'
-import NavSearch from './nav-search'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
-    MenuIcon,
     BellIcon,
     PlusIcon,
     AccountIcon,
-    MagnifyIcon,
     AccountEditIcon,
-    LogoutVariant,
-    NavSearch
+    LogoutVariant
   },
   computed: {
     ...mapGetters(['isLogged', 'currentUser'])

@@ -27,7 +27,7 @@ export default http => {
       }
 
       switch (error.response.status) {
-        case 422:
+        case 422: {
           let data = error.response.data.errors
           let content = ''
 
@@ -39,6 +39,7 @@ export default http => {
 
           Message.error(content)
           break
+        }
         case 403:
           Message.error(error.response.data.message || '您没有此操作权限！')
           break
@@ -49,7 +50,7 @@ export default http => {
           break
         case 404:
           // 当状态码为 404 时，直接返回 Promise 拒绝，不显示错误消息
-          return Promise.reject(error.response);
+          return Promise.reject(error.response)
         case 500:
         case 501:
         case 503:

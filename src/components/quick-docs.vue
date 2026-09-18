@@ -57,12 +57,12 @@
 </template>
 
 <script>
-import DocsIcon from "$icons/FileDocumentBoxOutline";
+import DocsIcon from "$icons/FileDocumentBoxOutline"
 
 export default {
   name: "quick-docs",
   components: { DocsIcon }
-};
+}
 </script>
 
 <style scoped>

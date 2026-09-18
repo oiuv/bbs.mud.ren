@@ -65,7 +65,6 @@ export default {
         .map((_, idx) => start + idx)
     },
     change (page) {
-      this.meta.current_page = page
       this.$emit('change', page)
     }
   }

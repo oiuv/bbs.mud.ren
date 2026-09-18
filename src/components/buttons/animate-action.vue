@@ -13,11 +13,10 @@
 import mojs from 'mo-js'
 import ThumbUpOutline from '$icons/ThumbUpOutline'
 import ThumbUp from '$icons/ThumbUp'
-import RelationBtn from './relation-btn'
 import { mapGetters } from 'vuex'
 
 export default {
-  components: { RelationBtn, ThumbUp, ThumbUpOutline },
+  components: { ThumbUp, ThumbUpOutline },
   props: {
     item: {
       type: Object,
@@ -38,17 +37,21 @@ export default {
       if (!this.currentUser.id) {
         return this.$router.push({ name: 'auth.login' })
       }
-      this.$http
+      return this.$http
         .post(`relations/like`, {
           followable_type: 'App\\Thread',
           followable_id: this.item.id
         })
         .then(() => {
-          this.item.has_liked = !this.item.has_liked
-
-          this.item.has_liked
-            ? this.$parent.thread.cache.likes_count++
-            : this.$parent.thread.cache.likes_count--
+          const hasLiked = !this.item.has_liked
+          this.$emit('update:item', {
+            ...this.item,
+            has_liked: hasLiked,
+            cache: {
+              ...this.item.cache,
+              likes_count: this.item.cache.likes_count + (hasLiked ? 1 : -1)
+            }
+          })
         })
     },
     repeatClapping () {

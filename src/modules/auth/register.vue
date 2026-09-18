@@ -55,14 +55,9 @@
 
 <script>
 import { mapActions } from 'vuex'
-import GooglePlus from '$icons/GooglePlus'
-import FacebookIcon from '$icons/Facebook'
-import QqIcon from '$icons/Qqchat'
-import GithubIcon from '$icons/GithubCircle'
 
 export default {
   name: 'register',
-  components: { GooglePlus, FacebookIcon, QqIcon, GithubIcon },
   data () {
     return {
       username: '',
