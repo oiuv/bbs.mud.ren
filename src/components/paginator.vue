@@ -1,20 +1,30 @@
 <template>
-  <ul class="paginator d-flex justify-content-center align-items-center" v-if="meta.last_page > 1">
+  <ul v-if="meta.last_page > 1" class="paginator d-flex justify-content-center align-items-center">
     <template v-if="centerStart != 1">
-      <li class="paginator-item" :class="{active: 1 == meta.current_page}"><a href="javascript:;" @click="change(1)">1</a></li>
-      <li class="paginator-item"><a disabled class="text-muted" v-html="'&ctdot;'"></a></li>
+      <li class="paginator-item" :class="{active: 1 == meta.current_page}">
+        <a href="javascript:;" @click="change(1)">1</a>
+      </li>
+      <li class="paginator-item">
+        <a disabled class="text-muted">⋯</a>
+      </li>
     </template>
-    <li class="paginator-item" :class="{active: i == meta.current_page}" v-for="i in range(centerStart, centerEnd)" :key="i"><a href="javascript:;" @click="change(i)">{{ i }}</a></li>
+    <li v-for="i in range(centerStart, centerEnd)" :key="i" class="paginator-item" :class="{active: i == meta.current_page}">
+      <a href="javascript:;" @click="change(i)">{{ i }}</a>
+    </li>
     <template v-if="centerEnd != meta.last_page">
-      <li class="paginator-item"><a disabled class="text-muted" v-html="'&ctdot;'"></a></li>
-      <li class="paginator-item" :class="{active: meta.last_page == meta.current_page}"><a href="javascript:;" @click="change(meta.last_page)">{{ meta.last_page }}</a></li>
+      <li class="paginator-item">
+        <a disabled class="text-muted">⋯</a>
+      </li>
+      <li class="paginator-item" :class="{active: meta.last_page == meta.current_page}">
+        <a href="javascript:;" @click="change(meta.last_page)">{{ meta.last_page }}</a>
+      </li>
     </template>
   </ul>
 </template>
 
 <script>
 export default {
-  name: 'paginator',
+  name: 'Paginator',
   props: {
     meta: {
       type: Object,

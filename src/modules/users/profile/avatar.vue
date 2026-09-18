@@ -7,11 +7,15 @@
     <img :src="url" class="rounded-circle shadow-6 ml-2 avatar-60" alt="user avatar">
     <img :src="url" class="rounded-circle shadow-6 ml-2 avatar-30" alt="user avatar">
 
-    <button class="btn btn-light d-block mt-2" id="pick-avatar">选择新头像</button>
+    <button id="pick-avatar" class="btn btn-light d-block mt-2">
+      选择新头像
+    </button>
 
-    <avatar-cropper @uploaded="handleUploaded" trigger="#pick-avatar" :upload-url="uploadUrl" :upload-headers="uploadHeaders" />
+    <avatar-cropper trigger="#pick-avatar" :upload-url="uploadUrl" :upload-headers="uploadHeaders" @uploaded="handleUploaded" />
 
-    <button class="btn btn-primary mt-2" @click="submit" :disabled="!newUrl">保存</button>
+    <button class="btn btn-primary mt-2" :disabled="!newUrl" @click="submit">
+      保存
+    </button>
   </div>
 </template>
 

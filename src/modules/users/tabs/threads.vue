@@ -6,12 +6,15 @@
 import ThreadsList from '$components/threads-list'
 
 export default {
-  name: 'user-threads',
+  name: 'UserThreads',
   components: { ThreadsList },
   data () {
     return {
       threads: {}
     }
+  },
+  mounted () {
+    this.loadThreads()
   },
   methods: {
     loadThreads (page = 1) {
@@ -24,9 +27,6 @@ export default {
     handlePageChanged (page) {
       this.loadThreads(page)
     }
-  },
-  mounted () {
-    this.loadThreads()
   }
 }
 </script>

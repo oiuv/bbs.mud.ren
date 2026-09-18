@@ -3,8 +3,8 @@
     <div v-if="activities.data.length <= 0">
       <empty-state />
     </div>
-    <ul class="timeline pb-2" v-else>
-      <li class="timeline-item" v-for="activity in visibleActivities" :key="activity.id">
+    <ul v-else class="timeline pb-2">
+      <li v-for="activity in visibleActivities" :key="activity.id" class="timeline-item">
         <div class="timeline-heading">
           <div class="d-flex">
             <router-link :to="{name:'users.show', params: {username: $parent.user.username}}">
@@ -13,7 +13,9 @@
             <div class="ml-2">
               <div>
                 <router-link :to="{name:'users.show', params: {username: $parent.user.username}}">
-                  <h6 class="mb-0 text-16 d-inline-block">{{ $parent.user.name }}</h6>
+                  <h6 class="mb-0 text-16 d-inline-block">
+                    {{ $parent.user.name }}
+                  </h6>
                 </router-link>
                 <span class="text-gray-60 ml-1">
                   <template v-if="activity.log_name == 'commented.thread'">
@@ -30,30 +32,36 @@
                   </template>
                 </span>
               </div>
-              <div class="text-12 text-gray-70"><small class="text-muted">{{ activity.created_at_timeago }}</small></div>
+              <div class="text-12 text-gray-70">
+                <small class="text-muted">{{ activity.created_at_timeago }}</small>
+              </div>
             </div>
           </div>
         </div>
         <div class="timeline-body">
-          <user-card :user.sync="activity.subject" v-if="activity.log_name == 'follow.user'"></user-card>
-          <div class="box cursor-pointer" v-else>
-            <router-link class="text-muted" :to="subjectLink(activity)">{{ activity.properties['content'] || '无' }}</router-link>
+          <user-card v-if="activity.log_name == 'follow.user'" :user.sync="activity.subject"></user-card>
+          <div v-else class="box cursor-pointer">
+            <router-link class="text-muted" :to="subjectLink(activity)">
+              {{ activity.properties['content'] || '无' }}
+            </router-link>
           </div>
         </div>
       </li>
-      <li class="timeline-item" v-if="activities.meta.current_page < activities.meta.last_page">
+      <li v-if="activities.meta.current_page < activities.meta.last_page" class="timeline-item">
         <div class="timeline-heading">
           <div class="d-flex">
             <button class="btn btn-secondary btn-icon text-20" @click="loadActivities($parent.user.username)">
-              <arrow-down-icon /></button>
+              <arrow-down-icon />
+            </button>
           </div>
         </div>
       </li>
-      <li class="timeline-item" v-if="activities.meta.current_page == activities.meta.last_page">
+      <li v-if="activities.meta.current_page == activities.meta.last_page" class="timeline-item">
         <div class="timeline-heading">
           <div class="d-flex">
             <button class="btn btn-secondary btn-icon text-20" disabled>
-              <source-commit-end /></button>
+              <source-commit-end />
+            </button>
           </div>
         </div>
       </li>
@@ -68,24 +76,8 @@ import SourceCommitEnd from '$icons/SourceCommitEnd'
 import EmptyState from '$components/empty-state'
 
 export default {
-  name: 'user-activities',
-  data () {
-    return {
-      activities: {
-        data: [],
-        meta: {
-          current_page: 0,
-          last_page: 0
-        }
-      }
-    }
-  },
+  name: 'UserActivities',
   components: { UserCard, ArrowDownIcon, SourceCommitEnd, EmptyState },
-  computed: {
-    visibleActivities () {
-      return this.activities.data.filter(activity => activity.subject)
-    }
-  },
   beforeRouteUpdate (to, from, next) {
     if (to.params.username != from.params.username) {
       this.activities = {
@@ -99,6 +91,25 @@ export default {
     }
 
     next()
+  },
+  data () {
+    return {
+      activities: {
+        data: [],
+        meta: {
+          current_page: 0,
+          last_page: 0
+        }
+      }
+    }
+  },
+  computed: {
+    visibleActivities () {
+      return this.activities.data.filter(activity => activity.subject)
+    }
+  },
+  mounted () {
+    this.loadActivities(this.$parent.user.username)
   },
   methods: {
     subjectLink (activity) {
@@ -131,9 +142,6 @@ export default {
           this.activities.meta = activities.meta
         })
     }
-  },
-  mounted () {
-    this.loadActivities(this.$parent.user.username)
   }
 }
 </script>

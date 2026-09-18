@@ -5,7 +5,7 @@
     </template>
     <div class="pt-2 pl-md-4">
       <router-link :to="{name: 'threads.show', params: {id: notification.data.thread_id}}" class="text-muted">
-        <span v-html="notification.data.content"></span>
+        <safe-html tag="span" :html="notification.data.content"></safe-html>
       </router-link>
     </div>
   </notification>
@@ -13,9 +13,10 @@
 
 <script>
 import Notification from './notification'
+import SafeHtml from '$components/safe-html'
 
 export default {
-  components: { Notification },
+  components: { Notification, SafeHtml },
   props: {
     notification: {
       type: Object,

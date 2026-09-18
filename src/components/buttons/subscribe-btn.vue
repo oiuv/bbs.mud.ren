@@ -3,10 +3,10 @@
     <button slot="on" class="btn btn-sm text-gray-50">
       <volume-high /><span class="pl-1">订阅</span>
     </button>
-    <button class="btn btn-sm" slot="off" :class="{'btn-primary': !hovering, 'btn-danger': hovering}" @mouseenter="hovering=true" @mouseleave="hovering=false">
+    <button slot="off" class="btn btn-sm" :class="{'btn-primary': !hovering, 'btn-danger': hovering}" @mouseenter="hovering=true" @mouseleave="hovering=false">
       <volume-mute v-if="hovering"></volume-mute>
       <check-icon v-else></check-icon>
-      <span class="pl-1">{{ hovering ? '取消订阅' : '已订阅'}}</span>
+      <span class="pl-1">{{ hovering ? '取消订阅' : '已订阅' }}</span>
     </button>
   </relation-btn>
 </template>
@@ -18,7 +18,7 @@ import VolumeHigh from '$icons/VolumeHigh'
 import CheckIcon from '$icons/Check'
 
 export default {
-  name: 'subscribe-btn',
+  name: 'SubscribeBtn',
   components: {
     RelationBtn,
     VolumeMute,

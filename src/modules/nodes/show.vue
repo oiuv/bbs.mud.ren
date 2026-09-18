@@ -53,6 +53,14 @@ import SubscribeBtn from '$components/buttons/subscribe-btn'
 
 export default {
   components: { SubscribeBtn, HotTags, ThreadsList },
+  beforeRouteUpdate (to, from, next) {
+    if (to.params.id != from.params.id) {
+      this.getNode(to.params.id)
+      this.loadThreads(to.params.id)
+    }
+
+    next()
+  },
   data () {
     return {
       node: {},
@@ -68,22 +76,14 @@ export default {
   computed: {
     ...mapGetters(['currentUser'])
   },
-  beforeRouteUpdate (to, from, next) {
-    if (to.params.id != from.params.id) {
-      this.getNode(to.params.id)
-      this.loadThreads(to.params.id)
-    }
-
-    next()
-  },
-  created () {
-    this.getNode(this.$route.params.id)
-    this.loadThreads(this.$route.params.id)
-  },
   watch: {
     currentThreadsTab () {
       this.loadThreads(this.$route.params.id, 1)
     }
+  },
+  created () {
+    this.getNode(this.$route.params.id)
+    this.loadThreads(this.$route.params.id)
   },
   methods: {
     loadThreads (id, page = 1) {

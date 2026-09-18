@@ -1,5 +1,5 @@
 <template>
-  <div class="page-user-show" v-if="user.id">
+  <div v-if="user.id" class="page-user-show">
     <header
       class="page-header d-flex align-items-end bg-grey-blue py-2"
       style="background-image: url(/banners/shanghai.jpg)"
@@ -15,18 +15,20 @@
               class="ml-md-1 d-block d-md-inline text-gray-90 text-16"
             >@{{ user.username }}</a>
           </h1>
-          <div class="my-1" v-if="!user.banned_at">{{ user.bio }}</div>
+          <div v-if="!user.banned_at" class="my-1">
+            {{ user.bio }}
+          </div>
 
-          <div class="extends text-white d-none d-md-block d-lg-flex" v-if="!user.banned_at">
-            <div class="mr-1" v-if="user.extends.location">
+          <div v-if="!user.banned_at" class="extends text-white d-none d-md-block d-lg-flex">
+            <div v-if="user.extends.location" class="mr-1">
               <map-marker-icon class="mr-1"></map-marker-icon>
               {{ user.extends.location }}
             </div>
-            <div class="mr-1" v-if="user.extends.company">
+            <div v-if="user.extends.company" class="mr-1">
               <domain-icon class="mr-1"></domain-icon>
               {{ user.extends.company }}
             </div>
-            <div class="mr-1" v-if="user.extends.home_url">
+            <div v-if="user.extends.home_url" class="mr-1">
               <link-icon class="mr-1"></link-icon>
               <a class="text-white" :href="user.extends.home_url">{{ user.extends.home_url }}</a>
             </div>
@@ -48,7 +50,9 @@
       <div class="container">
         <div class="nav nav-tab-line text-center shadow-6 align-items-stretch">
           <div class="nav-item">
-            <router-link :to="{ name: 'users.show' }" class="nav-link" exact>最新动态</router-link>
+            <router-link :to="{ name: 'users.show' }" class="nav-link" exact>
+              最新动态
+            </router-link>
           </div>
           <div class="nav-item">
             <router-link :to="{ name: 'users.threads' }" class="nav-link" exact>
@@ -69,7 +73,7 @@
               <span class="text-gray-70 pl-1">{{ user.cache.followers_count }}</span>
             </router-link>
           </div>
-          <div class="nav-item ml-auto" v-if="currentUser.is_admin">
+          <div v-if="currentUser.is_admin" class="nav-item ml-auto">
             <div class="btn-group">
               <button
                 type="button"
@@ -78,16 +82,16 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <admin-icon/>管理
+                <admin-icon />管理
               </button>
               <div class="dropdown-menu dropdown-menu-right">
                 <button
                   class="dropdown-item"
                   type="button"
-                  @click="toggleStatus('banned_at')"
                   :class="{'text-danger': !user.banned_at}"
+                  @click="toggleStatus('banned_at')"
                 >
-                  <account-off-icon class="mr-1"/>
+                  <account-off-icon class="mr-1" />
                   {{ user.banned_at ? '取消冻结' : '冻结' }}
                 </button>
               </div>
@@ -97,7 +101,7 @@
       </div>
     </div>
 
-    <div class="container pt-4" v-if="!user.banned_at">
+    <div v-if="!user.banned_at" class="container pt-4">
       <div class="row">
         <div class="col-lg-9">
           <router-view></router-view>
@@ -109,8 +113,8 @@
         </div>
       </div>
     </div>
-    <div class="container mt-4" v-else>
-      <user-locked/>
+    <div v-else class="container mt-4">
+      <user-locked />
     </div>
   </div>
 </template>
@@ -132,7 +136,7 @@ import UserSocialBtns from '$components/user-social-btns'
 import UserLocked from '$components/user-locked'
 
 export default {
-  name: 'show',
+  name: 'Show',
   components: {
     UserLocked,
     FollowBtn,
@@ -147,6 +151,13 @@ export default {
     NewUsers,
     UserSocialBtns
   },
+  beforeRouteUpdate (to, from, next) {
+    if (to.params.username !== from.params.username) {
+      this.getUser(to.params.username)
+    }
+
+    next()
+  },
   data () {
     return {
       user: {},
@@ -155,13 +166,6 @@ export default {
   },
   computed: {
     ...mapGetters(['currentUser'])
-  },
-  beforeRouteUpdate (to, from, next) {
-    if (to.params.username !== from.params.username) {
-      this.getUser(to.params.username)
-    }
-
-    next()
   },
   created () {
     this.getUser(this.$route.params.username)

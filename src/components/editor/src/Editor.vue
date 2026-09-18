@@ -15,12 +15,12 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            @click="preview"
             data-toggle="tab"
             href="#form-tab-preview"
             role="tab"
             aria-controls="form-tab-editor"
             aria-selected="false"
+            @click="preview"
           >预览</a>
         </li>
         <li class="nav-item ml-auto">
@@ -38,11 +38,11 @@
         </li>
       </ul>
     </div>
-    <div class="tab-content card-body" id="form-tab-content">
-      <div class="tab-pane fade show active" id="form-tab-editor" style="margin-left: -0.35rem;">
+    <div id="form-tab-content" class="tab-content card-body">
+      <div id="form-tab-editor" class="tab-pane fade show active" style="margin-left: -0.35rem;">
         <textarea id="editor" :placeholder="placeholder"></textarea>
       </div>
-      <div class="tab-pane fade" id="form-tab-preview" style="min-height: 100%;">
+      <div id="form-tab-preview" class="tab-pane fade" style="min-height: 100%;">
         <markdown-body v-model="html"></markdown-body>
       </div>
     </div>
@@ -67,7 +67,10 @@ require('codemirror/keymap/sublime')
 require('../theme/yike.css')
 
 export default {
-  name: 'editor',
+  name: 'Editor',
+  components: {
+    MarkdownBody
+  },
   props: {
     value: {
       type: String,
@@ -92,9 +95,6 @@ export default {
       }
     }
   },
-  components: {
-    MarkdownBody
-  },
   data () {
     return {
       contentBackup: false,
@@ -106,6 +106,9 @@ export default {
       html: '预览生成中...'
     }
   },
+  computed: {
+    ...mapGetters(['authToken'])
+  },
   watch: {
     value () {
       if (this.contentBackup === this.value) {
@@ -114,8 +117,9 @@ export default {
       this.setValue()
     }
   },
-  computed: {
-    ...mapGetters(['authToken'])
+  mounted () {
+    this.init()
+    this.setValue()
   },
   methods: {
     init () {
@@ -165,10 +169,6 @@ export default {
         .post('contents/preview', { markdown: this.value })
         .then(html => (this.html = html))
     }
-  },
-  mounted () {
-    this.init()
-    this.setValue()
   }
 }
 </script>

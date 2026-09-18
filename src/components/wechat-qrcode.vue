@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade" id="page-wechat-qrcode" ref="pageWechatQrcode" tabindex="-1" role="dialog" aria-labelledby="qrcode-wechat" aria-hidden="true">
+  <div id="page-wechat-qrcode" ref="pageWechatQrcode" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="qrcode-wechat" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="z-index: 99999">
       <div class="modal-content">
         <div class="modal-body text-center">
@@ -14,7 +14,7 @@
 <script>
 import QRCode from 'qrcode'
 export default {
-  name: 'wechat-qrcode',
+  name: 'WechatQrcode',
   mounted () {
     setTimeout(() => {
       QRCode.toCanvas(

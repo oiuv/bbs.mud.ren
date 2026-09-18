@@ -6,12 +6,14 @@
     <!--</div>-->
     <!--</form>-->
     <div class="list-group list-group-flush">
-      <user-list-item class="list-group-item" :user.sync="users.data[index]" :key="user.id" v-for="(user, index) of users.data"></user-list-item>
+      <user-list-item v-for="(user, index) of users.data" :key="user.id" class="list-group-item" :user.sync="users.data[index]"></user-list-item>
       <empty-state v-if="users.data && users.data.length == 0"></empty-state>
       <paginator :meta="users.meta" @change="followings"></paginator>
     </div>
-    <div class="text-center" v-if="false">
-      <button class="mt-2 btn btn-ghost">Load More</button>
+    <div v-if="false" class="text-center">
+      <button class="mt-2 btn btn-ghost">
+        Load More
+      </button>
     </div>
   </div>
 </template>
@@ -23,7 +25,7 @@ import UserListItem from '$components/user-list-item'
 import Paginator from '$components/paginator'
 
 export default {
-  name: 'user-followings',
+  name: 'UserFollowings',
   components: {
     UserListItem,
     EmptyState,

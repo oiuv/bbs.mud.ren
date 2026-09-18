@@ -2,11 +2,13 @@
   <el-dialog title="举报文章" :visible="visible" width="30%" @close="close">
     <form>
       <div class="form-group">
-        <textarea class="form-control" rows="6" placeholder="请详细描述举报原因" v-model="remark"></textarea>
+        <textarea v-model="remark" class="form-control" rows="6" placeholder="请详细描述举报原因"></textarea>
       </div>
     </form>
     <div slot="footer" class="dialog-footer">
-      <button class="btn btn-sm btn-success" @click="report">提 交</button>
+      <button class="btn btn-sm btn-success" @click="report">
+        提 交
+      </button>
     </div>
   </el-dialog>
 </template>

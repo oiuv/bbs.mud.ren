@@ -7,10 +7,14 @@
         </slot>
       </h1>
       <h2>
-        <slot name="title">{{ title }}</slot>
+        <slot name="title">
+          {{ title }}
+        </slot>
       </h2>
       <p class="lead">
-        <slot name="message">{{ message }}</slot>
+        <slot name="message">
+          {{ message }}
+        </slot>
       </p>
     </div>
   </div>
@@ -20,7 +24,7 @@
 import EmptyIcon from '$icons/TooltipOutline'
 
 export default {
-  name: 'empty-state',
+  name: 'EmptyState',
   components: { EmptyIcon },
   props: {
     title: {

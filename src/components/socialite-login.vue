@@ -1,13 +1,13 @@
 <template>
   <div class="oauth-btns d-flex align-items-center justify-content-between">
     <div class="text-20 btn mx-1 btn-icon btn-dark" @click="oauth('github')">
-      <github-icon/>
+      <github-icon />
     </div>
     <div class="text-20 btn mx-1 btn-icon btn-pink" @click="oauth('google')">
-      <google-plus/>
+      <google-plus />
     </div>
     <div class="text-20 btn mx-1 btn-icon btn-facebook" @click="oauth('facebook')">
-      <facebook-icon/>
+      <facebook-icon />
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ import FacebookIcon from '$icons/Facebook'
 import GithubIcon from '$icons/GithubCircle'
 
 export default {
-  name: 'oauth-btn',
+  name: 'OauthBtn',
   components: { GooglePlus, FacebookIcon, GithubIcon },
   methods: {
     oauth (platform) {

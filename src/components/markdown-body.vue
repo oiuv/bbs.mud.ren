@@ -1,12 +1,14 @@
 <template>
-  <section class="markdown-body" v-html="replaceUserMention(value)"></section>
+  <safe-html tag="section" class="markdown-body" :html="replaceUserMention(value)"></safe-html>
 </template>
 
 <script>
 import Prism from 'prismjs'
+import SafeHtml from './safe-html'
 
 export default {
-  name: 'markdown-body',
+  name: 'MarkdownBody',
+  components: { SafeHtml },
   props: {
     value: {
       type: String,

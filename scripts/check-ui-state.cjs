@@ -11,7 +11,7 @@ const Vue = require('vue')
 const root = path.resolve(__dirname, '..')
 const cache = new Map()
 const componentStub = {
-  props: ['item', 'user', 'relation', 'action', 'meta', 'notification', 'to'],
+  props: ['item', 'user', 'relation', 'action', 'meta', 'notification', 'to', 'html', 'tag'],
   render (h) { return h('span', this.$slots.default) }
 }
 
@@ -25,10 +25,10 @@ function load (file) {
     plugins: [require('@babel/plugin-transform-modules-commonjs')]
   })
   const module = { exports: {} }
-  const importStub = id => id === 'vuex' ? require('vuex') : componentStub
+  const importStub = id => ['vuex', 'dompurify'].includes(id) ? require(id) : componentStub
   new Function('require', 'module', 'exports', code)(importStub, module, module.exports)
   const options = module.exports.default
-  const rendered = compiler.compileToFunctions(template.content)
+  const rendered = template ? compiler.compileToFunctions(template.content) : {}
   const result = { options, rendered }
   cache.set(file, result)
   return result
@@ -213,10 +213,24 @@ for (const file of ['comment-my-thread', 'mentioned-me']) {
     const { vm, tree } = render(`modules/notifications/types/${file}.vue`, { notification })
     const link = nodes(tree).find(node => node.componentOptions &&
       node.componentOptions.tag === 'router-link' &&
-      nodes(node).some(child => child.tag === 'span' && child.data && child.data.domProps))
+      nodes(node).some(child => child.componentOptions?.tag === 'safe-html'))
     assert.ok(link)
     assert.deepEqual(link.componentOptions.propsData.to, { name: 'threads.show', params: { id: 12 } })
-    assert.equal(nodes(link).find(node => node.data && node.data.domProps).data.domProps.innerHTML, notification.data.content)
+    const content = nodes(link).find(node => node.componentOptions?.tag === 'safe-html')
+    assert.deepEqual(content.componentOptions.propsData, { html: notification.data.content, tag: 'span' })
     vm.$destroy()
   })
 }
+
+test('rich HTML falls back to escaped text when DOM cleaning is unavailable', () => {
+  const html = '<img src=x onerror="alert(1)"><script>alert(1)</script>'
+  for (const tag of ['div', 'span', 'p', 'section', 'script']) {
+    const { vm, tree } = render('components/safe-html.vue', { html, tag })
+    assert.equal(tree.tag, tag === 'script' ? 'div' : tag)
+    assert.equal(tree.data?.domProps, undefined)
+    assert.equal(tree.children.length, 1)
+    assert.equal(tree.children[0].text, html)
+    assert.equal(tree.children[0].tag, undefined)
+    vm.$destroy()
+  }
+})

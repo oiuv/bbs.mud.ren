@@ -1,56 +1,56 @@
 <template>
   <div class="user-social-btns d-flex justify-content-start flex-wrap">
     <a
+      v-if="user.extends.github"
       class="btn btn-dark btn-icon"
       :href="'https://github.com/'+user.extends.github"
       target="_blank"
       :class="btnClass"
-      v-if="user.extends.github"
     >
       <github-icon></github-icon>
     </a>
     <a
+      v-if="user.extends.twitter"
       class="btn btn-twitter btn-icon"
       :href="'https://twitter.com/' + user.extends.twitter"
       target="_blank"
       :class="btnClass"
-      v-if="user.extends.twitter"
     >
       <twitter-icon></twitter-icon>
     </a>
     <a
+      v-if="user.extends.facebook"
       class="btn btn-facebook btn-icon"
       :href="'https://www.facebook.com/' + user.extends.facebook"
       target="_blank"
       :class="btnClass"
-      v-if="user.extends.facebook"
     >
       <facebook-icon></facebook-icon>
     </a>
     <a
+      v-if="user.extends.instagram"
       class="btn btn-orange btn-icon text-white"
       :href="'https://www.instagram.com/' + user.extends.instagram"
       target="_blank"
       :class="btnClass"
-      v-if="user.extends.instagram"
     >
       <instagram-icon></instagram-icon>
     </a>
     <a
+      v-if="user.extends.telegram"
       class="btn btn-teal-blue btn-icon text-white"
       :href="'https://t.me/' + user.extends.telegram"
       target="_blank"
       :class="btnClass"
-      v-if="user.extends.telegram"
     >
       <telegram-icon></telegram-icon>
     </a>
     <a
+      v-if="user.extends.steam"
       class="btn btn-payne-grey btn-icon text-white"
       :href="'https://steamcommunity.com/id/'+user.extends.steam"
       target="_blank"
       :class="btnClass"
-      v-if="user.extends.steam"
     >
       <steam-icon></steam-icon>
     </a>
@@ -66,7 +66,15 @@ import TelegramIcon from '$icons/Telegram'
 import SteamIcon from '$icons/Steam'
 
 export default {
-  name: 'user-social-btns',
+  name: 'UserSocialBtns',
+  components: {
+    TwitterIcon,
+    GithubIcon,
+    FacebookIcon,
+    InstagramIcon,
+    TelegramIcon,
+    SteamIcon
+  },
   props: {
     user: {
       type: Object,
@@ -85,14 +93,6 @@ export default {
     btnClass () {
       return `text-${this.size} spacing-${this.spacing}`
     }
-  },
-  components: {
-    TwitterIcon,
-    GithubIcon,
-    FacebookIcon,
-    InstagramIcon,
-    TelegramIcon,
-    SteamIcon
   }
 }
 </script>

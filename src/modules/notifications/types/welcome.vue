@@ -1,6 +1,8 @@
 <template>
   <notification :notification="notification">
-    <template slot="title">欢迎加入MudRen！</template>
+    <template slot="title">
+      欢迎加入MudRen！
+    </template>
   </notification>
 </template>
 

@@ -2,19 +2,22 @@
   <div class="row pt-3">
     <div class="offset-sm-4 col-sm-4">
       <div class="box">
-        <h4 class="text-center font-weight-normal mt-2">用户登录</h4>
+        <h4 class="text-center font-weight-normal mt-2">
+          用户登录
+        </h4>
         <form @submit.prevent="submit">
           <div class="form-group">
             <label>用户名<small>（或邮箱）</small></label>
-            <input type="text" class="form-control" v-model="username" required>
+            <input v-model="username" type="text" class="form-control" required>
             <small id="emailHelp" class="form-text text-muted">提示：<a href="https://mud.ren:8888" target="_blank">炎黄MUD</a>玩家可直接使用游戏账号登录</small>
-
           </div>
           <div class="form-group">
             <label>密码</label>
-            <input type="password" class="form-control" v-model="password" required>
+            <input v-model="password" type="password" class="form-control" required>
           </div>
-          <button type="submit" class="my-2 btn btn-primary w-100">登录</button>
+          <button type="submit" class="my-2 btn btn-primary w-100">
+            登录
+          </button>
         </form>
         <div class="mb-2 d-flex justify-content-around">
           <!--<socialite-btns></socialite-btns>-->
@@ -22,10 +25,15 @@
       </div>
     </div>
     <div class="offset-sm-4 col-sm-4 text-center mt-2 d-flex justify-content-between">
-      <p>没有账号？ <router-link class="text-blue" :to="{ name: 'auth.register' }">快速注册</router-link>
+      <p>
+        没有账号？ <router-link class="text-blue" :to="{ name: 'auth.register' }">
+          快速注册
+        </router-link>
       </p>
       <p>
-        <router-link class="text-blue" :to="{ name: 'auth.forget-password' }">忘记密码？</router-link>
+        <router-link class="text-blue" :to="{ name: 'auth.forget-password' }">
+          忘记密码？
+        </router-link>
       </p>
     </div>
   </div>

@@ -1,61 +1,75 @@
 <template>
   <div class="comments" name="comments">
     <div class="py-2">
-      <div class="text-16 text-gray-50">{{ comments.meta ? comments.meta.total : 0 }} 条评论</div>
+      <div class="text-16 text-gray-50">
+        {{ comments.meta ? comments.meta.total : 0 }} 条评论
+      </div>
     </div>
-    <div class="box mb-3" v-if="currentUser.id && currentUser.has_activated">
+    <div v-if="currentUser.id && currentUser.has_activated" class="box mb-3">
       <div class="card card-flush shadow-30 pop-comment-form">
-        <editor v-model="content" class="comment-editor" ref="editor" placeholder="请使用 markdown 语法" :options="editorOptions"></editor>
+        <editor ref="editor" v-model="content" class="comment-editor" placeholder="请使用 markdown 语法" :options="editorOptions"></editor>
         <div class="p-2 d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-end">
             <a href="https://guides.github.com/features/mastering-markdown/" class="text-gray-50" target="_blank"><span class="text-14 material-design-icon"><svg class="material-design-icon__svg" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path>
-                </svg></span> Markdown 语法指南</a>
+              <path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path>
+            </svg></span> Markdown 语法指南</a>
           </div>
           <div class="pop-form-btns">
-            <button type="button" class="btn btn-sm btn-primary" :disabled="!formReady" @click="submit">发表评论</button>
-            <button type="button" class="ml-2 btn btn-sm btn-secondary" @click="cancelEdit">清空</button>
+            <button type="button" class="btn btn-sm btn-primary" :disabled="!formReady" @click="submit">
+              发表评论
+            </button>
+            <button type="button" class="ml-2 btn btn-sm btn-secondary" @click="cancelEdit">
+              清空
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="box mb-3" v-else-if="currentUser.id && !currentUser.has_activated">
-      <div class="text-18 ml-2 text-muted text-center">您需要激活账户才能评论~</div>
+    <div v-else-if="currentUser.id && !currentUser.has_activated" class="box mb-3">
+      <div class="text-18 ml-2 text-muted text-center">
+        您需要激活账户才能评论~
+      </div>
     </div>
-    <div class="box mb-3" v-else>
+    <div v-else class="box mb-3">
       <div class="text-18 ml-2 text-center">
         您需要
-        <router-link :to="{ name: 'auth.login' }" tag="a" class="text-blue">登录</router-link>
+        <router-link :to="{ name: 'auth.login' }" tag="a" class="text-blue">
+          登录
+        </router-link>
         或
-        <router-link :to="{ name: 'auth.register' }" tag="a" class="text-blue">注册</router-link>
+        <router-link :to="{ name: 'auth.register' }" tag="a" class="text-blue">
+          注册
+        </router-link>
         才能发表评论
       </div>
     </div>
 
     <paginator :meta="comments.meta" @change="handlePaginate"></paginator>
 
-    <div class="box box-flush" v-for="(item,index) in comments.data" :key="item.id">
-      <div class="border-bottom box-body py-2" :class="{'animated flash': $route.hash === '#comment-' + item.id}" v-if="item.content && item.content.body" :id="'comment-' + item.id" :name="'comment-' + item.id">
+    <div v-for="(item,index) in comments.data" :key="item.id" class="box box-flush">
+      <div v-if="item.content && item.content.body" :id="'comment-' + item.id" class="border-bottom box-body py-2" :class="{'animated flash': $route.hash === '#comment-' + item.id}" :name="'comment-' + item.id">
         <user-media :user="item.user">
           <template slot="name-appends">
-            <router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link>
+            <router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">
+              {{ item.user.username }}
+            </router-link>
           </template>
           <small slot="description"><a :href="'#comment-' + item.id" class="text-gray-70">{{ item.created_at_timeago }}</a></small>
-          <div class="text-16 text-gray-60 ml-auto d-flex align-items-center" slot="appends">
+          <div slot="appends" class="text-16 text-gray-60 ml-auto d-flex align-items-center">
             <div class="mx-1 cursor-pointer d-flex" @click="vote('up', item, index)">
-              <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_up_voted">
+              <button v-if="!item.has_up_voted" class="btn btn-icon btn-light text-gray-60">
                 <thumb-up-outline />
               </button>
-              <button class="btn btn-icon btn-primary" v-else>
+              <button v-else class="btn btn-icon btn-primary">
                 <thumb-up />
               </button>
               <span class="ml-1 align-self-center">{{ item.up_voters }}</span>
             </div>
             <div class="mx-1 cursor-pointer d-flex" @click="vote('down', item, index)">
-              <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_down_voted">
+              <button v-if="!item.has_down_voted" class="btn btn-icon btn-light text-gray-60">
                 <thumb-down-outline />
               </button>
-              <button class="btn btn-icon btn-danger" v-else>
+              <button v-else class="btn btn-icon btn-danger">
                 <thumb-down />
               </button>
               <span class="ml-1 align-self-center">{{ item.down_voters }}</span>
@@ -65,26 +79,24 @@
                 <reply />
               </button>
             </div>
-            <div class="mx-1 cursor-pointer" @click="edit(item)" v-if="currentUser && (currentUser.id == item.user.id || currentUser.is_admin)">
+            <div v-if="currentUser && (currentUser.id == item.user.id || currentUser.is_admin)" class="mx-1 cursor-pointer" @click="edit(item)">
               <button class="btn btn-icon btn-light text-gray-60">
                 <pencil-icon />
               </button>
             </div>
             <!-- 添加删除按钮 -->
-            <div class="mx-1 cursor-pointer" @click="deleteComment(item)" v-if="currentUser && (currentUser.id == item.user.id || currentUser.is_admin)">
+            <div v-if="currentUser && (currentUser.id == item.user.id || currentUser.is_admin)" class="mx-1 cursor-pointer" @click="deleteComment(item)">
               <button class="btn btn-icon btn-light text-gray-60">
                 <delete-icon />
               </button>
             </div>
           </div>
         </user-media>
-        <markdown-body class="comment-content text-gray-40 pt-2" v-model="item.content.body"></markdown-body>
+        <markdown-body v-model="item.content.body" class="comment-content text-gray-40 pt-2"></markdown-body>
       </div>
     </div>
 
     <paginator :meta="comments.meta" @change="handlePaginate"></paginator>
-
-
   </div>
 </template>
 
@@ -105,7 +117,7 @@ import ThumbDownOutline from '$icons/ThumbDownOutline'
 import DeleteIcon from '$icons/Delete' // 假设存在删除图标组件
 
 export default {
-  name: 'comments',
+  name: 'Comments',
   components: {
     Editor,
     UserMedia,
@@ -118,20 +130,6 @@ export default {
     ThumbUpOutline,
     ThumbDownOutline,
     DeleteIcon
-  },
-  computed: {
-    ...mapGetters(['currentUser']),
-    formReady () {
-      return this.content.length >= 3
-    },
-    cacheKey () {
-      return (
-        'comment.content_' +
-        this.objectType.replace('\\\\', '_').toLowerCase() +
-        '_' +
-        this.objectId
-      )
-    }
   },
   props: {
     objectId: {
@@ -158,6 +156,20 @@ export default {
           page: 1
         },
         this.$route.query
+      )
+    }
+  },
+  computed: {
+    ...mapGetters(['currentUser']),
+    formReady () {
+      return this.content.length >= 3
+    },
+    cacheKey () {
+      return (
+        'comment.content_' +
+        this.objectType.replace('\\\\', '_').toLowerCase() +
+        '_' +
+        this.objectId
       )
     }
   },

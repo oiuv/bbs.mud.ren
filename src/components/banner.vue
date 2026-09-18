@@ -1,24 +1,24 @@
 <template>
-  <div :id="id" class="carousel slide carousel-fade" v-if="banner">
-    <ol class="carousel-indicators" v-if="banner.banners.length > 1">
+  <div v-if="banner" :id="id" class="carousel slide carousel-fade">
+    <ol v-if="banner.banners.length > 1" class="carousel-indicators">
       <li
+        v-for="(item, index) in banner.banners"
+        :key="index"
         :data-target="idSelector"
         :data-slide-to="index"
         :class="{active: index === currentIndex}"
-        v-for="(item, index) in banner.banners"
-        :key="index"
         @click="goToSlide(index)"
       ></li>
     </ol>
     <div class="carousel-inner">
       <div
-        class="carousel-item" :class="{active: index === currentIndex}"
-        v-for="(item, index) of banner.banners"
-        :key="item.id"
+        v-for="(item, index) of banner.banners" :key="item.id"
+        class="carousel-item"
+        :class="{active: index === currentIndex}"
       >
         <a :href="item.url || 'javascript:;'" target="_blank">
           <img class="d-block w-100" :src="item.image_url" alt="First slide" />
-          <div class="carousel-caption" v-if="item.title || item.description">
+          <div v-if="item.title || item.description" class="carousel-caption">
             <h1 v-if="item.title">{{ item.title }}</h1>
             <p v-if="item.description">{{ item.description }}</p>
           </div>
@@ -26,11 +26,11 @@
       </div>
     </div>
     <a
+      v-if="banner.banners.length > 1"
       class="carousel-control-prev"
       :href="idSelector"
       role="button"
       data-slide="prev"
-      v-if="banner.banners.length > 1"
       @click.prevent="prevSlide()"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true">
@@ -39,11 +39,11 @@
       <span class="sr-only">Previous</span>
     </a>
     <a
+      v-if="banner.banners.length > 1"
       class="carousel-control-next"
       :href="idSelector"
       role="button"
       data-slide="next"
-      v-if="banner.banners.length > 1"
       @click.prevent="nextSlide()"
     >
       <span class="carousel-control-next-icon" aria-hidden="true">
@@ -67,6 +67,13 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      banner: null,
+      currentIndex: 0,
+      intervalId: null,
+    }
+  },
   computed: {
     id() {
       return "banner-" + this.name
@@ -75,12 +82,11 @@ export default {
       return "#" + this.id
     },
   },
-  data() {
-    return {
-      banner: null,
-      currentIndex: 0,
-      intervalId: null,
-    }
+  mounted() {
+    this.loadBanner()
+  },
+  beforeDestroy() {
+    this.stopAutoPlay()
   },
   methods: {
     loadBanner() {
@@ -115,12 +121,6 @@ export default {
         this.intervalId = null
       }
     },
-  },
-  mounted() {
-    this.loadBanner()
-  },
-  beforeDestroy() {
-    this.stopAutoPlay()
   },
 }
 </script>

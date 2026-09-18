@@ -1,5 +1,5 @@
 <template>
-  <div class="user-card box box-flush text-center" v-if="user">
+  <div v-if="user" class="user-card box box-flush text-center">
     <div class="box-body">
       <div>
         <router-link :to="{name:'users.show', params: {username: user.username}}">
@@ -7,16 +7,22 @@
         </router-link>
       </div>
       <h6 class="mt-1 mb-0 text-22 d-inline-block">
-        <router-link :to="{name:'users.show', params: {username: user.username}}">{{ user.name }}</router-link>
+        <router-link :to="{name:'users.show', params: {username: user.username}}">
+          {{ user.name }}
+        </router-link>
       </h6>
       <div>
         <router-link
           class="text-12 text-muted"
           :to="{name: 'users.show', params: {username: user.username}}"
-        >@{{ user.username }}</router-link>
+        >
+          @{{ user.username }}
+        </router-link>
       </div>
       <div class="text-gray-50">
-        <div class="py-1">{{ user.bio }}</div>
+        <div class="py-1">
+          {{ user.bio }}
+        </div>
       </div>
       <user-social-btns
         :user="user"
@@ -34,14 +40,14 @@ import FollowBtn from '$components/buttons/follow-btn'
 import UserSocialBtns from '$components/user-social-btns'
 
 export default {
-  name: 'user-profile-card',
+  name: 'UserProfileCard',
+  components: { FollowBtn, UserSocialBtns },
   props: {
     user: {
       type: Object,
       required: true
     }
-  },
-  components: { FollowBtn, UserSocialBtns }
+  }
 }
 </script>
 

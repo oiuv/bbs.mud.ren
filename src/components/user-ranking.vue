@@ -1,17 +1,21 @@
 <template>
   <div class="box text-gray-50">
     <div class="box-heading d-flex align-items-center justify-content-between">
-      <div class="text-13">活跃用户</div>
+      <div class="text-13">
+        活跃用户
+      </div>
       <!--<button class="btn btn-ghost btn-icon"><arrow-right-icon></arrow-right-icon></button>-->
     </div>
     <ul class="plan-list">
-      <user-media class="mb-2 d-flex align-items-center" v-for="(item, index) in users" :key="item.id" :user="item">
+      <user-media v-for="(item, index) in users" :key="item.id" class="mb-2 d-flex align-items-center" :user="item">
         <template slot="appends">
           <follow-btn :item.sync="users[index]" class="ml-auto" simple></follow-btn>
         </template>
         <template slot="description">
           <!-- <div class="text-gray-70 text-12">注册于{{ item.created_at_timeago }}</div> -->
-          <div class="text-gray-70 text-12">经验值：{{ item.energy }}</div>
+          <div class="text-gray-70 text-12">
+            经验值：{{ item.energy }}
+          </div>
         </template>
       </user-media>
     </ul>
@@ -30,13 +34,13 @@ export default {
       users: []
     }
   },
+  mounted () {
+    this.loadUsers()
+  },
   methods: {
     loadUsers () {
       this.$http.get('users?order=ranking&limit=10').then(users => (this.users = users.data))
     }
-  },
-  mounted () {
-    this.loadUsers()
   }
 }
 </script>

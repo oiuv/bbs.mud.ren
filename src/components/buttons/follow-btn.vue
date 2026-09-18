@@ -1,10 +1,10 @@
 <template>
   <relation-btn
+    v-if="currentUser.id && item.id != currentUser.id"
     relation="user"
     action="follow"
     :item="item"
     @update:item="$emit('update:item', $event)"
-    v-if="currentUser.id && item.id != currentUser.id"
   >
     <template slot="on">
       <button v-if="simple" class="btn btn-rounded btn-ghost btn-icon ml-auto" title="关注 TA">
@@ -19,9 +19,9 @@
         v-if="simple"
         class="btn btn-icon ml-auto"
         :class="{'btn-ghost': !hovering, 'btn-danger': hovering}"
+        title="取消关注 TA"
         @mouseenter="hovering=true"
         @mouseleave="hovering=false"
-        title="取消关注 TA"
       >
         <check-icon v-if="!hovering"></check-icon>
         <close-icon v-else></close-icon>
@@ -30,9 +30,9 @@
         v-else
         class="btn mx-1"
         :class="{'btn-teal-blue': !hovering, 'btn-danger': hovering}"
+        title="取消关注 TA"
         @mouseenter="hovering=true"
         @mouseleave="hovering=false"
-        title="取消关注 TA"
       >
         <check-icon v-if="!hovering"></check-icon>
         <close-icon v-else></close-icon>
@@ -50,7 +50,7 @@ import CloseIcon from '$icons/Close'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'follow-btn',
+  name: 'FollowBtn',
   components: {
     RelationBtn,
     PlusIcon,

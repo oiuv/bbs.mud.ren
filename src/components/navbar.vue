@@ -3,11 +3,12 @@
     <div class="container">
       <nav class="navbar px-0 py-1 text-14 navbar-expand-lg navbar-light">
         <router-link :to="{ name: 'home' }" class="navbar-brand text-22 d-flex align-items-center antialiased">
-          <img class="mx-2 logo" src="https://www.mud.ren/logo.png" alt="mudren"><span class="text-14 text-muted ml-1">MUD游戏玩家社区</span></router-link>
+          <img class="mx-2 logo" src="https://www.mud.ren/logo.png" alt="mudren"><span class="text-14 text-muted ml-1">MUD游戏玩家社区</span>
+        </router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul class="navbar-nav flex-row align-items-center justify-content-center py-sm-2 py-md-0 mx-auto">
             <router-link :to="{ name: 'home' }" exact tag="li" class="nav-item">
               <a href="javascript:void(0);" class="nav-link">首页</a>
@@ -19,7 +20,9 @@
               <a class="nav-link" href="https://mud.ren/users" target="_blank">英雄榜</a>
             </li>
             <li class="nav-item">
-              <router-link :to="{ name: 'search' }" class="nav-link">搜索</router-link>
+              <router-link :to="{ name: 'search' }" class="nav-link">
+                搜索
+              </router-link>
               <!-- <nav-search /> -->
             </li>
             <!-- 新增AI导航 -->
@@ -49,7 +52,9 @@
                   <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-item">
                       <router-link :to="{ name: 'users.show', params: { username: currentUser.username } }">
-                        <div class="text-16 text-gray-30">{{ currentUser.name }}</div>
+                        <div class="text-16 text-gray-30">
+                          {{ currentUser.name }}
+                        </div>
                         <div>@{{ currentUser.username }}</div>
                       </router-link>
                     </div>
@@ -72,8 +77,12 @@
               </li>
             </template>
             <template v-else>
-              <router-link :to="{ name: 'auth.login' }" tag="li" class="nav-item"><a href="javascript:void(0);">登录</a></router-link>
-              <router-link :to="{ name: 'auth.register' }" tag="li" class="nav-item"><a href="javascript:void(0);">注册</a></router-link>
+              <router-link :to="{ name: 'auth.login' }" tag="li" class="nav-item">
+                <a href="javascript:void(0);">登录</a>
+              </router-link>
+              <router-link :to="{ name: 'auth.register' }" tag="li" class="nav-item">
+                <a href="javascript:void(0);">注册</a>
+              </router-link>
             </template>
           </ul>
         </div>

@@ -7,23 +7,23 @@
             <bell-icon class="mr-1 text-16" />通知
           </div>
           <div class="nav flex-lg-column nav-pills">
-            <a href="javascript:void(0);" class="nav-link" v-for="tab,id of tabs" :key="tab" :class="{active: currentTab == id}" @click="currentTab = id">{{ tab }}</a>
+            <a v-for="tab,id of tabs" :key="tab" href="javascript:void(0);" class="nav-link" :class="{active: currentTab == id}" @click="currentTab = id">{{ tab }}</a>
           </div>
         </div>
       </div>
       <div class="col-md-9">
         <div class="box box-flush">
-          <ul class="list-group list-group-flush" v-if="notifications.length > 0">
+          <ul v-if="notifications.length > 0" class="list-group list-group-flush">
             <li class="list-group-item">
               {{ tabs[currentTab] }}
             </li>
-            <li class="list-group-item list-group-item-action" v-for="notification in notifications" :key="notification.id" :class="{'bg-gray-98': notification.read_at == null}">
+            <li v-for="notification in notifications" :key="notification.id" class="list-group-item list-group-item-action" :class="{'bg-gray-98': notification.read_at == null}">
               <keep-alive>
                 <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
               </keep-alive>
             </li>
           </ul>
-          <div class="text-center text-gray-50" v-else>
+          <div v-else class="text-center text-gray-50">
             <empty-state message="没有新的消息哦~">
               <template slot="icon">
                 <inbox-icon></inbox-icon>

@@ -32,51 +32,6 @@ export default {
   computed: {
     ...mapGetters(['currentUser'])
   },
-  methods: {
-    toggle () {
-      if (!this.currentUser.id) {
-        return this.$router.push({ name: 'auth.login' })
-      }
-      return this.$http
-        .post(`relations/like`, {
-          followable_type: 'App\\Thread',
-          followable_id: this.item.id
-        })
-        .then(() => {
-          const hasLiked = !this.item.has_liked
-          this.$emit('update:item', {
-            ...this.item,
-            has_liked: hasLiked,
-            cache: {
-              ...this.item.cache,
-              likes_count: this.item.cache.likes_count + (hasLiked ? 1 : -1)
-            }
-          })
-        })
-    },
-    repeatClapping () {
-      const clapIcon = document.getElementById('clap--icon')
-
-      this.updateNumberOfClaps()
-      this.animationTimeline.replay()
-      clapIcon.classList.add('checked')
-    },
-    updateNumberOfClaps () {
-      const clapCount = document.getElementById('clap--count')
-      const clapTotalCount = document.getElementById('clap--count-total')
-      this.likers = this.$parent.thread.cache.likes_count
-
-      if (this.item.has_liked) {
-        clapCount.innerHTML = '-1'
-        clapTotalCount.innerHTML = this.likers - 1
-        this.likers--
-      } else {
-        clapCount.innerHTML = '+1'
-        clapTotalCount.innerHTML = this.likers + 1
-        this.likers++
-      }
-    }
-  },
   mounted () {
     const vm = this
     const clap = document.getElementById('clap')
@@ -166,6 +121,51 @@ export default {
     clap.addEventListener('mouseup', function () {
       clearInterval(clapHold)
     })
+  },
+  methods: {
+    toggle () {
+      if (!this.currentUser.id) {
+        return this.$router.push({ name: 'auth.login' })
+      }
+      return this.$http
+        .post(`relations/like`, {
+          followable_type: 'App\\Thread',
+          followable_id: this.item.id
+        })
+        .then(() => {
+          const hasLiked = !this.item.has_liked
+          this.$emit('update:item', {
+            ...this.item,
+            has_liked: hasLiked,
+            cache: {
+              ...this.item.cache,
+              likes_count: this.item.cache.likes_count + (hasLiked ? 1 : -1)
+            }
+          })
+        })
+    },
+    repeatClapping () {
+      const clapIcon = document.getElementById('clap--icon')
+
+      this.updateNumberOfClaps()
+      this.animationTimeline.replay()
+      clapIcon.classList.add('checked')
+    },
+    updateNumberOfClaps () {
+      const clapCount = document.getElementById('clap--count')
+      const clapTotalCount = document.getElementById('clap--count-total')
+      this.likers = this.$parent.thread.cache.likes_count
+
+      if (this.item.has_liked) {
+        clapCount.innerHTML = '-1'
+        clapTotalCount.innerHTML = this.likers - 1
+        this.likers--
+      } else {
+        clapCount.innerHTML = '+1'
+        clapTotalCount.innerHTML = this.likers + 1
+        this.likers++
+      }
+    }
   }
 }
 </script>

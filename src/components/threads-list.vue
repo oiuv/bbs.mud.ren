@@ -3,9 +3,9 @@
     <ul class="list-group list-group-flush">
       <!-- 循环展示每个帖子 -->
       <li
-        class="list-group-item d-md-flex d-block align-items-center justify-content-between bg-white rounded shadow-sm mb-2"
         v-for="item in threads.data"
         :key="item.id"
+        class="list-group-item d-md-flex d-block align-items-center justify-content-between bg-white rounded shadow-sm mb-2"
       >
         <!-- 左侧用户信息和帖子标题部分 -->
         <div class="d-flex align-items-center">
@@ -79,8 +79,8 @@
       </li>
       <!-- 当没有帖子时显示空状态 -->
       <li
-        class="list-group-item d-flex align-items-center justify-content-center p-5"
         v-if="threads['data'] && threads.data.length == 0"
+        class="list-group-item d-flex align-items-center justify-content-center p-5"
       >
         <empty-state message="该分类下无相关讨论哦~"></empty-state>
       </li>
@@ -99,7 +99,7 @@ import EmptyState from '$components/empty-state'
 import SubscribeIcon from '$icons/Rss'
 
 export default {
-  name: 'threads-list',
+  name: 'ThreadsList',
   components: {
     LikeIcon,
     CommentIcon,

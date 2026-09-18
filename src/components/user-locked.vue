@@ -9,7 +9,7 @@
 <script>
 import AccountOffIcon from '$icons/AccountOff'
 export default {
-  name: 'user-locked',
+  name: 'UserLocked',
   components: { AccountOffIcon }
 }
 </script>

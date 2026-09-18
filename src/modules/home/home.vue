@@ -43,6 +43,14 @@ import ThreadsList from '$components/threads-list'
 import GuestLoginGuide from '$components/guest-login-guide'
 
 export default {
+  components: {
+    Banner,
+    QuickDocs,
+    UserRanking,
+    NewUsers,
+    ThreadsList,
+    GuestLoginGuide
+  },
   data () {
     return {
       threads: {
@@ -54,18 +62,13 @@ export default {
       currentThreadsTab: 'default'
     }
   },
-  components: {
-    Banner,
-    QuickDocs,
-    UserRanking,
-    NewUsers,
-    ThreadsList,
-    GuestLoginGuide
-  },
   watch: {
     currentThreadsTab () {
       this.loadThreads(1)
     }
+  },
+  mounted () {
+    this.loadThreads()
   },
   methods: {
     loadThreads (page = 1) {
@@ -76,9 +79,6 @@ export default {
     handlePageChanged (page) {
       this.loadThreads(page)
     }
-  },
-  mounted () {
-    this.loadThreads()
   }
 }
 </script>

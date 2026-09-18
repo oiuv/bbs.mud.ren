@@ -1,27 +1,31 @@
 <template>
   <div class="boxes">
-    <div class="box" id="edit-password">
+    <div id="edit-password" class="box">
       <div class="box-heading border-bottom">
         <h5>修改密码</h5>
       </div>
       <form class="w-50" @submit.prevent="resetPassword">
         <div class="form-group">
           <label>旧密码</label>
-          <input type="password" v-model="oldPassword" class="form-control">
+          <input v-model="oldPassword" type="password" class="form-control">
         </div>
         <div class="form-group">
           <label>新密码</label>
-          <input type="password" v-model="password" class="form-control">
+          <input v-model="password" type="password" class="form-control">
         </div>
         <div class="form-group">
           <label>确认新密码</label>
-          <input type="password" v-model="passwordConfirmation" class="form-control">
+          <input v-model="passwordConfirmation" type="password" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary rounded">修改密码</button>
-        <router-link :to="{name: 'auth.forget-password'}" class="text-blue ml-2">忘记密码？</router-link>
+        <button type="submit" class="btn btn-primary rounded">
+          修改密码
+        </button>
+        <router-link :to="{name: 'auth.forget-password'}" class="text-blue ml-2">
+          忘记密码？
+        </router-link>
       </form>
     </div>
-    <div class="box" id="edit-email">
+    <div id="edit-email" class="box">
       <div class="box-heading border-bottom">
         <h5>修改邮箱地址</h5>
       </div>
@@ -32,27 +36,31 @@
         </div>
         <div class="form-group">
           <label>新邮箱</label>
-          <input type="text" class="form-control" v-model="email">
+          <input v-model="email" type="text" class="form-control">
           <small class="form-text text-muted">修改后需要进行新的邮箱验证。</small>
         </div>
-        <button type="submit" class="btn btn-primary rounded">确定</button>
+        <button type="submit" class="btn btn-primary rounded">
+          确定
+        </button>
       </form>
     </div>
-    <div class="box" id="edit-phone">
+    <div id="edit-phone" class="box">
       <div class="box-heading border-bottom">
         <h5>修改手机号码</h5>
       </div>
       <form class="w-50">
-        <div class="form-group" v-if="currentUser.phone">
+        <div v-if="currentUser.phone" class="form-group">
           <label>原号码</label>
           <input type="text" disabled class="form-control" :value="currentUser.phone">
         </div>
         <div class="form-group">
           <label>新号码</label>
           <div class="input-group">
-            <input type="text" class="form-control" v-model="phone">
+            <input v-model="phone" type="text" class="form-control">
             <div class="input-group-append">
-              <button type="submit" class="btn btn-primary rounded-right" disabled>获取验证码</button>
+              <button type="submit" class="btn btn-primary rounded-right" disabled>
+                获取验证码
+              </button>
             </div>
           </div>
           <small class="form-text text-muted">修改手机号码需要进行短信验证。</small>
@@ -61,7 +69,9 @@
           <label>验证码</label>
           <input type="text" class="form-control">
         </div>
-        <button class="btn btn-primary rounded">确定</button>
+        <button class="btn btn-primary rounded">
+          确定
+        </button>
       </form>
     </div>
   </div>

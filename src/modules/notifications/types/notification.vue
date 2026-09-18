@@ -6,7 +6,9 @@
         {{ notification.data.name }}
       </router-link>
       <div class="d-inline">
-        <slot name="title">评论了你的文章</slot>
+        <slot name="title">
+          评论了你的文章
+        </slot>
       </div>
       <small class="date text-muted ml-lg-auto text-mini">{{ notification.created_at }}</small>
     </div>
@@ -18,13 +20,13 @@
 
 <script>
 export default {
+  name: 'Notification',
   props: {
     notification: {
       type: Object,
       required: true
     }
-  },
-  name: 'notification'
+  }
 }
 </script>
 

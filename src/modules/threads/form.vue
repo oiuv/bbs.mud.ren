@@ -1,5 +1,5 @@
 <template>
-  <div class="page-threads-show" v-if="ready">
+  <div v-if="ready" class="page-threads-show">
     <div v-if="currentUser.has_banned">
       <user-locked />
     </div>
@@ -11,14 +11,14 @@
         您需要先激活账户以使用此功能
       </div>
     </div>
-    <div class="row" v-else>
+    <div v-else class="row">
       <div class="col-md-9 m-auto">
         <div class="box box-flush">
           <form>
             <div class="card">
               <div class="card-header pt-3 border-bottom-0">
                 <div class="input-group input-group">
-                  <input type="text" ref="title_input" class="form-control form-control-lg" v-model="form.title" placeholder="请在这里输入标题（请精准表达主题）">
+                  <input ref="title_input" v-model="form.title" type="text" class="form-control form-control-lg" placeholder="请在这里输入标题（请精准表达主题）">
                 </div>
               </div>
               <editor ref="editorRef" v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="不得少于30个字符~请使用 Markdown 格式排版（可把内容发给AI排版），初次发贴请仔细阅读：https://bbs.mud.ren/threads/1"></editor>
@@ -26,11 +26,12 @@
                 <div class="left-actions d-flex align-items-center">
                   <span class="text-muted">发布到</span>
                   <div class="dropdown ml-1">
-                    <el-select filterable v-model="form.node_id">
+                    <el-select v-model="form.node_id" filterable>
                       <el-option-group
                         v-for="group in nodes"
                         :key="group.title"
-                        :label="group.title">
+                        :label="group.title"
+                      >
                         <el-option v-for="item in group.children" :key="item.id" :value="item.id" :label="item.title">
                           <span style="float: left" class="pr-1">{{ item.title }}</span>
                           <span style="float: right; color: #8492a6; font-size: 11px;" class="d-none d-sm-block">--{{ item.description }}</span>
@@ -41,10 +42,16 @@
                   <span class="ml-2"><a href="/threads/51" target="_blank" class="text-info">编辑排版指南</a></span>
                 </div>
                 <div class="right-actions">
-                  <button type="button" class="btn btn-primary" :disabled="!formReady" @click="showCaptcha(false)">立即发布</button>
-                  <button type="button" class="btn btn-secondary ml-1" :disabled="!formReady" @click="submit(true)">保存草稿</button>
+                  <button type="button" class="btn btn-primary" :disabled="!formReady" @click="showCaptcha(false)">
+                    立即发布
+                  </button>
+                  <button type="button" class="btn btn-secondary ml-1" :disabled="!formReady" @click="submit(true)">
+                    保存草稿
+                  </button>
                   <!-- 添加清除草稿按钮 -->
-                  <button type="button" class="btn btn-danger ml-1" @click="clearDraft">清除草稿</button>
+                  <button type="button" class="btn btn-danger ml-1" @click="clearDraft">
+                    清除草稿
+                  </button>
                 </div>
               </div>
             </div>
@@ -65,7 +72,7 @@ import { Select as ElSelect, Option as ElOption, OptionGroup as ElOptionGroup } 
 import 'element-ui/lib/theme-chalk/select.css'
 
 export default {
-  name: 'thread-form',
+  name: 'ThreadForm',
   components: {
     Editor,
     Alert,
@@ -93,14 +100,6 @@ export default {
       }
     }
   },
-  watch: {
-    form: {
-      deep: true,
-      handler () {
-        localforage.setItem('thread.form', this.form)
-      }
-    }
-  },
   computed: {
     ...mapGetters(['currentUser']),
     formReady () {
@@ -111,6 +110,14 @@ export default {
         this.form.content.markdown &&
         this.form.content.markdown.length >= 30
       )
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler () {
+        localforage.setItem('thread.form', this.form)
+      }
     }
   },
   mounted () {

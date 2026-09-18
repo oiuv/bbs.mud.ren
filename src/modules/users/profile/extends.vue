@@ -14,13 +14,13 @@
           <div class="col-sm-10 pl-0">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">https://github.com/</span>
+                <span id="basic-addon1" class="input-group-text">https://github.com/</span>
               </div>
               <input
-                type="text"
-                class="form-control"
                 id="github-form"
                 v-model="links.github"
+                type="text"
+                class="form-control"
                 placeholder="username"
               >
             </div>
@@ -35,13 +35,13 @@
           <div class="col-sm-10 pl-0">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon2">https://twitter.com/</span>
+                <span id="basic-addon2" class="input-group-text">https://twitter.com/</span>
               </div>
               <input
-                type="text"
-                class="form-control"
                 id="twitter-form"
                 v-model="links.twitter"
+                type="text"
+                class="form-control"
                 placeholder="username"
               >
             </div>
@@ -56,13 +56,13 @@
           <div class="col-sm-10 pl-0">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">https://www.facebook.com/</span>
+                <span id="basic-addon3" class="input-group-text">https://www.facebook.com/</span>
               </div>
               <input
-                type="text"
-                class="form-control"
                 id="facebook-form"
                 v-model="links.facebook"
+                type="text"
+                class="form-control"
                 placeholder="username"
               >
             </div>
@@ -77,13 +77,13 @@
           <div class="col-sm-10 pl-0">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon4">https://www.instagram.com/</span>
+                <span id="basic-addon4" class="input-group-text">https://www.instagram.com/</span>
               </div>
               <input
-                type="text"
-                class="form-control"
                 id="instagram-form"
                 v-model="links.instagram"
+                type="text"
+                class="form-control"
                 placeholder="username"
               >
             </div>
@@ -98,13 +98,13 @@
           <div class="col-sm-10 pl-0">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon5">https://t.me/</span>
+                <span id="basic-addon5" class="input-group-text">https://t.me/</span>
               </div>
               <input
-                type="text"
-                class="form-control"
                 id="telegram-form"
                 v-model="links.telegram"
+                type="text"
+                class="form-control"
                 placeholder="username"
               >
             </div>
@@ -119,13 +119,13 @@
           <div class="col-sm-10 pl-0">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon6">https://steamcommunity.com/id/</span>
+                <span id="basic-addon6" class="input-group-text">https://steamcommunity.com/id/</span>
               </div>
               <input
-                type="text"
-                class="form-control"
                 id="steam-form"
                 v-model="links.steam"
+                type="text"
+                class="form-control"
                 placeholder="username"
               >
             </div>
@@ -133,7 +133,9 @@
         </div>
         <div class="form-group row d-flex align-items-center">
           <div class="col-sm-10 offset-sm-2 pl-0">
-            <button class="btn btn-primary rounded">确定</button>
+            <button class="btn btn-primary rounded">
+              确定
+            </button>
           </div>
         </div>
       </form>

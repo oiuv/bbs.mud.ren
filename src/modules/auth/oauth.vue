@@ -1,13 +1,17 @@
 <template>
   <div class="oauth-redirect text-center p-5">
-    <div v-if="$route.name=='auth.oauth_redirect'">Redirecting to {{ $route.params.platform }}...</div>
-    <div v-else>Fetching user info...</div>
+    <div v-if="$route.name=='auth.oauth_redirect'">
+      Redirecting to {{ $route.params.platform }}...
+    </div>
+    <div v-else>
+      Fetching user info...
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'oauth',
+  name: 'Oauth',
   mounted () {
     let platform = this.$route.params.platform
     if (this.$route.name === 'auth.oauth_redirect') {

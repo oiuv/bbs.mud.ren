@@ -5,8 +5,12 @@
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-8">
-            <h1 class="display-5 fw-bold mb-2">论坛版块</h1>
-            <p class="lead mb-3">探索各个讨论区，找到你感兴趣的话题</p>
+            <h1 class="display-5 fw-bold mb-2">
+              论坛版块
+            </h1>
+            <p class="lead mb-3">
+              探索各个讨论区，找到你感兴趣的话题
+            </p>
             <div class="d-flex justify-content-center gap-3 flex-wrap badges-container">
               <span class="badge-feature bg-white text-primary border border-white px-4 py-2">
                 <i class="fas fa-users me-2"></i>
@@ -40,8 +44,12 @@
                   </div>
                 </div>
                 <div class="flex-grow-1">
-                  <h2 class="h5 mb-1 fw-bold text-dark">{{ node.title }}</h2>
-                  <p class="text-muted mb-0 small">{{ node.description }}</p>
+                  <h2 class="h5 mb-1 fw-bold text-dark">
+                    {{ node.title }}
+                  </h2>
+                  <p class="text-muted mb-0 small">
+                    {{ node.description }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -51,20 +59,25 @@
               <div v-for="child in node.children" :key="child.id" class="mb-2">
                 <router-link
                   :to="{name: 'nodes.node', params: {id: child.id}}"
-                  class="text-decoration-none">
+                  class="text-decoration-none"
+                >
                   <div class="child-card card border-0 shadow-sm hover-card">
                     <div class="card-body p-3">
                       <div class="d-flex align-items-center">
                         <!-- 图标区域 -->
                         <div class="me-4 flex-shrink-0">
-                          <div v-if="child.icon"
-                               class="child-icon bg-gradient-primary text-white rounded-3 d-flex align-items-center justify-content-center"
-                               style="width: 72px; height: 72px; min-width: 72px;">
+                          <div
+                            v-if="child.icon"
+                            class="child-icon bg-gradient-primary text-white rounded-3 d-flex align-items-center justify-content-center"
+                            style="width: 72px; height: 72px; min-width: 72px;"
+                          >
                             <i :class="child.icon" class="fs-3"></i>
                           </div>
-                          <div v-else
-                               class="child-icon bg-gradient-secondary text-white rounded-3 d-flex align-items-center justify-content-center"
-                               style="width: 72px; height: 72px; min-width: 72px;">
+                          <div
+                            v-else
+                            class="child-icon bg-gradient-secondary text-white rounded-3 d-flex align-items-center justify-content-center"
+                            style="width: 72px; height: 72px; min-width: 72px;"
+                          >
                             <i class="fas fa-comments fs-3"></i>
                           </div>
                         </div>
@@ -77,10 +90,12 @@
                                 <h5 class="h6 mb-0 fw-bold text-dark">
                                   {{ child.title }}
                                 </h5>
-                                <i v-if="child.has_subscribed"
-                                   class="fas fa-star text-warning ms-2"
-                                   style="font-size: 0.75rem;"
-                                   title="已订阅"></i>
+                                <i
+                                  v-if="child.has_subscribed"
+                                  class="fas fa-star text-warning ms-2"
+                                  style="font-size: 0.75rem;"
+                                  title="已订阅"
+                                ></i>
                               </div>
                               <p class="text-muted mb-2" style="font-size: 0.9rem; line-height: 1.6;">
                                 {{ child.description }}
@@ -100,9 +115,11 @@
                                     <span class="ms-1">订阅</span>
                                   </span>
                                 </span>
-                                <span v-if="child.last_thread"
-                                      class="text-truncate d-flex align-items-center"
-                                      style="max-width: 250px;">
+                                <span
+                                  v-if="child.last_thread"
+                                  class="text-truncate d-flex align-items-center"
+                                  style="max-width: 250px;"
+                                >
                                   <i class="far fa-clock" style="font-size: 0.8rem; width: 16px; text-align: center;"></i>
                                   <span class="text-truncate ms-2">{{ child.last_thread.title }}</span>
                                 </span>
@@ -111,8 +128,10 @@
 
                             <!-- 右侧箭头 -->
                             <div class="flex-shrink-0 d-none d-sm-flex align-items-center">
-                              <div class="text-primary d-flex align-items-center justify-content-center rounded-circle"
-                                   style="width: 32px; height: 32px; background: rgba(102, 126, 234, 0.1);">
+                              <div
+                                class="text-primary d-flex align-items-center justify-content-center rounded-circle"
+                                style="width: 32px; height: 32px; background: rgba(102, 126, 234, 0.1);"
+                              >
                                 <i class="fas fa-chevron-right" style="font-size: 0.9rem;"></i>
                               </div>
                             </div>

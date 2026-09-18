@@ -1,13 +1,15 @@
 <template>
-  <div class="box box-flush text-gray-50" v-if="users.length > 0">
-    <div class="box-body" v-if="title">
+  <div v-if="users.length > 0" class="box box-flush text-gray-50">
+    <div v-if="title" class="box-body">
       <div class="d-flex align-items-center justify-content-between">
-        <div class="text-13">{{ title }}</div>
+        <div class="text-13">
+          {{ title }}
+        </div>
         <!--<button class="btn btn-ghost btn-icon"><arrow-right></arrow-right></button>-->
       </div>
     </div>
     <ul class="plan-list px-2 pb-2" :class="{'pt-2':!title}">
-      <user-media type="vertical w25" v-for="item in users" :key="item.id" :user="item"></user-media>
+      <user-media v-for="item in users" :key="item.id" type="vertical w25" :user="item"></user-media>
     </ul>
   </div>
 </template>
@@ -16,7 +18,7 @@
 import UserMedia from '$components/user-media'
 
 export default {
-  name: 'user-list-card',
+  name: 'UserListCard',
   components: { UserMedia },
   props: {
     title: {

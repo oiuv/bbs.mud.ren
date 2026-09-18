@@ -1,23 +1,27 @@
 <template>
-  <div class="page-threads-show pb-4" v-if="thread">
+  <div v-if="thread" class="page-threads-show pb-4">
     <div class="row">
       <div class="col-md-9">
         <article class="box box-flush">
           <header class="thread-header box-body d-flex justify-content-between align-items-center">
             <user-media :user="thread.user">
-              <small class="text-muted" slot="description">发布于 {{ thread.created_at_timeago }}</small>
+              <small slot="description" class="text-muted">发布于 {{ thread.created_at_timeago }}</small>
             </user-media>
           </header>
           <div class="thread-content box-body text-gray-40 text-16">
             <header>
-              <h2 class="mb-3 pb-2 border-bottom">{{ thread.title }}</h2>
+              <h2 class="mb-3 pb-2 border-bottom">
+                {{ thread.title }}
+              </h2>
             </header>
             <template v-if="thread.excellent_at">
               <template v-if="currentUser.has_activated">
                 <markdown-body v-model="thread.content.body"></markdown-body>
               </template>
               <template v-else>
-                <div class="alert alert-danger text-18 text-center" role="alert">您需要注册登录并激活账户才能查看精华内容</div>
+                <div class="alert alert-danger text-18 text-center" role="alert">
+                  您需要注册登录并激活账户才能查看精华内容
+                </div>
               </template>
             </template>
             <template v-else>
@@ -119,7 +123,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <subscribe-btn relation="thread" :item.sync="thread"/>
+                  <subscribe-btn relation="thread" :item.sync="thread" />
                 </li>
               </ul>
             </div>
@@ -132,9 +136,13 @@
                 </router-link>
                 <div class="p-2">
                   <router-link :to="{name: 'users.show', params: {username: thread.user.username}}">
-                    <h3 class="text-gray-50 text-14">{{ thread.user.name }}</h3>
+                    <h3 class="text-gray-50 text-14">
+                      {{ thread.user.name }}
+                    </h3>
                   </router-link>
-                  <div class="text-12 text-muted">{{ thread.user.bio }}</div>
+                  <div class="text-12 text-muted">
+                    {{ thread.user.bio }}
+                  </div>
                 </div>
               </div>
               <div class="right-action">
@@ -147,18 +155,18 @@
           <comments object-type="App\Thread" :object-id="thread.id" @created="loadThread"></comments>
         </div>
         <div class="thread-toolbar">
-          <animate-action :item.sync="thread"/>
-          <share-action class="mt-3" :item="thread"/>
+          <animate-action :item.sync="thread" />
+          <share-action class="mt-3" :item="thread" />
         </div>
       </div>
       <div class="col-md-3 position-relative">
         <user-profile-card class="user-profile-card" :user.sync="thread.user"></user-profile-card>
-        <user-list-card title="他们觉得很赞" :users="thread.likers" class="mt-2"/>
+        <user-list-card title="他们觉得很赞" :users="thread.likers" class="mt-2" />
         <hot-tags class="mt-2"></hot-tags>
       </div>
     </div>
-    <wechat-qrcode/>
-    <report-form :visible="showReportForm" @close="showReportForm = false"/>
+    <wechat-qrcode />
+    <report-form :visible="showReportForm" @close="showReportForm = false" />
   </div>
 </template>
 
@@ -219,6 +227,13 @@ export default {
     ShareDropdown,
     WechatQrcode
   },
+  beforeRouteUpdate (to, from, next) {
+    if (to.params.id !== from.params.id) {
+      this.loadThread()
+    }
+
+    next()
+  },
   data () {
     return {
       thread: null,
@@ -231,12 +246,8 @@ export default {
       return this.thread.user_id === this.$user().id || this.$user().is_admin
     }
   },
-  beforeRouteUpdate (to, from, next) {
-    if (to.params.id !== from.params.id) {
-      this.loadThread()
-    }
-
-    next()
+  mounted () {
+    this.loadThread()
   },
   methods: {
     loadThread () {
@@ -305,9 +316,6 @@ export default {
         this.$message.success('Markdown内容已复制到剪贴板')
       }
     }
-  },
-  mounted () {
-    this.loadThread()
   }
 }
 </script>

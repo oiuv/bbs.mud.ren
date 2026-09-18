@@ -2,7 +2,7 @@
   <div class="page-user-show">
     <div class="row">
       <div class="col-md-3">
-        <sidebar/>
+        <sidebar />
       </div>
       <div class="col-md-9">
         <router-view></router-view>
@@ -16,7 +16,7 @@ import Sidebar from '$modules/users/profile/sidebar'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'show',
+  name: 'Show',
   components: { Sidebar },
   computed: {
     ...mapGetters(['currentUser'])

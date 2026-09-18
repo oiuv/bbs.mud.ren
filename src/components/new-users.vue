@@ -2,12 +2,14 @@
   <div class="box box-flush text-gray-50">
     <div class="box-body">
       <div class="d-flex align-items-center justify-content-between">
-        <div class="text-13">最新用户</div>
+        <div class="text-13">
+          最新用户
+        </div>
         <!--<button class="btn btn-ghost btn-icon"><arrow-right></arrow-right></button>-->
       </div>
     </div>
     <ul class="plan-list px-2 pb-1">
-      <user-media type="vertical w25" v-for="item in users" :key="item.id" :user="item"></user-media>
+      <user-media v-for="item in users" :key="item.id" type="vertical w25" :user="item"></user-media>
     </ul>
   </div>
 </template>
@@ -23,15 +25,15 @@ export default {
       users: []
     }
   },
+  mounted () {
+    this.loadUsers()
+  },
   methods: {
     loadUsers () {
       this.$http
         .get('users?latest=1&limit=20')
         .then(users => (this.users = users.data))
     }
-  },
-  mounted () {
-    this.loadUsers()
   }
 }
 </script>
