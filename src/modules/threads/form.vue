@@ -34,7 +34,7 @@
                       >
                         <el-option v-for="item in group.children" :key="item.id" :value="item.id" :label="item.title">
                           <span style="float: left" class="pr-1">{{ item.title }}</span>
-                          <span style="float: right; color: #8492a6; font-size: 11px;" class="d-none d-sm-block">--{{ item.description }}</span>
+                          <span style="float: right; color: var(--muted); font-size: 11px;" class="d-none d-sm-block">--{{ item.description }}</span>
                         </el-option>
                       </el-option-group>
                     </el-select>

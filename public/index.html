@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-theme="dark">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="theme-color" content="#0b0d10">
+    <style>
+      html { background: #0b0d10; color: #f0efec; color-scheme: dark; }
+      html[data-theme="light"] { background: #f2f5f9; color: #212734; color-scheme: light; }
+    </style>
+    <script src="<%= BASE_URL %>theme.js"></script>
     <link rel="icon" href="<%= BASE_URL %>logo.png">
     <title>MUD.REN | MUD游戏玩家社区</title>
     <meta name="description" content="mud.Ren社区专注于lpmud游戏、mudlib开发、lpc学习、fluffos编译等MUD游戏的技术交流和分享，爱mud,爱生活。">

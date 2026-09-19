@@ -130,7 +130,7 @@
                             <div class="flex-shrink-0 d-none d-sm-flex align-items-center">
                               <div
                                 class="text-primary d-flex align-items-center justify-content-center rounded-circle"
-                                style="width: 32px; height: 32px; background: rgba(102, 126, 234, 0.1);"
+                                style="width: 32px; height: 32px; background: var(--accent-soft);"
                               >
                                 <i class="fas fa-chevron-right" style="font-size: 0.9rem;"></i>
                               </div>
@@ -172,7 +172,8 @@ export default {
 
 <style lang="scss" scoped>
 .hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--accent-soft), transparent), var(--surface);
+  color: var(--text) !important;
   position: relative;
   overflow: hidden;
   border-radius: 0 0 20px 20px;
@@ -217,9 +218,9 @@ export default {
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-color: rgba(255, 255, 255, 0.8) !important;
-    color: #667eea !important;
+    background: var(--surface-hover) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
   }
 
   i {
@@ -228,7 +229,7 @@ export default {
 
   &:hover i {
     transform: scale(1.2);
-    color: #667eea;
+    color: var(--accent);
   }
 }
 
@@ -238,15 +239,15 @@ export default {
 
 .parent-header {
   transition: all 0.3s ease;
-  border-left: 4px solid #667eea !important;
+  border-left: 4px solid var(--accent) !important;
   margin-bottom: 1.25rem !important;
   border-radius: 12px !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.15) !important;
-    border-left: 4px solid #764ba2 !important;
+    box-shadow: var(--shadow) !important;
+    border-left: 4px solid var(--accent-hover) !important;
   }
 }
 
@@ -271,14 +272,14 @@ export default {
   .child-card {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.06) !important;
-    background: #fff;
+    border: 1px solid var(--border) !important;
+    background: var(--surface);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2) !important;
-      border-color: rgba(102, 126, 234, 0.25) !important;
+      box-shadow: var(--shadow) !important;
+      border-color: var(--accent) !important;
     }
 
     .card-body {
@@ -292,40 +293,41 @@ export default {
 
   &:hover .child-icon {
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: var(--shadow);
   }
 
   &:hover .fa-chevron-right {
     transform: translateX(5px);
-    color: #667eea;
+    color: var(--accent);
   }
 
   &:hover .text-primary {
-    background: rgba(102, 126, 234, 0.2) !important;
+    background: var(--accent-soft) !important;
     transition: all 0.3s ease;
   }
 }
 
 .child-icon {
   transition: all 0.2s ease;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.15);
+  background: var(--accent-soft);
+  color: var(--accent) !important;
+  box-shadow: var(--shadow);
   flex-shrink: 0;
 }
 
 .fa-chevron-right {
   transition: all 0.2s ease;
-  color: #8b92a9;
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
 .text-muted {
-  color: #6c757d !important;
+  color: var(--muted) !important;
   transition: color 0.2s ease;
 }
 
 .child-card:hover .text-muted {
-  color: #5a6268 !important;
+  color: var(--text) !important;
 }
 
 // 优化间距和对齐

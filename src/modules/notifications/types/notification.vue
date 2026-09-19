@@ -33,7 +33,7 @@ export default {
 <style lang="scss" scoped>
 .notification-body {
   a {
-    color: #6c757d !important;
+    color: var(--muted) !important;
   }
 }
 </style>

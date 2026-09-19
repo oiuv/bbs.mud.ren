@@ -102,7 +102,7 @@ export default {
   width: 100%;
   height: calc(100vh - var(--ai-offset, 65px));
   min-height: 320px;
-  background: #ffffff;
+  background: var(--surface);
   overflow: hidden;
 }
 

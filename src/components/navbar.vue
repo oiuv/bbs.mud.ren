@@ -1,13 +1,20 @@
 <template>
-  <div class="bg-white bg-white shadow-6">
+  <div class="site-header">
     <div class="container">
       <nav class="navbar px-0 py-1 text-14 navbar-expand-lg navbar-light">
         <router-link :to="{ name: 'home' }" class="navbar-brand text-22 d-flex align-items-center antialiased">
-          <img class="mx-2 logo" src="https://www.mud.ren/logo.png" alt="mudren"><span class="text-14 text-muted ml-1">MUD游戏玩家社区</span>
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M5 24V8l11 10L27 8v16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="brand-name">MUD<span class="brand-accent">.REN</span></span>
+          <span class="brand-description d-none d-xl-inline">玩家社区</span>
         </router-link>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="navbar-tools d-lg-none">
+          <theme-toggle />
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="展开导航">
+            <menu-icon aria-hidden="true" />
+          </button>
+        </div>
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul class="navbar-nav flex-row align-items-center justify-content-center py-sm-2 py-md-0 mx-auto">
             <router-link :to="{ name: 'home' }" exact tag="li" class="nav-item">
@@ -32,6 +39,9 @@
           </ul>
 
           <ul class="navbar-nav ml-md-auto flex-row d-md-flex align-items-center justify-content-around">
+            <li class="nav-item d-none d-lg-block">
+              <theme-toggle />
+            </li>
             <template v-if="isLogged">
               <li class="nav-item">
                 <!-- 优化后的发贴按钮 -->
@@ -97,6 +107,8 @@ import PlusIcon from '$icons/Plus'
 import AccountIcon from '$icons/Account'
 import AccountEditIcon from '$icons/AccountEdit'
 import LogoutVariant from '$icons/LogoutVariant'
+import MenuIcon from '$icons/Menu'
+import ThemeToggle from './theme-toggle'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -105,7 +117,9 @@ export default {
     PlusIcon,
     AccountIcon,
     AccountEditIcon,
-    LogoutVariant
+    LogoutVariant,
+    MenuIcon,
+    ThemeToggle
   },
   computed: {
     ...mapGetters(['isLogged', 'currentUser'])

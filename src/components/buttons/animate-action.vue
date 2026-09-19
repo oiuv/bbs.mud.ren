@@ -175,8 +175,8 @@ export default {
     SASS definitions
   =======================*/
 $btn-dimension: 60px;
-$primary-color: rgba(189, 195, 199, 1);
-$secondary-color: #0078ff;
+$primary-color: var(--muted);
+$secondary-color: var(--accent);
 @mixin debug {
   outline: 1px solid red;
 }
@@ -190,7 +190,7 @@ $secondary-color: #0078ff;
 .clap {
   position: relative;
   border-radius: 50%;
-  background: #fff;
+  background: var(--surface);
   font-size: 24px;
   width: $btn-dimension;
   height: $btn-dimension;
@@ -207,7 +207,7 @@ $secondary-color: #0078ff;
   }
   &:hover {
     cursor: pointer;
-    background: #fff60;
+    background: var(--surface-hover);
     font-size: 26px;
     transition: all 0.3s ease-in;
     &:after {
@@ -219,7 +219,7 @@ $secondary-color: #0078ff;
     top: -$btn-dimension/1.6;
     left: $btn-dimension/4;
     font-size: 0.8rem;
-    color: white;
+    color: var(--accent-text);
     background: $secondary-color;
     border-radius: 50%;
     height: $btn-dimension/2;

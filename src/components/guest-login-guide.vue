@@ -24,8 +24,6 @@ export default {
 
 <style scoped>
 .guest-login-guide {
-  background: url("/banners/technology.jpg");
-  background-size: 160%;
-  background-position: center;
+  background: linear-gradient(145deg, var(--accent-soft), transparent), var(--surface);
 }
 </style>

@@ -352,12 +352,12 @@ export default {
     list-style: disc !important;
   }
   pre {
-    background: #272822 !important;
+    background: var(--code-bg) !important;
     code {
       font-size: 100%;
       word-break: break-word;
       white-space: pre-wrap;
-      color: #f8f8f2;
+      color: var(--text);
       text-shadow: none;
     }
   }

@@ -99,8 +99,8 @@ export default {
     }
 
     &.active a {
-      color: #fff;
-      background: rgba(0, 0, 0, 0.5);
+      color: var(--accent-text);
+      background: var(--accent);
     }
   }
 }

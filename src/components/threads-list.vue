@@ -152,10 +152,10 @@ export default {
 
 /* 链接样式 */
 a {
-  color: #333;
+  color: var(--text);
 }
 
 a:hover {
-  color: #007bff;
+  color: var(--accent);
 }
 </style>
