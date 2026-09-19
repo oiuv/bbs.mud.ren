@@ -90,6 +90,12 @@ VUE_APP_CAPTCHA_ID_PUBLISH=
 
 回归检查：`node scripts/check-theme.cjs`。浏览器验收使用独立 Playwright CLI 会话运行 `scripts/check-theme-browser.cjs`，API 写请求全部拦截，截图写入 CLI 当前工作目录。
 
+## 宽屏布局
+
+从 1360px 视口起，页面随窗口加宽，最大宽度为 1680px；1920px 屏幕、100% 浏览器缩放下左右各留 120px。首页、版块和用户帖子使用可伸展主栏与固定侧栏，宽屏列表标题为 16px，帖子正文和编辑器另设阅读宽度上限。
+
+小于 1360px 的屏幕沿用原有断点。布局规则集中在 `src/assets/sass/_layout.scss`，同时适用于深浅主题。
+
 ## AI 助手（Dify）
 
 `/ai` 在登录后加载 Dify 整页聊天，自动传入当前账号的信息：

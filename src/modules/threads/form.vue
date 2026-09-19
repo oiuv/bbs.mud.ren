@@ -12,7 +12,7 @@
       </div>
     </div>
     <div v-else class="row">
-      <div class="col-md-9 m-auto">
+      <div class="col-md-9 thread-editor m-auto">
         <div class="box box-flush">
           <form>
             <div class="card">

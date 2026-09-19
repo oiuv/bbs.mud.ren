@@ -1,8 +1,8 @@
 <template>
   <div class="page-home">
     <banner name="home"></banner>
-    <div class="row mt-2">
-      <div class="col-md-9">
+    <div class="row forum-columns mt-2">
+      <div class="col-md-9 forum-main">
         <div class="box box-flush">
           <div class="box-body">
             <ul class="nav nav-pills">
@@ -23,7 +23,7 @@
           <threads-list :threads="threads[currentThreadsTab]" @page-changed="handlePageChanged"></threads-list>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 forum-sidebar">
         <guest-login-guide class="mb-2" />
         <quick-docs class="mb-2" />
         <!-- <hot-tags /> -->

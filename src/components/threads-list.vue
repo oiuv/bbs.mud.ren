@@ -8,7 +8,7 @@
         class="list-group-item d-md-flex d-block align-items-center justify-content-between bg-white rounded shadow-sm mb-2"
       >
         <!-- 左侧用户信息和帖子标题部分 -->
-        <div class="d-flex align-items-center">
+        <div class="thread-summary d-flex align-items-center">
           <!-- 用户头像 -->
           <a :href="'/' + item.user.username" class="mr-2">
             <img :src="item.user.avatar" alt class="avatar-30 rounded-circle">
@@ -27,7 +27,7 @@
             <span v-if="item.banned_at" class="badge badge-pill badge-dark ml-1">禁</span>
 
             <!-- 帖子标题 -->
-            <a :href="'/threads/' + item.id" target="_blank" class="ml-1 text-decoration-none">
+            <a :href="'/threads/' + item.id" target="_blank" class="thread-title ml-1 text-decoration-none">
               {{ item.title }}
             </a>
             <div class="d-none d-md-block">
@@ -47,7 +47,7 @@
           </div>
         </div>
         <!-- 右侧互动数据和更新时间部分 -->
-        <div class="ml-auto d-flex align-items-center justify-content-md-end">
+        <div class="thread-stats ml-auto d-flex align-items-center justify-content-md-end">
           <!-- 点赞、评论和浏览量 -->
           <div class="text-gray-60 d-flex justify-content-between align-items-center">
             <!-- 点赞数 -->

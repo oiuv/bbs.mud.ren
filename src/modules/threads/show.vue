@@ -1,7 +1,7 @@
 <template>
   <div v-if="thread" class="page-threads-show pb-4">
-    <div class="row">
-      <div class="col-md-9">
+    <div class="row forum-columns">
+      <div class="col-md-9 forum-main">
         <article class="box box-flush">
           <header class="thread-header box-body d-flex justify-content-between align-items-center">
             <user-media :user="thread.user">
@@ -159,7 +159,7 @@
           <share-action class="mt-3" :item="thread" />
         </div>
       </div>
-      <div class="col-md-3 position-relative">
+      <div class="col-md-3 forum-sidebar position-relative">
         <user-profile-card class="user-profile-card" :user.sync="thread.user"></user-profile-card>
         <user-list-card title="他们觉得很赞" :users="thread.likers" class="mt-2" />
         <hot-tags class="mt-2"></hot-tags>

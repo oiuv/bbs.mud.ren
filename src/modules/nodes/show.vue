@@ -14,8 +14,8 @@
       </div>
     </header>
     <div class="container">
-      <div class="row mt-3">
-        <div class="col-md-9">
+      <div class="row forum-columns mt-3">
+        <div class="col-md-9 forum-main">
           <div class="box box-flush">
             <div class="box-body">
               <ul class="nav nav-pills">
@@ -37,7 +37,7 @@
             <threads-list :threads="threads[currentThreadsTab]" @page-changed="handlePageChanged"></threads-list>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 forum-sidebar">
           <hot-tags></hot-tags>
         </div>
       </div>

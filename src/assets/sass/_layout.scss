@@ -1,0 +1,72 @@
+// Keep the existing compact grid, then let wide desktop layouts breathe.
+@media (min-width: 1360px) {
+  .container {
+    width: calc(100% - 160px);
+    max-width: 1680px;
+  }
+
+  // Node, search and thread pages also use containers inside the outer shell.
+  .container .container {
+    width: 100%;
+  }
+
+  .carousel-item > a {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .forum-columns > .forum-main {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .forum-columns > .forum-sidebar {
+    flex: 0 0 350px;
+    max-width: 350px;
+  }
+
+  html[data-theme] .threads-items .list-group-item {
+    padding: 18px 24px;
+    column-gap: 24px;
+  }
+
+  .thread-summary {
+    flex: 1 1 0;
+    min-width: 0;
+
+    > a { flex-shrink: 0; }
+    > div { min-width: 0; }
+    .avatar-30 { width: 40px; height: 40px; }
+  }
+
+  .thread-title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .thread-stats {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .thread-content {
+    width: 100%;
+    max-width: 1040px;
+    margin-inline: auto;
+  }
+
+  .page-threads-show .thread-content {
+    padding: 32px;
+  }
+
+  .thread-editor {
+    max-width: 1200px;
+  }
+
+  .site-header .navbar .nav-link {
+    font-size: 15px;
+  }
+}

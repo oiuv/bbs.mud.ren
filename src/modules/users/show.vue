@@ -5,7 +5,7 @@
       style="background-image: url(/banners/shanghai.jpg)"
     >
       <div
-        class="user-profile container position-relative w-100 text-white p-2 d-md-flex flex-row align-items-center"
+        class="user-profile container position-relative text-white p-2 d-md-flex flex-row align-items-center"
       >
         <img :src="user.avatar" alt="User avatar" class="avatar avatar-120">
         <div class="ml-md-3">
@@ -102,11 +102,11 @@
     </div>
 
     <div v-if="!user.banned_at" class="container pt-4">
-      <div class="row">
-        <div class="col-lg-9">
+      <div class="row forum-columns">
+        <div class="col-lg-9 forum-main">
           <router-view></router-view>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 forum-sidebar">
           <hot-tags></hot-tags>
           <new-users class="mt-2"></new-users>
           <user-ranking class="mt-2"></user-ranking>
