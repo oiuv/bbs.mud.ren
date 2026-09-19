@@ -16,7 +16,7 @@
             </header>
             <template v-if="thread.excellent_at">
               <template v-if="currentUser.has_activated">
-                <markdown-body v-model="thread.content.body"></markdown-body>
+                <markdown-body v-model="thread.content.body" anchors></markdown-body>
               </template>
               <template v-else>
                 <div class="alert alert-danger text-18 text-center" role="alert">
@@ -25,7 +25,7 @@
               </template>
             </template>
             <template v-else>
-              <markdown-body v-model="thread.content.body"></markdown-body>
+              <markdown-body v-model="thread.content.body" anchors></markdown-body>
             </template>
           </div>
           <div class="thread-stats-bar bg-white border-top py-1">
