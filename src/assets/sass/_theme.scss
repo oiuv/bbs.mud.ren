@@ -229,7 +229,7 @@ html[data-theme] {
   .brand-mark { width: 28px; height: 28px; color: var(--accent); }
   .brand-name { font-size: 18px; font-weight: 750; letter-spacing: .06em; }
   .brand-accent { color: var(--accent); }
-  .brand-description { font-size: 12px; color: var(--muted); border-left: 1px solid var(--border); padding-left: 12px; margin-left: 4px; }
+  .brand-description { font-size: 12px; color: var(--muted); border-left: 1px solid var(--border); padding-left: 12px; margin-left: 4px; white-space: nowrap; }
   .navbar .nav-link:hover, .navbar-light .navbar-nav .active > .nav-link { color: var(--accent); }
   .navbar .btn-primary, .navbar .btn-info { color: var(--accent-text); }
   .navbar-tools { display: flex; align-items: center; gap: 10px; margin-left: 16px; }

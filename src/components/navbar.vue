@@ -7,7 +7,7 @@
             <path d="M5 24V8l11 10L27 8v16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <span class="brand-name">MUD<span class="brand-accent">.REN</span></span>
-          <span class="brand-description d-none d-xl-inline">玩家社区</span>
+          <span class="brand-description d-none d-xl-inline">MUD游戏玩家社区</span>
         </router-link>
         <div class="navbar-tools d-lg-none">
           <theme-toggle />
