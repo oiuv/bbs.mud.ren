@@ -108,7 +108,8 @@
 
 .CodeMirror {
   @extend .form-control;
-  padding-left: 0px;
+  // Content padding belongs to the lines, outside the scrollbar measurements.
+  padding: 0;
 }
 
 .CodeMirror-focused {

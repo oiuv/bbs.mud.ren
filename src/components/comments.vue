@@ -353,10 +353,15 @@ export default {
     min-height: 100px;
     max-height: 180px;
   }
+  .comment-editor .CodeMirror-scroll {
+    // Constrain the scroller itself so its viewport matches the bordered editor.
+    min-height: 98px;
+    max-height: 178px;
+  }
   .pop-comment-form {
     position: sticky;
     bottom: 55px;
-    min-width: 500px;
+    min-width: 0;
     max-width: 100%;
     overflow: hidden;
   }
