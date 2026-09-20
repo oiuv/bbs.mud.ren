@@ -29,6 +29,7 @@
         <!-- <hot-tags /> -->
         <user-ranking class="mt-2" />
         <new-users class="mt-2" />
+        <recent-active-users class="mt-2" />
       </div>
     </div>
   </div>
@@ -38,6 +39,7 @@
 import Banner from '$components/banner'
 import UserRanking from '$components/user-ranking'
 import NewUsers from '$components/new-users'
+import RecentActiveUsers from '$components/recent-active-users'
 import QuickDocs from '$components/quick-docs'
 import ThreadsList from '$components/threads-list'
 import GuestLoginGuide from '$components/guest-login-guide'
@@ -48,6 +50,7 @@ export default {
     QuickDocs,
     UserRanking,
     NewUsers,
+    RecentActiveUsers,
     ThreadsList,
     GuestLoginGuide
   },
