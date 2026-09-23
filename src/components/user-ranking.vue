@@ -2,7 +2,7 @@
   <div class="box text-gray-50">
     <div class="box-heading d-flex align-items-center justify-content-between">
       <div class="text-13">
-        活跃用户
+        经验排行
       </div>
       <!--<button class="btn btn-ghost btn-icon"><arrow-right-icon></arrow-right-icon></button>-->
     </div>

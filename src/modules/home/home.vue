@@ -28,8 +28,8 @@
         <quick-docs class="mb-2" />
         <!-- <hot-tags /> -->
         <user-ranking class="mt-2" />
-        <new-users class="mt-2" />
         <recent-active-users class="mt-2" />
+        <new-users class="mt-2" />
       </div>
     </div>
   </div>
